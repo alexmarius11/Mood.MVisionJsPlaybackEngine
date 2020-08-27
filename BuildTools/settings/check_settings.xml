@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE CHECK_SETTINGS [
+  <!ELEMENT CHECK_SETTINGS (MANDATORY_FILES)>
+  <!ELEMENT MANDATORY_FILES (FILE*)>
+  <!ELEMENT FILE (#PCDATA)>
+]>
+<CHECK_SETTINGS>
+  <MANDATORY_FILES>
+		<FILE>D:\moodmedia\software_v5\settings\v4_settings.xml</FILE>
+		<FILE>D:\moodmedia\software_v5\settings\client_settings.xml</FILE>
+		<FILE>D:\moodmedia\software_v5\settings\software_settings.xml</FILE>
+		<FILE>D:\moodmedia\software_v5\settings\hardware_settings.xml</FILE>
+  </MANDATORY_FILES>
+</CHECK_SETTINGS>

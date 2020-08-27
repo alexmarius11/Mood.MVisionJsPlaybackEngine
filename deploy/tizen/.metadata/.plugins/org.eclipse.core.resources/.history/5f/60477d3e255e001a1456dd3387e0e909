@@ -1,0 +1,113 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+define(["require", "exports", "../../../../../app/ts/reusable/rm_general/r_service/R_Service", "../../../../../app/ts/reusable/rm_coreservices/r_playlistcontroller/IImpl_PlaylistController_R", "../../../../../app/ts/reusable/rm_coreservices/r_playlistcontroller/IImpl_PlaylistController_Config", "../../../../../app/ts/reusable/rm_coreservices/r_playlistcontroller/IImpl_PlaylistController_Commands"], function (require, exports, rmGeneral, rmIImplPlaylistController, rmIImplPlaylistControllerConfig, rmIImplPlaylistControllerCommands) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var rm_coreservices;
+    (function (rm_coreservices) {
+        var R_PlaylistController = /** @class */ (function (_super) {
+            __extends(R_PlaylistController, _super);
+            //----------- constructor 
+            function R_PlaylistController(aFactoryDescription, aServiceContainer, aLogService, error) {
+                var _this = _super.call(this, aFactoryDescription, aServiceContainer, aLogService, error) || this;
+                _this._iPlaylistController = new rmIImplPlaylistController.rm_coreservices.IImpl_PlaylistController_R(_this);
+                _this._iPlaylistControllerConfig = new rmIImplPlaylistControllerConfig.rm_coreservices.IImpl_PlaylistController_Config(_this);
+                _this._iPlaylistControllerCommands = new rmIImplPlaylistControllerCommands.rm_coreservices.IImpl_PlaylistController_Commands(_this);
+                _this._playlistControllerConfig = null;
+                _this._aLogService = aLogService;
+                _this._nextZoneId = 0;
+                _this._aPrepareParamPool = null;
+                _this._aRunParamPool = null;
+                _this._aStopParamPool = null;
+                _this._aStatusParamPool = null;
+                return _this;
+            }
+            //------------------------------
+            R_PlaylistController.prototype.injectDependencies = function (aServiceContainer, aServiceLocator, aLogService, error) {
+                this._aServiceLocator = aServiceLocator; //;<amConfigurationServicesServiceLocator.am_configurationservices.A_ServiceLocator>this._aServiceContainer._iServiceManager.getServiceByAbstractName("A_ServiceLocator", null, error);
+                this._nextZoneId = 0;
+                this._aPrepareParamPool = this._aServiceLocator._iEntityCreation.createDefaultControlPrepareParamsPool(error);
+                this._aPrepareParamPool.injectDependencies(aServiceContainer, aServiceLocator, aLogService, error);
+                this._aRunParamPool = this._aServiceLocator._iEntityCreation.createDefaultControlRunParamsPool(error);
+                this._aRunParamPool.injectDependencies(aServiceContainer, aServiceLocator, aLogService, error);
+                this._aStopParamPool = this._aServiceLocator._iEntityCreation.createDefaultControlStopParamsPool(error);
+                this._aStopParamPool.injectDependencies(aServiceContainer, aServiceLocator, aLogService, error);
+                this._aStatusParamPool = this._aServiceLocator._iEntityCreation.createDefaultControlStatusParamsPool(error);
+                this._aStatusParamPool.injectDependencies(aServiceContainer, aServiceLocator, aLogService, error);
+                return 0;
+            };
+            //-----------------------
+            //   Config
+            //-----------------------
+            //-----------------------------------------
+            R_PlaylistController.prototype.setTargetService = function (targetService) {
+                this._aRenderingController = targetService;
+            };
+            //-----------------------------------------
+            R_PlaylistController.prototype.setRenderingControllerService = function (targetService) {
+                this._aRenderingController = targetService;
+            };
+            //---------------------
+            //  initialization
+            //---------------------
+            //-------------------------------
+            R_PlaylistController.prototype.init = function (aConfig, error, context, callback) {
+                this._playlistControllerConfig = aConfig;
+                this._aPrepareParamPool.initPool(this._playlistControllerConfig.getInitialPoolNb_OfPrepareParams(), error);
+                this._aRunParamPool.initPool(this._playlistControllerConfig.getInitialPoolNb_OfRunParams(), error);
+                this._aStopParamPool.initPool(this._playlistControllerConfig.getInitialPoolNb_OfStopParams(), error);
+                this._aStatusParamPool.initPool(this._playlistControllerConfig.getInitialPoolNb_OfStatusParams(), error);
+                if (callback != null) {
+                    callback(context);
+                    return;
+                }
+                return;
+            };
+            //-----------------------
+            // Commands 
+            //-----------------------
+            //------------------
+            R_PlaylistController.prototype.cmd_getNewZoneId = function () {
+                return ++this._nextZoneId;
+            };
+            //------------------
+            R_PlaylistController.prototype.cmd_getNewPreparedParam = function (error, context, callback) {
+                return this._aPrepareParamPool.getFreePrepareParams(); //to do add error management
+            };
+            //------------------
+            R_PlaylistController.prototype.cmd_freeNewPreparedParam = function (prepareParams, error, context, callback) {
+                this._aPrepareParamPool.releasePrepareParams(prepareParams);
+            };
+            //---------------
+            R_PlaylistController.prototype.cmd_createZone = function (zoneId, prepareParams, error, context, callback) {
+                return this._aRenderingController._iRenderingControllerControl.createZone(zoneId, prepareParams, error, context, callback);
+            };
+            //---------------
+            R_PlaylistController.prototype.cmd_destroyZone = function (zoneId, error, context, callback) {
+                return this._aRenderingController._iRenderingControllerControl.destroyZone(zoneId, error, context, callback);
+            };
+            //---------------
+            R_PlaylistController.prototype.cmd_prepareNextMediaItem = function (zoneId, prepareParams, error, context, callback) {
+                return this._aRenderingController._iRenderingControllerControl.prepareNextMediaItem(zoneId, prepareParams, error, context, callback);
+            };
+            //---------------
+            R_PlaylistController.prototype.cmd_playNextMediaItem = function (zoneId, runParams, error, context, callback) {
+                return this._aRenderingController._iRenderingControllerControl.playNextMediaItem(zoneId, runParams, error, context, callback);
+            };
+            return R_PlaylistController;
+        }(rmGeneral.rm_general.R_Service));
+        rm_coreservices.R_PlaylistController = R_PlaylistController;
+    })(rm_coreservices = exports.rm_coreservices || (exports.rm_coreservices = {}));
+});
+//# sourceMappingURL=R_PlaylistController.js.map

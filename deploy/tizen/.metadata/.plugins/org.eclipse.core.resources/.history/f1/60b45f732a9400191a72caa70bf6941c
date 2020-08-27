@@ -1,0 +1,946 @@
+define(["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var nm_transversalservices;
+    (function (nm_transversalservices) {
+        //declare var tizen : any;
+        var IImpl_SDK_FileSystem_Tizen = /** @class */ (function () {
+            //----------- constructor 
+            function IImpl_SDK_FileSystem_Tizen(owner) {
+                this._owner = owner;
+            }
+            //===========================
+            //   Folder FileList functions 
+            //===========================
+            //------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.getFileList = function (folderFullName, error, context, callback) {
+            };
+            //------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_getFileList = function (folderFullName, error, context, callback) {
+            };
+            //-----------------------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.getFileList2 = function (storageName, folderName, error, context, callback) {
+                //document.getElementById("sdk.message").innerHTML += "<p>sdktizen:getFileList2 from: " +  storageName + ' ' +folderName + "</p>";
+                var owner = this._owner;
+                var aFileInfoRoot = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+                aFileInfoRoot.setStorage(storageName);
+                aFileInfoRoot.setPath(folderName);
+                aFileInfoRoot.setName("");
+                aFileInfoRoot.setType("folder");
+                context.setObjectResult(aFileInfoRoot);
+                //document.getElementById("sdk.message").innerHTML += "<p>sdktizen:getFileList2 before try: " +  storageName + ' ' +folderName + "</p>";
+                try {
+                    var owner = this._owner;
+                    var aFileInfo = null;
+                    var fileInfoList = new Array();
+                    tizen.filesystem.resolve(storageName + folderName, function (removableStorage) {
+                        removableStorage.listFiles(function (files) {
+                            for (var i = 0; i < files.length; i++) {
+                                var fileinfo = files[i];
+                                //document.getElementById("sdk.message").innerHTML += "<p>sdktizen:getFileList2 file: " +  fileinfo.name + "</p>";
+                                aFileInfo = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+                                aFileInfo.setName(fileinfo.name);
+                                aFileInfo.setStorage(storageName);
+                                aFileInfo.setPath(folderName);
+                                //aFileInfo.setCreatedDate();
+                                if (fileinfo.isFile) {
+                                    aFileInfo.setType("file");
+                                    aFileInfo.setSize(fileinfo.fileSize);
+                                }
+                                else {
+                                    aFileInfo.setType("folder");
+                                    aFileInfo.setSize(0);
+                                }
+                                fileInfoList.push(aFileInfo);
+                            }
+                            context.setArrayResult(fileInfoList);
+                            if (callback != null)
+                                callback(context);
+                        }, function (listFilesError) {
+                            error.setError(listFilesError.code, listFilesError.message);
+                            context.setError(error);
+                            if (callback != null)
+                                callback(context);
+                        });
+                    }, function (resolveError) {
+                        error.setError(resolveError.code, resolveError.message);
+                        context.setError(error);
+                        if (callback != null)
+                            callback(context);
+                    });
+                }
+                catch (e) {
+                    error.setError(0, e);
+                    context.setError(error);
+                    if (callback != null)
+                        callback(context);
+                }
+            };
+            //------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.getFileList2_last = function (storageName, folderName, error, context, callback) {
+                document.getElementById("sdk.message").innerHTML += "<p>sdktizen:getFileList2 from: " + storageName + ' ' + folderName + "</p>";
+                var aFileInfo = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+                aFileInfo.setStorage(storageName);
+                aFileInfo.setPath(folderName);
+                aFileInfo.setName("");
+                aFileInfo.setType("folder");
+                context.setObjectResult(aFileInfo);
+                document.getElementById("sdk.message").innerHTML += "<p>sdktizen:getFileList2 : before try</p>";
+                try {
+                    var owner = this._owner;
+                    var aFileInfo = null;
+                    var fileInfoList = new Array();
+                    tizen.filesystem.resolve(storageName + folderName, function (removableStorage) {
+                        document.getElementById("sdk.message").innerHTML += "<p>sdktizen:getFileList2 : resolve ok</p>";
+                        removableStorage.listFiles(function (files) {
+                            for (var i = 0; i < files.length; i++) {
+                                var fileinfo = files[i];
+                                document.getElementById("sdk.message").innerHTML += "<p>sdktizen:getFileList2" + fileinfo.name + "</p>";
+                                aFileInfo = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+                                aFileInfo.setName(fileinfo.name);
+                                aFileInfo.setStorage(storageName);
+                                aFileInfo.setPath(folderName);
+                                //aFileInfo.setCreatedDate();
+                                if (fileinfo.isFile) {
+                                    aFileInfo.setType("file");
+                                    aFileInfo.setSize(fileinfo.fileSize);
+                                }
+                                else {
+                                    aFileInfo.setType("folder");
+                                    aFileInfo.setSize(0);
+                                }
+                                fileInfoList.push(aFileInfo);
+                            }
+                            document.getElementById("sdk.message").innerHTML += "<p>sdktizen:getFileList2 success </p>";
+                            context.setArrayResult(fileInfoList);
+                            if (callback != null)
+                                callback(context);
+                        }, function (listFilesError) {
+                            document.getElementById("sdk.message").innerHTML += "<p>sdktizen:getFileList2 : listFilesErrors " + listFilesError.message + "</p>";
+                            error.setError(listFilesError.code, listFilesError.message);
+                            context.setError(error);
+                            if (callback != null)
+                                callback(context);
+                        });
+                    }, function (resolveError) {
+                        document.getElementById("sdk.message").innerHTML += "<p>sdktizen:getFileList2 : resolve error " + resolveError.message + "</p>";
+                        error.setError(resolveError.code, resolveError.message);
+                        context.setError(error);
+                        if (callback != null)
+                            callback(context);
+                    });
+                }
+                catch (e) {
+                    error.setError(0, e);
+                    document.getElementById("sdk.message").innerHTML += "<p>sdktizen:getFileList2 : before try" + JSON.stringify(e) + "</p>";
+                    context.setError(error);
+                    if (callback != null)
+                        callback(context);
+                }
+            };
+            //----------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.getFileList4 = function (storageName, folderFullName, error, context, callback) {
+                var fileList = [];
+                try {
+                    tizen.filesystem.resolve(storageName + folderFullName, function (removableStorage) {
+                        removableStorage.listFiles(function (files) {
+                            for (var i = 0; i < files.length; i++) {
+                                var fileName = files[i].name;
+                                fileList.push(fileName);
+                            }
+                            context.setArrayResult(fileList);
+                            if (callback != null)
+                                callback(context);
+                        }, function (listFilesError) {
+                            error.setError(listFilesError.code, listFilesError.message);
+                            context.setError(error);
+                            if (callback != null)
+                                callback(context);
+                        });
+                    }, function (resolveError) {
+                        error.setError(resolveError.code, resolveError.message);
+                        context.setError(error);
+                        if (callback != null)
+                            callback(context);
+                    });
+                }
+                catch (e) {
+                    error.setError(0, e);
+                    context.setError(error);
+                    if (callback != null)
+                        callback(context);
+                }
+            };
+            //==============================
+            //   File Functions 
+            //=============================
+            //---------------------
+            //  read text file
+            //--------------------
+            //--------------
+            IImpl_SDK_FileSystem_Tizen.prototype.readTextFile = function (fileFullName, error, context, callback) {
+            };
+            //--------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_readTextFile = function (fileFullName, error, context, callback) {
+                return null;
+            };
+            //---------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.readTextFile2 = function (storageName, folderName, fileName, error, context, callback) {
+                var owner = this._owner;
+                var aFileInfo = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+                //var fileFullName = storageName + folderName + fileName;
+                aFileInfo.setStorage(storageName);
+                aFileInfo.setPath(folderName);
+                aFileInfo.setName(fileName);
+                aFileInfo.setType("file");
+                context.setObjectResult(aFileInfo);
+                try {
+                    tizen.filesystem.resolve(storageName + folderName, function (removableStorage) {
+                        removableStorage.listFiles(function (files) {
+                            for (var i = 0; i < files.length; i++) {
+                                if (files[i].name == fileName) {
+                                    var file = removableStorage.resolve(fileName);
+                                    if (file != null) {
+                                        file.openStream("r", function (fs) {
+                                            var fileContent = fs.read(file.fileSize);
+                                            fs.close();
+                                            context.setResult(fileContent);
+                                            if (callback != null)
+                                                callback(context);
+                                        }, function (e) {
+                                            console.log("Error " + e.message);
+                                            error.setError(0, e.message);
+                                            context.setError(error);
+                                            if (callback != null)
+                                                callback(context);
+                                        });
+                                    }
+                                }
+                            }
+                        }, function (listFilesError) {
+                            error.setError(listFilesError.code, listFilesError.message);
+                            context.setError(error);
+                            if (callback != null)
+                                callback(context);
+                        });
+                    }, function (resolveError) {
+                        error.setError(resolveError.code, resolveError.message);
+                        context.setError(error);
+                        if (callback != null)
+                            callback(context);
+                    });
+                }
+                catch (e) {
+                    error.setError(0, e);
+                    context.setError(error);
+                    if (callback != null)
+                        callback(context);
+                }
+                //no need to call this:
+                // this.readTextFile(storageName + folderName + fileName, error, context, callback);            
+            };
+            //---------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_readTextFile2 = function (storageName, folderName, fileName, error, context, callback) {
+                return this.promise_readTextFile(storageName + folderName + fileName, error, context, callback);
+            };
+            //----------------------
+            //   write  text file
+            //----------------------
+            //-----------------
+            IImpl_SDK_FileSystem_Tizen.prototype.writeTextFile = function (fileFullName, fileContent, error, context, callback) {
+            };
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_writeTextFile = function (fileFullName, fileContent, error, context, callback) {
+            };
+            //---------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.writeTextFile2 = function (storageName, folderName, fileName, fileContent, error, context, callback) {
+                var owner = this._owner;
+                var aFileInfo = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+                aFileInfo.setStorage(storageName);
+                aFileInfo.setPath(folderName);
+                aFileInfo.setName(fileName);
+                aFileInfo.setType("file");
+                context.setObjectResult(aFileInfo);
+                var mode = "w";
+                try {
+                    tizen.filesystem.resolve(storageName + folderName, function (removableStorage) {
+                        try {
+                            var file = removableStorage.resolve(fileName);
+                            if (file == null) {
+                                file = removableStorage.createFile(fileName);
+                                mode = "w";
+                            }
+                        }
+                        catch (e) {
+                            file = removableStorage.createFile(fileName);
+                            mode = "w";
+                        }
+                        if (file != null) {
+                            file.openStream(mode, function (fs) {
+                                fs.write(fileContent);
+                                fs.close();
+                                context.setResult("success :)");
+                                if (callback != null)
+                                    callback(context);
+                            }, function (e) {
+                                error.setError(0, e.message);
+                                context.setError(error);
+                                if (callback != null)
+                                    callback(context);
+                            }, "UTF-8");
+                        }
+                        else {
+                            error.setError(0, "File created fail");
+                            context.setError(error);
+                            if (callback != null)
+                                callback(context);
+                        }
+                    });
+                }
+                catch (e) {
+                    error.setError(0, e);
+                    context.setError(error);
+                    if (callback != null)
+                        callback(context);
+                }
+            };
+            //---------------------
+            /*
+            public writeTextFile4(storageName: string, folderName: string, fileName: string, fileContent: string, error: amGeneralError.am_general.A_Error, context: amGeneralContext.am_general.A_Context, callback)
+            {
+              var owner = this._owner;
+              var aFileInfo = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+              aFileInfo.setStorage(storageName);
+              aFileInfo.setPath(folderName);
+              aFileInfo.setName(fileName);
+              aFileInfo.setType("file");
+              context.setObjectResult(aFileInfo);
+              try{
+               tizen.filesystem.resolve(storageName + folderName, function (removableStorage) {
+                  var file = removableStorage.createFile(fileName);
+                  if(file != null){
+                    file.openStream("w",
+                             function(fs) {
+                                 fs.write(fileContent);
+                                 fs.close();
+                                 context.setResult("success :)");
+                                 if (callback != null)
+                                    callback(context);
+                             }, function(e) {
+                                error.setError(0,e.message);
+                                context.setError(error);
+                                if (callback != null)
+                                  callback(context);
+                             }, "UTF-8"
+                         );
+                  }else{
+                    error.setError(0, "File created fail");
+                    context.setError(error);
+                    if (callback != null)
+                       callback(context);
+                  }
+               
+              });
+              }
+              catch(e){
+                error.setError(0, e);
+                context.setError(error);
+                if (callback != null)
+                   callback(context);
+              }
+            }*/
+            //---------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_writeTextFile2 = function (storageName, folderName, fileName, fileContent, error, context, callback) {
+            };
+            //----------------------
+            //  remove file 
+            //----------------------
+            //--------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.removeFile = function (fileFullName, error, context, callback) {
+            };
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_removeFile = function (fileFullName, error, context, callback) {
+            };
+            //-----------------------------------------------------------  
+            IImpl_SDK_FileSystem_Tizen.prototype.removeFile2 = function (storageName, folderName, fileName, error, context, callback) {
+                var fileFullName = storageName + folderName + fileName;
+                //----
+                var owner = this._owner;
+                var aFileInfo = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+                aFileInfo.setStorage(storageName);
+                aFileInfo.setPath(folderName);
+                aFileInfo.setName(fileName);
+                aFileInfo.setType("file");
+                context.setObjectResult(aFileInfo);
+                //----- 
+                try {
+                    tizen.filesystem.resolve(storageName + folderName, function (removableStorage) {
+                        removableStorage.deleteFile(removableStorage.path + removableStorage.name + "/" + fileName, function () {
+                            console.log("tizen:remove-file2: ok. Successfully remove the file " + fileFullName);
+                            context.setResult("tizen:remove-file2: ok. Successfully remove the file " + fileFullName);
+                            context.setError(error);
+                            if (callback != null)
+                                callback(context);
+                        }, function (e) {
+                            console.log("tizen:remove-file2 error [5005]: Cannot delete Folder " + fileFullName + " : error [" + JSON.stringify(e) + "]");
+                            context.setError(error);
+                            if (context.getError() != null)
+                                context.getError().setError(5005, "tizen:remove-file2 error [5005]: Cannot delete Folder " + fileFullName + " : error [" + JSON.stringify(e) + "]");
+                            if (callback != null)
+                                callback(context);
+                        });
+                    });
+                }
+                catch (e) {
+                    console.log("tizen:remove-file2 error [5005]: Cannot delete Folder " + fileFullName + " : error [" + JSON.stringify(e) + "]");
+                    context.setError(error);
+                    if (context.getError() != null)
+                        context.getError().setError(5005, "tizen:remove-file2 error [5005]: Cannot delete Folder " + fileFullName + " : error [" + JSON.stringify(e) + "]");
+                    if (callback != null)
+                        callback(context);
+                }
+            };
+            //---------------------
+            //   file exists
+            //---------------------
+            //-----------------------------------------------------------  
+            IImpl_SDK_FileSystem_Tizen.prototype.fileExists = function (fileFullName, error, context, callback) {
+            };
+            //-----------------------------------------------------------  
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_fileExists = function (fileFullName, error, context, callback) {
+            };
+            //------------------------
+            //  append text to file
+            //------------------------
+            //-----------------------------------------------------------  
+            IImpl_SDK_FileSystem_Tizen.prototype.appendTextToFile = function (storageName, folderName, fileName, fileContent, error, context, callback) {
+                try {
+                    tizen.filesystem.resolve(storageName + folderName, function (removableStorage) {
+                        var file = removableStorage.resolve(fileName);
+                        if (file != null) {
+                            file.openStream("a", function (fs) {
+                                fs.write(fileContent);
+                                fs.close();
+                                context.setResult("Append test to file completed with success. :)");
+                                if (callback != null)
+                                    callback(context);
+                            }, function (e) {
+                                error.setError(0, e.message);
+                                context.setError(error);
+                                if (callback != null)
+                                    callback(context);
+                            }, "UTF-8");
+                        }
+                        else {
+                            error.setError(0, "Failed appending text to fail");
+                            context.setError(error);
+                            if (callback != null)
+                                callback(context);
+                        }
+                    });
+                }
+                catch (e) {
+                    error.setError(0, e);
+                    context.setError(error);
+                    if (callback != null)
+                        callback(context);
+                }
+            };
+            //------------------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.fileExists2 = function (storageName, folderName, fileName, error, context, callback) {
+                try {
+                    tizen.filesystem.resolve(storageName + folderName, function (removableStorage) {
+                        removableStorage.listFiles(function (files) {
+                            context.setBoolResult(false);
+                            for (var i = 0; i < files.length; i++) {
+                                if (files[i].name == fileName) {
+                                    context.setBoolResult(true);
+                                    break;
+                                }
+                            }
+                            if (callback != null)
+                                callback(context);
+                        }, function (listFilesError) {
+                            error.setError(listFilesError.code, listFilesError.message);
+                            context.setError(error);
+                            if (callback != null)
+                                callback(context);
+                        });
+                    }, function (resolveError) {
+                        error.setError(resolveError.code, resolveError.message);
+                        context.setError(error);
+                        if (callback != null)
+                            callback(context);
+                    });
+                }
+                catch (e) {
+                    error.setError(0, e);
+                    context.setError(error);
+                    if (callback != null)
+                        callback(context);
+                }
+            };
+            //--------------------------------------
+            //              copy file
+            //--------------------------------------
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.copyFile = function (srcFileFullName, dstFileFullName, error, context, callback) {
+            };
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_copyFile = function (srcFileFullName, dstFileFullName, error, context, callback) {
+            };
+            //------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.copyFile2 = function (srcStorageName, srcFolderName, srcFileName, dstStorageName, dstFolderName, dstFileName, error, context, callback) {
+                document.getElementById("sdk.message").innerHTML += "<p>copyFile2</p>";
+                var srcFileFullName = srcStorageName + srcFolderName + srcFileName;
+                var dstFileFullName = dstStorageName + dstFolderName + dstFileName;
+                //----
+                var owner = this._owner;
+                var aFileInfo = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+                aFileInfo.setStorage(dstStorageName);
+                aFileInfo.setPath(dstFolderName);
+                aFileInfo.setName(dstFileName);
+                aFileInfo.setType("file");
+                context.setObjectResult(aFileInfo);
+                //----- 
+                var aFileInfo2 = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+                aFileInfo2.setStorage(srcStorageName);
+                aFileInfo2.setPath(srcFolderName);
+                aFileInfo2.setName(srcFileName);
+                aFileInfo2.setType("file");
+                context.setObject2Result(aFileInfo2);
+                //var objSrcStorage = null;
+                //var mainFct = this;
+                //--------------------------------------------
+                tizen.filesystem.resolve(srcStorageName, 
+                //----------- 
+                function (objSrcStorage) {
+                    //-------------------- 
+                    //objSrcStorage
+                    console.log("tizen:copy-file2 ok: Successfully copy the file " + srcFileFullName + "to " + dstFileFullName);
+                    context.setResult("tizen:copy-file2 ok: Successfully copy the file " + srcFileFullName + "to " + dstFileFullName);
+                    document.getElementById("sdk.message").innerHTML += "<p>" + "tizen:copy-file2 ok: Successfully copy the file " + srcFileFullName + "to " + dstFileFullName + "</p>";
+                    context.setError(error);
+                    if (callback != null)
+                        callback(context);
+                }, function (e) {
+                    //console.log(JSON.stringify(error));
+                    console.log("tizen:copy-file2 error [5056]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "]");
+                    context.setError(error);
+                    document.getElementById("sdk.message").innerHTML += "<p>" + "tizen:copy-file2 error [5056]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "]" + "</p>";
+                    if (context.getError() != null)
+                        context.getError().setError(5012, "tizen:copy-file2 error [5056]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "]");
+                    if (callback != null)
+                        callback(context);
+                }, 'rw');
+                /*
+                console.log("copy done");
+                context.setBoolResult(true);
+                context.setError(error);
+                console.log(context.getBoolResult());
+                if (callback != null)
+                  callback(context);
+                */
+                /*
+               var localSrcStorageObj = null;
+               tizen.filesystem.resolve(
+                 srcStorageName, // + srcFolderName,
+                 //----------------
+                 function(srcStorageObj) {
+                           localSrcStorageObj = srcStorageObj;
+                           tizen.filesystem.resolve(
+                             dstStorageName, //+ dstFolderName
+                             //===
+                             function(dstStorageObj) {
+                                 
+                               var srcFileFullName = localSrcStorageObj.fullPath + srcFolderName + srcFileName;
+                               var dstFileFullName = dstStorageObj.fullPath + dstFolderName + dstFileName;
+                               //----
+                               function onSuccess() {
+                                 console.log( "tizen:copy-file2 ok: Successfully copy the file " + srcFileFullName + "to " + dstFileFullName);
+                                 context.setResult( "tizen:copy-file2 ok: Successfully copy the file " + srcFileFullName + "to " + dstFileFullName);
+                                 document.getElementById("sdk.message").innerHTML += "<p>" + "tizen:copy-file2 ok: Successfully copy the file " + srcFileFullName + "to " + dstFileFullName + "</p>";
+                                 context.setError(error);
+                                 if (callback != null)
+                                   callback(context);
+                               }
+                               //----
+                               var errorCallback = function(e) {
+                                  console.log( "tizen:copy-file2 error [5054]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "]");
+                                  context.setError(error);
+                                  document.getElementById("sdk.message").innerHTML += "<p>" + "tizen:copy-file2 error [5054]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "] </p>";
+                                  if (context.getError() != null)
+                                    context.getError().setError(5012, "tizen:copy-file4 error [5054]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "]");
+                                  if (callback != null)
+                                    callback(context);
+                               }
+                               tizen.filesystem.copyFile(srcFileFullName, dstFileFullName, true, onSuccess, errorCallback);
+                               
+                             },
+                             //========
+                             function(e) {
+                               console.log( "tizen:copy-file2 error [5055]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "]");
+                               context.setError(error);
+                               document.getElementById("sdk.message").innerHTML += "<p>" + "tizen:copy-file2 error [5055]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "]" + "</p>";
+                               if (context.getError() != null)
+                                 context.getError().setError(5012, "tizen:copy-file2 error [5055]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "]");
+                               if (callback != null)
+                                 callback(context);
+                             },
+                             'rw'
+                           );
+                 },
+                 //--------------------
+                 function(e) {
+                   console.log( "tizen:copy-file2 error [5056]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "]");
+                   context.setError(error);
+                   document.getElementById("sdk.message").innerHTML += "<p>" + "tizen:copy-file2 error [5056]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "]" + "</p>";
+          
+                   if (context.getError() != null)
+                     context.getError().setError(5012, "tizen:copy-file2 error [5056]: Cannot copy file " + srcStorageName + srcFolderName + srcFileName + " : error [" + JSON.stringify(e) + "]");
+                   if (callback != null)
+                     callback(context);
+                 },
+                 'rw'
+               );
+                */
+                /*
+                documentsDir.copyTo(files[i].fullPath,
+                  "images/backup/" + files[i].name,
+                  false,
+                  function() {console.log("file copied");});
+           
+                var filePathAndName = 'documents/exampleFile.jpg';
+                var destination = 'images/copyOfExampleFile.jpg';
+           
+                function onSuccess() {
+                   console.log('success');
+                }
+                var errorCallback = function(error) {
+                   console.log(error);
+                }
+                tizen.filesystem.copyFile(filePathAndName, destination, true, onSuccess, errorCallback);
+                */
+            };
+            //------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_copyFile2 = function (srcStorageName, srcFolderName, srcFileName, dstStorageName, dstFolderName, dstFileName, error, context, callback) {
+                return this.promise_copyFile(srcStorageName + srcFolderName + srcFileName, dstStorageName + dstFolderName + dstFileName, error, context, callback);
+            };
+            //--------------------------------------
+            //      download File 
+            //--------------------------------------
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.downloadFile = function (remoteUrlName, dstFileFullName, error, context, callback) {
+            };
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_downloadFile = function (remoteUrlName, dstFileFullName, error, context, callback) {
+            };
+            //------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.downloadFile2 = function (remoteUrlName, dstStorageName, dstFolderName, dstFileName, error, context, callback) {
+                this.downloadFile(remoteUrlName, dstStorageName + dstFolderName + dstFileName, error, context, callback);
+            };
+            //------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_downloadFile2 = function (remoteUrlName, dstStorageName, dstFolderName, dstFileName, error, context, callback) {
+                return this.promise_downloadFile(remoteUrlName, dstStorageName + dstFolderName + dstFileName, error, context, callback);
+            };
+            //--------------------------------------
+            //      unzip File 
+            //--------------------------------------
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.unzipFile = function (zipFullFileName, unzipFullPath, error, context, callback) {
+            };
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_unzipFile = function (zipFullFileName, unzipFullPath, error, context, callback) {
+            };
+            //------------------------------------
+            /*public unzipFile2( zipStorageName: string, zipFolderName: string, zipFileName: string,
+                               unzipStorageName: string, unzipFolderName: string,
+                               error: amGeneralError.am_general.A_Error, context: amGeneralContext.am_general.A_Context, callback) : void
+            {
+              this.unzipFile(zipStorageName + zipFolderName + zipFileName, unzipStorageName + unzipFolderName, error, context, callback);
+            }*/
+            //------------------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.unzipFile2 = function (zipStorageName, zipFolderName, zipFileName, unzipStorageName, unzipFolderName, error, context, callback) {
+                /*
+                try{
+                  var openSuccess;
+                 tizen.filesystem.resolve("/opt/storage/usb/sda1/tests2/70.zip", (handle) => {
+                   if (handle) {
+                     openSuccess = function (archive) {
+                         document.getElementById("maindiv").innerHTML += "<h3>" + "inside openSuccess" + "</h3>";
+                           tizen.filesystem.resolve("/opt/storage/usb/sda1/tests2/", (handle) => {
+                               function errorCallback(error) {
+                                 document.getElementById("maindiv").innerHTML += "<h3>" + "error callback" + error +  "</h3>";
+                               }
+                               function successCallback() {
+                                 document.getElementById("maindiv").innerHTML += "<h3>" + "done" + "</h3>";
+                               }
+           
+                               function progressCallback(opId, val, name) {
+                               }
+           
+                               archive.extractAll(handle, successCallback, errorCallback, progressCallback);
+                           }, (error) => {
+                             document.getElementById("maindiv").innerHTML += "<h3>" + "error tizen resolve" + error +  "</h3>";
+                           });
+                       }
+                        tizen.archive.open(handle, "r", openSuccess);
+                   }
+                   else {
+                     document.getElementById("maindiv").innerHTML += "<h3>" + "handle problem" +  "</h3>";
+                   }
+               }, (error) => {
+                 document.getElementById("maindiv").innerHTML += "<h3>" + "error" + error +  "</h3>";
+               });
+               }
+                catch(e){
+                 document.getElementById("maindiv").innerHTML += "<h3>" + "error inside try" + e +  "</h3>";
+                 error.setError(0, e);
+                 context.setError(error);
+                 if (callback != null)
+                       callback(context);
+                }
+                */
+            };
+            //------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_unzipFile2 = function (zipStorageName, zipFolderName, zipFileName, unzipStorageName, unzipFolderName, error, context, callback) {
+                this.promise_unzipFile(zipStorageName + zipFolderName + zipFileName, unzipStorageName + unzipFolderName, error, context, callback);
+            };
+            //--------------------------------------
+            //      fsyncFile
+            //--------------------------------------
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.fsyncFile = function (fileFullName, error, context, callback) {
+            };
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_fsyncFile = function (fileFullName, error, context, callback) {
+            };
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.fsyncFile2 = function (storageName, folderName, fileName, error, context, callback) {
+                this.fsyncFile(storageName + folderName + fileName, error, context, callback);
+            };
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_fsyncFile2 = function (storageName, folderName, fileName, error, context, callback) {
+                return this.promise_fsyncFile(storageName + folderName + fileName, error, context, callback);
+            };
+            //--------------------------------------
+            //      get File Info
+            //--------------------------------------
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.getFileInfo = function (fileFullName, error, context, callback) {
+            };
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_getFileInfo = function (fileFullName, error, context, callback) {
+            };
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.getFileInfo2 = function (storageName, folderName, fileName, error, context, callback) {
+                this.getFileInfo(storageName + folderName + fileName, error, context, callback);
+            };
+            //--------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_getFileInfo2 = function (storageName, folderName, fileName, error, context, callback) {
+                return this.promise_getFileInfo(storageName + folderName + fileName, error, context, callback);
+            };
+            //------------------------
+            //    Move File
+            //------------------------
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.moveFile = function (srcFileFullName, dstFileFullName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_moveFile = function (srcFileFullName, dstFileFullName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.moveFile2 = function (srcStorageName, srcFolderName, srcFileName, dstStorageName, dstFolderName, dstFileName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_moveFile2 = function (srcStorageName, srcFolderName, srcFileName, dstStorageName, dstFolderName, dstFileName, error, context, callback) {
+            };
+            //------------------------
+            //    Upload File
+            //------------------------
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.uploadFile = function (srcFileFullName, remoteUrlName, remoteFileFullName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_uploadFile = function (srcFileFullName, remoteUrlName, remoteFileFullName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.uploadFile2 = function (srcStorageName, srcFolderName, srcFileName, remoteUrlName, remoteFolderName, remoteFileName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_uploadFile2 = function (srcStorageName, srcFolderName, srcFileName, remoteUrlName, remoteFolderName, remoteFileName, error, context, callback) {
+            };
+            //------------------------
+            //    Zip File
+            //------------------------
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.zipFile = function (fullFileName, zipFullFileName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_zipFile = function (fullFileName, zipFullFileName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.zipFile2 = function (storageName, folderName, fileName, zipStorageName, zipFolderName, zipFileName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_zipFile2 = function (storageName, folderName, fileName, zipStorageName, zipFolderName, zipFileName, error, context, callback) {
+            };
+            //============================
+            //  Folder functions
+            //============================
+            //------------------------
+            //    Create Folder 2
+            //------------------------
+            //---------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.createFolder = function (folderFullName, error, context, callback) {
+            };
+            //-------------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_createFolder = function (fileFullName, error, context, callback) {
+            };
+            //-----------------------------------------------------------  
+            IImpl_SDK_FileSystem_Tizen.prototype.createFolder2 = function (storageName, folderName, error, context, callback) {
+                //----
+                var folderFullName = storageName + folderName;
+                var owner = this._owner;
+                var aFileInfo = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+                aFileInfo.setStorage(storageName);
+                aFileInfo.setPath(folderName);
+                aFileInfo.setName("");
+                aFileInfo.setType("folder");
+                context.setObjectResult(aFileInfo);
+                //----- 
+                try {
+                    tizen.filesystem.resolve(storageName, function (removableStorage) {
+                        try {
+                            removableStorage.createDirectory(folderName);
+                            //document.getElementById("sdk.message").innerHTML += "<p>create crt-storage "   + storageName + "</p>";
+                            //document.getElementById("sdk.message").innerHTML += "<p>create crt-folder "    + folderName + "</p>";    
+                            console.log("tizen:create-folder2 ok: Directory " + folderFullName + " created sucessfully.");
+                            context.setResult("tizen:create-folder2 ok: Directory " + folderFullName + " created sucessfully.");
+                            context.setError(error);
+                            if (callback != null)
+                                callback(context);
+                        }
+                        catch (e) {
+                            context.setError(error);
+                            console.log("tizen:create-folder2 error [5010]: Cannot create Folder " + folderFullName + " error: " + JSON.stringify(e));
+                            if (context.getError() != null)
+                                context.getError().setError(5010, "tizen:create-folder2 error [5010]: Cannot create Folder " + folderFullName + " error: " + JSON.stringify(e));
+                            if (callback != null)
+                                callback(context);
+                        }
+                    });
+                }
+                catch (e) {
+                    context.setError(error);
+                    console.log("tizen:create-folder2 error [5010]: Cannot create Folder " + folderFullName + " error: " + JSON.stringify(e));
+                    if (context.getError() != null)
+                        context.getError().setError(5010, "tizen:create-folder2 error [5010]: Cannot create Folder " + folderFullName + " error: " + JSON.stringify(e));
+                    if (callback != null)
+                        callback(context);
+                }
+            };
+            //------------------------
+            //    Delete Folder 2
+            //------------------------
+            //---------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.deleteFolder = function (folderFullName, error, context, callback) {
+            };
+            //-------------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_deleteFolder = function (fileFullName, error, context, callback) {
+            };
+            //-----------------------------------------------------------  
+            IImpl_SDK_FileSystem_Tizen.prototype.deleteFolder2 = function (storageName, folderName, error, context, callback) {
+                var folderFullName = storageName + folderName;
+                var owner = this._owner;
+                var aFileInfo = owner._aServiceLocator._iEntityCreation.createDefaultFileInfo(error);
+                aFileInfo.setStorage(storageName);
+                aFileInfo.setPath(folderName);
+                aFileInfo.setName("");
+                aFileInfo.setType("folder");
+                context.setObjectResult(aFileInfo);
+                //------
+                try {
+                    tizen.filesystem.resolve(storageName, function (removableStorage) {
+                        removableStorage.deleteDirectory(removableStorage.path + removableStorage.name + folderName, true, function () {
+                            console.log("tizen:delete-folder2 ok: Successfully remove the folder " + folderFullName);
+                            context.setResult("tizen:delete-folder2 ok: Successfully remove the folder " + folderFullName);
+                            context.setError(error);
+                            if (callback != null)
+                                callback(context);
+                        }, function (e) {
+                            console.log("tizen:delete-folder2 error [5011]: Cannot delete Folder " + folderFullName + " : error [" + JSON.stringify(e) + "]");
+                            context.setError(error);
+                            if (context.getError() != null)
+                                context.getError().setError(5011, "tizen:delete-folder2 error [5011]: Cannot delete Folder " + folderFullName + " : error [" + JSON.stringify(e) + "]");
+                            if (callback != null)
+                                callback(context);
+                        });
+                    });
+                }
+                catch (e) {
+                    console.log("tizen:delete-folder2 error [5012]: Cannot delete Folder " + folderFullName + " : error [" + JSON.stringify(e) + "]");
+                    context.setError(error);
+                    if (context.getError() != null)
+                        context.getError().setError(5011, "tizen:delete-folder2 error [5012]: Cannot delete Folder " + folderFullName + " : error [" + JSON.stringify(e) + "]");
+                    if (callback != null)
+                        callback(context);
+                }
+            };
+            //-------------------------------------------------------------
+            //    copy folder 
+            //-------------------------------------------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.copyFolder = function (srcFolderFullName, dstFolderFullName, error, context, callback) {
+            };
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_copyFolder = function (srcFolderFullName, dstFolderFullName, error, context, callback) {
+            };
+            IImpl_SDK_FileSystem_Tizen.prototype.copyFolder2 = function (srcStorageName, srcFolderName, dstStorageName, dstFolderName, error, context, callback) {
+            };
+            //---------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_copyFolder2 = function (srcStorageName, srcFolderName, dstStorageName, dstFolderName, error, context, callback) {
+            };
+            //------------------------
+            //    Move Folder
+            //------------------------
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.moveFolder = function (srcFolderFullName, dstFolderFullName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_moveFolder = function (srcFolderFullName, dstFolderFullName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.moveFolder2 = function (srcStorageName, srcFolderName, dstStorageName, dstFolderName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_moveFolder2 = function (srcStorageName, srcFolderName, dstStorageName, dstFolderName, error, context, callback) {
+            };
+            //------------------------
+            //    Zip Folder
+            //------------------------
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.zipFolder = function (fullFolderName, zipFullFolderName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_zipFolder = function (fullFolderName, zipFullFolderName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.zipFolder2 = function (storageName, folderName, zipStorageName, zipFolderName, zipFileName, error, context, callback) {
+            };
+            //-------------------------
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_zipFolder2 = function (storageName, folderName, zipStorageName, zipFolderName, zipFileName, error, context, callback) {
+            };
+            //------------------
+            //  exists folder
+            //------------------
+            //-----------------------------------------------------------  
+            IImpl_SDK_FileSystem_Tizen.prototype.folderExists = function (folderFullName, error, context, callback) {
+            };
+            //-----------------------------------------------------------  
+            IImpl_SDK_FileSystem_Tizen.prototype.promise_folderExists = function (folderFullName, error, context, callback) {
+            };
+            return IImpl_SDK_FileSystem_Tizen;
+        }());
+        nm_transversalservices.IImpl_SDK_FileSystem_Tizen = IImpl_SDK_FileSystem_Tizen;
+    })(nm_transversalservices = exports.nm_transversalservices || (exports.nm_transversalservices = {}));
+});
+//# sourceMappingURL=IImpl_SDK_FileSystem_Tizen.js.map

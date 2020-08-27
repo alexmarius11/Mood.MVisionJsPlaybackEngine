@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<pcm_status_feedback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <message status="executing" language="en">
+    <status_text>Executing</status_text>
+    <feedback>[$command] [$arguments]</feedback>
+  </message>
+  <message status="executing" language="fr">
+    <status_text>En cours</status_text>
+    <feedback>[$command] [$arguments]</feedback>
+  </message>
+  <message status="download_error" language="en">
+    <status_text>Error : Download</status_text>
+    <feedback>Failed downloading [$filename] : [$error]</feedback>
+  </message>
+  <message status="download_error" language="fr">
+    <status_text>Erreur : Téléchargement</status_text>
+    <feedback>Erreur de téléchargement de [$filename] : [$error]</feedback>
+  </message>
+  <message status="unzip_error" language="en">
+    <status_text>Error : Unzip</status_text>
+    <feedback>Failed unzipping [$filename] : [$error]</feedback>
+  </message>
+  <message status="unzip_error" language="fr">
+    <status_text>Erreur : Unzip</status_text>
+    <feedback>Erreur en dézippant [$filename] : [$error]</feedback>
+  </message>
+  <message status="crc_error" language="en">
+    <status_text>Error : CRC16</status_text>
+    <feedback>CRC16 error on [$filename] : [$error]</feedback>
+  </message>
+  <message status="crc_error" language="fr">
+    <status_text>Erreur : CRC16</status_text>
+    <feedback>Erreur CRC16 sur [$filename] : [$error]</feedback>
+  </message>
+  <message status="delete_error" language="en">
+    <status_text>Error : Del Zip</status_text>
+    <feedback>Failed deleting [$filename] : [$error]</feedback>
+  </message>
+  <message status="delete_error" language="fr">
+    <status_text>Erreur : Effacer Zip</status_text>
+    <feedback>Erreur à la suppression de [$filename] : [$error]</feedback>
+  </message>
+  <message status="timedout" language="en">
+    <status_text>Error : Timed Out</status_text>
+    <feedback></feedback>
+  </message>
+  <message status="timedout" language="fr">
+    <status_text>Erreur : Délais expiré</status_text>
+    <feedback></feedback>
+  </message>
+  <message status="completed" language="en">
+    <status_text>Completed</status_text>
+    <feedback></feedback>
+  </message>
+  <message status="completed" language="fr">
+    <status_text>Terminé</status_text>
+    <feedback></feedback>
+  </message>
+  <message status="run_error" language="en">
+    <status_text>Process failed</status_text>
+    <feedback>[$command] [$arguments] : [$error]</feedback>
+  </message>
+  <message status="run_error" language="fr">
+    <status_text>Processus non lancé</status_text>
+    <feedback>[$command] [$arguments] : [$error]</feedback>
+  </message>
+</pcm_status_feedback>

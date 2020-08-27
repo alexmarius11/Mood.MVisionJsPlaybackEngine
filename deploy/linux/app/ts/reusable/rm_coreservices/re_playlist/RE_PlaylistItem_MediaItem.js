@@ -1,0 +1,30 @@
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var rmCoreServicesPlaylistItem = require("../../../../../app/ts/reusable/rm_coreservices/re_playlist/RE_PlaylistItem");
+var rm_coreservices;
+(function (rm_coreservices) {
+    var RE_PlaylistItem_MediaItem = (function (_super) {
+        __extends(RE_PlaylistItem_MediaItem, _super);
+        function RE_PlaylistItem_MediaItem() {
+            var _this = _super.call(this) || this;
+            _this._playlistItemTypeName = "MEDIA_ITEM";
+            return _this;
+        }
+        return RE_PlaylistItem_MediaItem;
+    }(rmCoreServicesPlaylistItem.rm_coreservices.RE_PlaylistItem));
+    rm_coreservices.RE_PlaylistItem_MediaItem = RE_PlaylistItem_MediaItem;
+})(rm_coreservices = exports.rm_coreservices || (exports.rm_coreservices = {}));
+//# sourceMappingURL=RE_PlaylistItem_MediaItem.js.map

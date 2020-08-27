@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE FILES [
+  <!ELEMENT FILES (FILE*)>
+  <!ELEMENT FILE (#PCDATA)>
+]>
+<FILES>
+  <FILE>env_update_processor.exe</FILE>  
+  <FILE>env_update_updater.exe</FILE>  
+  <FILE>log4net.dll</FILE>
+  <FILE>log4net.xml</FILE>
+  <FILE>move_file.exe</FILE>   
+  <FILE>run_as_cmd.exe</FILE>   
+  <FILE>run_as_launcher.exe</FILE>
+  <FILE>run_as_server_proc.exe</FILE>    
+  <FILE>StartupProgress.exe</FILE>
+  <FILE>tc_generic_tools.dll</FILE> 
+  <FILE>tc_log_tools.dll</FILE>  
+  <FILE>tc_run_as_client.dll</FILE> 
+  <FILE>tc_specific_tools.dll</FILE>
+</FILES>

@@ -1,0 +1,85 @@
+
+
+Installation Notes pt. Windows
+
+I.  Prerequisites
+============
+1.  Install git
+               https://git-scm.com/downloads  click pe "Windows"
+
+2.  Install nodejs
+                https://nodejs.org/en/
+               (versiune 12.6.1)
+
+Note: all the clicks during installation are the default ones  (next..next..etc.)
+
+3. Install Visual Code for Windows.
+                  https://code.visualstudio.com/download
+    - download Windows Installer x64 System
+
+
+II.  Install The Application
+==================
+
+I. download the  deployment of the application (that includes the source files) including the test application (and installed it in C:\W\159 )
+
+C:\> mkdir  W
+C:\ > cd W
+C:\ > mkdir 159
+C:\ > cd 159
+C:\W\159 > git clone https://alexmarius2:Webos2020@github.com/alexmarius2/Mood.MVisionJsPlaybackEngine
+
+II.  download the media files used by application tests and put them  in c:\media_files
+ media_files_v01.zip
+
+III.  download  the configuration files and put them in  c:\moodmedia
+ moodmedia_v01.zip
+Note : the archive contains already subdirectories ..so only an unzip is enough
+
+IV. copy apache portable version
+ - from C:\W\159\Mood.MVisionJsPlaybackEngine\BuildTools\Apache24 in C:\
+ - Note: with copy/paste from  windows explorer.
+ - Apache will be installed in  C:\Apache24
+
+
+III.  Start the Application
+
+   III.A  Start Apache 
+    - Apache will supply the local images and the local video-urile from c:\media_files
+    - Double-click on  C:\Apache24\bin\_startapache.bat 
+   -  then minimize
+
+  III.B  Start Application Server 
+  -  with double click on  C:\W\159\Mood.MVisionJsPlaybackEngine\startwinserver.bat
+   -  then minimize
+
+  III.C  Start  Chrome in kiosk mode     
+    -  with double click on   C:\W\159\Mood.MVisionJsPlaybackEngine\startwinclient.bat  
+
+
+  IV.  Start the Development Environment 
+
+   - go into the application folder 
+         - open a cmd
+         C:\ > cd C:\W\159\Mood.MVisionJsPlaybackEngine
+   - start the Visual Code 
+          C:\W\159\Mood.MVisionJsPlaybackEngine > code .
+
+   IV.  "Compile" (= Transpile) 
+
+      - open a New Terminal inside the Visual Code 
+             from Visual Code - Main Menu -> Terminal -> New Terminal 
+
+      - from this Terminal compile only the Windows Environment
+             > npm run compileonlywin 
+
+        Option:
+       - compile all the Environments 
+            >   npm run compilewin   
+Note: compilewin => means compile from windows
+
+      - start the server  (you can start it from the .bat file too)
+             > npm run startwin 
+
+      - start the application from Visual Code Menu 
+            like: Start without Debugging...etc.

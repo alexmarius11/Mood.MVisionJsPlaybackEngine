@@ -1,0 +1,480 @@
+
+declare function require(moduleNames: string[], onLoad: (...args: any[]) => void): void;
+//--------------------------------------------
+//import rmConfigurationServicesServiceContainer = require("../app/ts/reusable/rm_configurationservices/r_servicecontainer/R_ServiceContainer");
+//rmConfigurationServicesServiceContainer.rm_configurationservices.R_ServiceContainer.startup();
+//--------------------------------------------
+
+import amTransversalServicesSDKJsTV       = require("../app/ts/abstract/am_transversalservices/a_sdk_jstv/A_SDK_JsTV");
+import amTransversalServicesSDKConnector  = require("../app/ts/abstract/am_transversalservices/a_sdk_connector/A_SDK_Connector");
+import amRenderingServicesSDKRenderer   = require("../app/ts/abstract/am_renderingservices/a_sdkrenderer/A_SDKRenderer");
+import amConfigurationServicesServiceLocator   = require("../app/ts/abstract/am_configurationservices/a_servicelocator/A_ServiceLocator");
+import amTransversalServicesUtilsService  = require("../app/ts/abstract/am_transversalservices/a_utilsservice/A_UtilsService");
+
+import amGeneralContext = require("../app/ts/abstract/am_general/a_context/A_Context");
+import amGeneralError    = require("../app/ts/abstract/am_general/a_error/A_Error");
+import amGeneralFileInfo = require("../app/ts/abstract/am_general/a_fileinfo/A_FileInfo");
+import amGeneralDateTime = require("../app/ts/abstract/am_general/a_datetime/A_DateTime");
+import amGeneralTimeZone = require("../app/ts/abstract/am_general/a_timezone/A_TimeZone");
+
+import rmConfigurationServicesServiceLocator   = require("../app/ts/reusable/rm_configurationservices/r_servicelocator/R_ServiceLocator");
+
+//import rmodSDKClient   = require("../app/ts/reusable/rm_transversalservices/r_sdk_client/R_SDK_Client");
+//import nmodSDKWebOS = require("../app/ts/native/nm_transversalservices/n_sdk_webos/N_SDK_WebOS");
+import nmodSDKTizen = require("../app/ts/native/nm_transversalservices/n_sdk_tizen/N_SDK_Tizen");
+
+import rmodSDKRenderer = require("../app/ts/reusable/rm_renderingservices/r_sdkrenderer/R_SDKRenderer");
+import rmodSDKConnector = require("../app/ts/reusable/rm_transversalservices/r_sdk_connector/R_SDK_Connector");
+import rmodUtilsService = require("../app/ts/reusable/rm_transversalservices/r_utilsservice/R_UtilsService");
+
+/*
+// Tizen
+*/
+//-- the variables
+var error             : amGeneralError.am_general.A_Error = null;
+var aSrvLocator       : amConfigurationServicesServiceLocator.am_configurationservices.A_ServiceLocator;
+aSrvLocator = rmConfigurationServicesServiceLocator.rm_configurationservices.R_ServiceLocator.startupCreateDefaultServiceLocator(null,error);
+var context:amGeneralContext.am_general.A_Context = aSrvLocator._iEntityCreation.createDefaultContext();
+var error:amGeneralError.am_general.A_Error = aSrvLocator._iEntityCreation.createDefaultError();
+
+//--- the service creation
+//var aSDKJsTV:amTransversalServicesSDKJsTV.am_transversalservices.A_SDK_JsTV = new rmodSDKClient.rm_transversalservices.R_SDK_Client(null, null, null, error);
+//var aSDKJsTV:amTransversalServicesSDKJsTV.am_transversalservices.A_SDK_JsTV = new nmodSDKWebOS.nm_transversalservices.N_SDK_WebOS(null, null, null, error);
+var aSDKJsTV:amTransversalServicesSDKJsTV.am_transversalservices.A_SDK_JsTV = new nmodSDKTizen.nm_transversalservices.N_SDK_Tizen(null, null, null, error);
+aSDKJsTV._iService.setServiceLocator(aSrvLocator);
+
+var aUtilsService:amTransversalServicesUtilsService.am_transversalservices.A_UtilsService = new rmodUtilsService.rm_transversalservices.R_UtilsService(null, null, null, error);
+aUtilsService._iService.setServiceLocator(aSrvLocator);
+
+var aSDKRenderer:amRenderingServicesSDKRenderer.am_renderingservices.A_SDKRenderer = new rmodSDKRenderer.rm_renderingservices.R_SDKRenderer(null, null, null, error);
+aSDKRenderer._iService.setServiceLocator(aSrvLocator);
+aSDKRenderer._iService.setUtilsService(aUtilsService);
+
+var aUtilsService:amTransversalServicesUtilsService.am_transversalservices.A_UtilsService = new rmodUtilsService.rm_transversalservices.R_UtilsService(null, null, null, error);
+aUtilsService._iService.setServiceLocator(aSrvLocator);
+
+var aSDKConnector:amTransversalServicesSDKConnector.am_transversalservices.A_SDK_Connector = new rmodSDKConnector.rm_transversalservices.R_SDK_Connector(null, null, null, error);
+aSDKConnector._iService.setServiceLocator(aSrvLocator);
+
+//--- the services "wiring"
+aSDKConnector._iService.setTargetService(aSDKJsTV);
+aSDKConnector._iService.setConsumerService(aSDKRenderer._aSDKConsumer);
+//-
+aSDKRenderer._iService.setTargetService(aSDKConnector);
+//-
+aSDKJsTV._iService.setConsumerService(aSDKConnector);
+
+//-  the initialization of input parameters 
+//aSDKJsTV._iRemoteService.startup_withConnectClient("http://localhost:3000");
+//-
+var aStartFileFolder:amGeneralFileInfo.am_general.A_FileInfo = aSrvLocator._iEntityCreation.createDefaultFileInfo(error);
+aStartFileFolder.setStorage("removable_sda1");
+aStartFileFolder.setPath("/");
+
+ //amGeneralFileInfo.am_general.A_FileInfo();
+aSDKRenderer._iFileSystemRenderer.setStartFolder(aStartFileFolder);
+
+
+//=========================================
+// exported functions in html
+//=========================================
+
+//--------------------------------------
+//  display Folder File list functions
+//--------------------------------------
+//---------------------------------------------------------------
+var client_displayFolderFileList = function client_displayFolderFileList(storageName: string, folderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_getFileList(storageName, folderName);
+}    
+ 
+//--------------------------------------
+//  display File functions
+//--------------------------------------
+
+//---------------------------------------------------------------
+var client_displayFile = function client_displayFile(storageName: string, folderName: string, fileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayFile(storageName, folderName, fileName);
+}
+
+//---------------------------------------------------------------
+var client_displayNewFile = function client_displayNewFile(storageName: string, folderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayNewFile(storageName, folderName);
+}    
+//---------------------------------------------------------------
+var client_eraseDisplayFile = function client_displayFile(storageName: string, folderName: string, fileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayFile();
+}
+//---------------------------------------------------------------
+var client_saveFile = function client_saveFile(storageName: string, folderName: string, fileName: string, fileContent: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_saveFile(storageName, folderName, fileName, fileContent);
+
+
+//--------
+// delete file
+//-------
+}    
+//---------------------------------------------------------------
+var client_displayDeleteFile = function client_displayDeleteFile(storageName: string, folderName: string, fileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayDeleteFile(storageName, folderName, fileName);
+}    
+//---------------------------------------------------------------
+var client_eraseDisplayDeleteFile = function client_eraseDisplayDeleteFile()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayDeleteFile();
+}    
+//---------------------------------------------------------------
+var client_deleteFile = function client_deleteFile(storageName: string, folderName: string, fileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_deleteFile(storageName, folderName, fileName);
+}    
+
+//--------
+// copy file
+//-------
+
+//---------------------------------------------------------------
+var client_displayCopyFile = function client_displayCopyFile(srcStorageName: string, srcFolderName: string, srcFileName: string, dstStorageName: string, dstFolderName: string, dstFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayCopyFile(srcStorageName, srcFolderName, srcFileName, dstStorageName, dstFolderName, dstFileName);
+}
+//---------------------------------------------------------------
+var client_eraseDisplayCopyFile = function client_eraseDisplayCopyFile()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayCopyFile();
+}
+//---------------------------------------------------------------
+var client_copyFile = function client_copyFile(srcStorageName: string, srcFolderName: string, srcFileName: string, dstStorageName: string, dstFolderName: string, dstFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_copyFile(srcStorageName, srcFolderName, srcFileName, dstStorageName, dstFolderName, dstFileName);
+}
+
+//--------
+// move file
+//-------
+
+//---------------------------------------------------------------
+var client_displayMoveFile = function client_displayMoveFile(srcStorageName: string, srcFolderName: string, srcFileName: string, dstStorageName: string, dstFolderName: string, dstFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayMoveFile(srcStorageName, srcFolderName, srcFileName, dstStorageName, dstFolderName, dstFileName);
+}
+//---------------------------------------------------------------
+var client_eraseDisplayMoveFile = function client_eraseDisplayMoveFile()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayMoveFile();
+}
+//---------------------------------------------------------------
+var client_moveFile = function client_moveFile(srcStorageName: string, srcFolderName: string, srcFileName: string, dstStorageName: string, dstFolderName: string, dstFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_moveFile(srcStorageName, srcFolderName, srcFileName, dstStorageName, dstFolderName, dstFileName);
+}
+
+//--------
+// download file
+//-------
+
+//---------------------------------------------------------------
+var client_displayDownloadFile = function client_displayDownloadFile(remoteUrlName: string, dstStorageName: string, dstFolderName: string, dstFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayDownloadFile(remoteUrlName, dstStorageName, dstFolderName, dstFileName);
+}
+//---------------------------------------------------------------
+var client_eraseDisplayDownloadFile = function client_eraseDisplayDownloadFile()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayDownloadFile();
+}
+//---------------------------------------------------------------
+var client_downloadFile = function client_downloadFile(remoteUrlName: string, dstStorageName: string, dstFolderName: string, dstFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_downloadFile(remoteUrlName, dstStorageName, dstFolderName, dstFileName);
+}
+
+//--------
+// upload file
+//-------
+
+//---------------------------------------------------------------
+var client_displayUploadFile = function client_displayUploadFile(srcStorageName: string, srcFolderName: string, srcFileName: string, remoteUrlName: string, remoteFolderName: string, remoteFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayUploadFile(srcStorageName, srcFolderName, srcFileName, remoteUrlName, remoteFolderName, remoteFileName);
+}
+//---------------------------------------------------------------
+var client_eraseDisplayUploadFile = function client_eraseDisplayUploadFile()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayUploadFile();
+}
+//---------------------------------------------------------------
+var client_uploadFile = function client_uploadFile(srcStorageName: string, srcFolderName: string, srcFileName: string, remoteUrlName: string, remoteFolderName: string, remoteFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_uploadFile(srcStorageName, srcFolderName, srcFileName, remoteUrlName, remoteFolderName, remoteFileName);
+}
+
+//--------
+// unzip file
+//-------
+
+//---------------------------------------------------------------
+var client_displayUnzipFile = function client_displayUnzipFile(zipStorageName: string, zipFolderName: string, zipFileName: string, unzipStorageName: string, unzipFolderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayUnzipFile(zipStorageName, zipFolderName, zipFileName, unzipStorageName, unzipFolderName);
+}
+//---------------------------------------------------------------
+var client_eraseDisplayUnzipFile = function client_eraseDisplayUnzipFile()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayUnzipFile();
+}
+//---------------------------------------------------------------
+var client_unzipFile = function client_unzipFile(zipStorageName: string, zipFolderName: string, zipFileName: string, unzipStorageName: string, unzipFolderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_unzipFile(zipStorageName, zipFolderName, zipFileName, unzipStorageName, unzipFolderName);
+}
+
+//--------
+// zip file
+//-------
+
+//---------------------------------------------------------------
+var client_displayZipFile = function client_displayZipFile(storageName: string, folderName: string, fileName: string, zipStorageName: string, zipFolderName: string, zipFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayZipFile(storageName, folderName, fileName, zipStorageName, zipFolderName, zipFileName);
+}
+//---------------------------------------------------------------
+var client_eraseDisplayZipFile = function client_eraseDisplayZipFile()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayZipFile();
+}
+//---------------------------------------------------------------
+var client_zipFile = function client_zipFile(storageName: string, folderName: string, fileName: string, zipStorageName: string, zipFolderName: string, zipFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_zipFile(storageName, folderName, fileName, zipStorageName, zipFolderName, zipFileName);
+}
+
+
+//=======================
+//  Folder functions
+//=======================
+
+//--------------------------------------
+//  display Folder functions
+//--------------------------------------
+//---------------------------------------------------------------
+var client_displayNewFolder = function client_displayNewFolder(storageName: string, folderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayNewFolder(storageName, folderName);
+}    
+//---------------------------------------------------------------
+var client_eraseDisplayNewFolder = function client_eraseDisplayNewFolder()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayNewFolder();
+}    
+//---------------------------------------------------------------
+var client_createFolder = function client_createFolder(storageName: string, folderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_createFolder(storageName, folderName);
+}    
+
+//--------
+// delete folder
+//-------
+
+//---------------------------------------------------------------
+var client_displayDeleteFolder = function client_displayDeleteFolder(storageName: string, folderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayDeleteFolder(storageName, folderName);
+}
+//---------------------------------------------------------------
+var client_eraseDisplayDeleteFolder = function client_eraseDisplayDeleteFolder()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayDeleteFolder();
+}
+//---------------------------------------------------------------
+var client_deleteFolder = function client_deleteFolder(storageName: string, folderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_deleteFolder(storageName, folderName);
+}
+
+//--------
+// copy folder
+//-------
+
+//---------------------------------------------------------------
+var client_displayCopyFolder = function client_displayCopyFolder(srcStorageName: string, srcFolderName: string, dstStorageName: string, dstFolderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayCopyFolder(srcStorageName, srcFolderName, dstStorageName, dstFolderName);
+}
+//---------------------------------------------------------------
+var client_eraseDisplayCopyFolder = function client_eraseDisplayCopyFolder()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayCopyFolder();
+}
+//---------------------------------------------------------------
+var client_copyFolder = function client_copyFolder(srcStorageName: string, srcFolderName: string, dstStorageName: string, dstFolderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_copyFolder(srcStorageName, srcFolderName, dstStorageName, dstFolderName);
+}
+
+//--------
+// move folder
+//-------
+
+//---------------------------------------------------------------
+var client_displayMoveFolder = function client_displayMoveFolder(srcStorageName: string, srcFolderName: string, dstStorageName: string, dstFolderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayMoveFolder(srcStorageName, srcFolderName, dstStorageName, dstFolderName);
+}
+//---------------------------------------------------------------
+var client_eraseDisplayMoveFolder = function client_eraseDisplayMoveFolder()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayMoveFolder();
+}
+//---------------------------------------------------------------
+var client_moveFolder = function client_moveFolder(srcStorageName: string, srcFolderName: string, dstStorageName: string, dstFolderName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_moveFolder(srcStorageName, srcFolderName, dstStorageName, dstFolderName);
+}
+
+//--------
+// zip folder
+//-------
+
+//---------------------------------------------------------------
+var client_displayZipFolder = function client_displayZipFolder(storageName: string, folderName: string, zipStorageName: string, zipFolderName: string, zipFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_displayZipFolder(storageName, folderName, zipStorageName, zipFolderName, zipFileName);
+}
+//---------------------------------------------------------------
+var client_eraseDisplayZipFolder = function client_eraseDisplayZipFolder()
+{
+  return aSDKRenderer._iFileSystemRenderer.action_eraseDisplayZipFolder();
+}
+//---------------------------------------------------------------
+var client_zipFolder = function client_zipFolder(storageName: string, folderName: string, zipStorageName: string, zipFolderName: string, zipFileName: string)
+{
+  return aSDKRenderer._iFileSystemRenderer.action_zipFolder(storageName, folderName, zipStorageName, zipFolderName, zipFileName);
+}
+
+declare var global_SDKRenderer : any;
+
+global_SDKRenderer.displayFolderFileList  = client_displayFolderFileList;
+
+global_SDKRenderer.displayFile            = client_displayFile;
+global_SDKRenderer.displayNewFile         = client_displayNewFile;
+global_SDKRenderer.eraseDisplayFile       = client_eraseDisplayFile;
+global_SDKRenderer.saveFile               = client_saveFile;
+
+global_SDKRenderer.displayDeleteFile      = client_displayDeleteFile;
+global_SDKRenderer.eraseDisplayDeleteFile = client_eraseDisplayDeleteFile;
+global_SDKRenderer.deleteFile             = client_deleteFile;
+
+global_SDKRenderer.displayCopyFile        = client_displayCopyFile;
+global_SDKRenderer.eraseDisplayCopyFile   = client_eraseDisplayCopyFile;
+global_SDKRenderer.copyFile               = client_copyFile;
+
+global_SDKRenderer.displayMoveFile        = client_displayMoveFile;
+global_SDKRenderer.eraseDisplayMoveFile   = client_eraseDisplayMoveFile;
+global_SDKRenderer.moveFile               = client_moveFile;
+
+global_SDKRenderer.displayDownloadFile      = client_displayDownloadFile;
+global_SDKRenderer.eraseDisplayDownloadFile = client_eraseDisplayDownloadFile;
+global_SDKRenderer.downloadFile             = client_downloadFile;
+
+global_SDKRenderer.displayUploadFile        = client_displayUploadFile;
+global_SDKRenderer.eraseDisplayUploadFile   = client_eraseDisplayUploadFile;
+global_SDKRenderer.uploadFile               = client_uploadFile;
+
+global_SDKRenderer.displayUnzipFile         = client_displayUnzipFile;
+global_SDKRenderer.eraseDisplayUnzipFile    = client_eraseDisplayUnzipFile;
+global_SDKRenderer.unzipFile                = client_unzipFile;
+
+global_SDKRenderer.displayZipFile           = client_displayZipFile;
+global_SDKRenderer.eraseDisplayZipFile      = client_eraseDisplayZipFile;
+global_SDKRenderer.zipFile                  = client_zipFile;
+
+
+
+global_SDKRenderer.displayNewFolder      = client_displayNewFolder;
+global_SDKRenderer.eraseDisplayNewFolder = client_eraseDisplayNewFolder;
+global_SDKRenderer.createFolder          = client_createFolder;       
+
+global_SDKRenderer.displayDeleteFolder   = client_displayDeleteFolder;       
+global_SDKRenderer.eraseDisplayDeleteFolder   = client_eraseDisplayDeleteFolder;       
+global_SDKRenderer.deleteFolder          = client_deleteFolder;
+
+global_SDKRenderer.displayCopyFolder      = client_displayCopyFolder;       
+global_SDKRenderer.eraseDisplayCopyFolder = client_eraseDisplayCopyFolder;       
+global_SDKRenderer.copyFolder             = client_copyFolder;
+
+global_SDKRenderer.displayMoveFolder        = client_displayMoveFolder;       
+global_SDKRenderer.eraseDisplayMoveFolder   = client_eraseDisplayMoveFolder;       
+global_SDKRenderer.moveFolder               = client_moveFolder;
+
+global_SDKRenderer.displayZipFolder         = client_displayZipFolder;       
+global_SDKRenderer.eraseDisplayZipFolder    = client_eraseDisplayZipFolder;       
+global_SDKRenderer.zipFolder                = client_zipFolder;
+
+export {
+  client_displayFolderFileList,
+
+  client_displayFile,
+  client_displayNewFile,
+  client_eraseDisplayFile,
+  client_saveFile,
+
+  client_displayDeleteFile,
+  client_eraseDisplayDeleteFile,
+  client_deleteFile,
+  
+  client_displayCopyFile,
+  client_eraseDisplayCopyFile,
+  client_copyFile,
+
+  client_displayMoveFile,
+  client_eraseDisplayMoveFile,
+  client_moveFile,
+
+  client_displayDownloadFile,
+  client_eraseDisplayDownloadFile,
+  client_downloadFile,
+
+  client_displayUploadFile,
+  client_eraseDisplayUploadFile,
+  client_uploadFile,
+
+  client_displayUnzipFile,
+  client_eraseDisplayUnzipFile,
+  client_unzipFile,
+
+  client_displayZipFile,
+  client_eraseDisplayZipFile,
+  client_zipFile,
+
+
+  client_displayNewFolder,
+  client_eraseDisplayNewFolder,
+  client_createFolder,
+
+  client_displayDeleteFolder,  
+  client_eraseDisplayDeleteFolder,
+  client_deleteFolder,
+
+  client_displayCopyFolder,  
+  client_eraseDisplayCopyFolder,
+  client_copyFolder,
+
+  client_displayMoveFolder,  
+  client_eraseDisplayMoveFolder,
+  client_moveFolder,
+
+  client_displayZipFolder,  
+  client_eraseDisplayZipFolder,
+  client_zipFolder,
+
+}
+
+//-  the initialization of input parameters 
+aSDKRenderer._iFileSystemRenderer.render_home();

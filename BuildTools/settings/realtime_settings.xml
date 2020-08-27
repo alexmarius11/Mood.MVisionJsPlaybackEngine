@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RealTimePlaylistSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<ENABLE_RT_PLAYBACK>true</ENABLE_RT_PLAYBACK>
+<ENABLE_RT_DOWNLOAD>true</ENABLE_RT_DOWNLOAD>
+<ENABLE_RT_UPLOAD>true</ENABLE_RT_UPLOAD>
+<API_HOST>http://RealTimeUat.clearchannel.fr</API_HOST>
+<API_GET_REALTIME>/api/PlayList</API_GET_REALTIME>
+<API_POST_LOGS>/api/PlayList</API_POST_LOGS>
+<API_USERNAME>user_totem</API_USERNAME>
+<API_PASSWORD>xmV46H6Unu3X</API_PASSWORD>
+<TIME_SLOT>30</TIME_SLOT>
+</RealTimePlaylistSettings>

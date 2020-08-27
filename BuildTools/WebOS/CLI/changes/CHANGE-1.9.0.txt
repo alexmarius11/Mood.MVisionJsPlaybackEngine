@@ -1,0 +1,14 @@
+9a33ec4 2018-10-26       (HEAD -> develop, origin/develop)      Enable EULA for only OSE
+f1ee598 2018-09-28              Fix signage typos
+cb4b09a 2018-09-13              Update config list for all targets
+9e3ce06 2018-09-12       (origin/develop-ose, develop-ose)      Compare only version string for EULA
+f908dd5 2018-08-30              Update webOSTVjs-1.0.0 to webOSTVjs-1.1.0
+80b42ad 2018-08-29              Change UX scenario of overwirte on ares-generate
+1bc684e 2018-08-14              Add EULA configuration file to release package
+8cfacc6 2018-08-13              Update CLI version 1.7.2
+cbf6e52 2018-07-17              Add signage_ndk profile
+4b0324b 2018-08-10              Check the version rule on packaging
+47801e8 2018-07-11              Restruct release package
+9695147 2018-08-02              List up ares-device-info in ares command list
+44c1746 2018-08-02              Add changes/CHANGE-1.7.1.txt
+3d6ccbd 2018-07-23              Add ares-device-info command for consumer TV

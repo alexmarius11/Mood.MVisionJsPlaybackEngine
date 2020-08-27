@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="org.eclipse.egit:3.2.0.201312181205-r"/>
+		<item value="org.eclipse.emf.common:2.9.2.v20131212-0545"/>
+		<item value="org.eclipse.emf.ecore:2.9.2.v20131212-0545"/>
+		<item value="org.eclipse.help:2.0.2.v20140221-1700"/>
+		<item value="org.eclipse.jdt:3.9.2.v20140221-1700"/>
+		<item value="org.eclipse.jgit:3.2.0.201312181205-r"/>
+		<item value="org.eclipse.pde:3.9.1.v20140221-1700"/>
+		<item value="org.eclipse.platform:4.3.2.v20140221-1852"/>
+		<item value="org.eclipse.rcp:4.3.2.v20140221-1700"/>
+		<item value="org.eclipse.wst.jsdt.feature:1.5.2.v201401171657-7H7FFhXFC7sReuSlgtfhew"/>
+		<item value="org.eclipse.wst.web_ui.feature:3.5.2.v201401062113-7O7QG3wEMkBS3Graz0gRCYqCz-PVayJqBmOpb93L"/>
+		<item value="org.eclipse.wst.xml_ui.feature:3.5.2.v201401062113-7H7IFizDxumVu0K6bjdPjXRkoz0FiUYMnSyT9PL"/>
+		<item value="org.tizen.base.feature:2.0.0"/>
+		<item value="org.tizen.base.web.feature:2.0.0"/>
+		<item value="org.tizen.common.feature:2.0.0.201607121221"/>
+		<item value="org.tizen.dynamicanalysis.ide.web.eplugin.feature:2.1.0.201603081457"/>
+		<item value="org.tizen.web.feature:2.0.0.201607111413"/>
+		<item value="org.tizen.web.simulator.feature:1.0.0.201603211023"/>
+	</list>
+</section>

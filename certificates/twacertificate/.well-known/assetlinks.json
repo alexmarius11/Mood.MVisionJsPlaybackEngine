@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "ro.chromium.twa.svgomg",
+    "sha256_cert_fingerprints": [
+      "C3:3E:D7:EC:22:62:1C:91:ED:B3:D2:D2:7D:89:64:29:5F:07:C4:25:DA:03:39:E7:32:84:42:12:CE:1F:8F:4C"
+    ]
+  }
+}]

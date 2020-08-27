@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/SSSP4MVisionJsPlaybackEngine" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="mV8lMrjxYy.SSSP4MVisionJsPlaybackEngine" package="mV8lMrjxYy" required_version="2.3"/>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
+    <icon src="icon.png"/>
+    <name>SSSP4MVisionJsPlaybackEngine</name>
+    <tizen:profile name="tv-samsung-public"/>
+    <tizen:privilege name="http://tizen.org/privilege/tizen"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
+    <tizen:privilege name="http://tizen.org/privilege/download"/>
+    <tizen:privilege name="http://tizen.org/api/time.read"/>
+    <tizen:privilege name="http://tizen.org/api/time.write"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.audio"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <feature name="http://tizen.org/feature/tv.pip"/>
+    <feature name="http://tizen.org/feature/tv.audio"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/b2bcontrol"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/b2bdoc"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/network.partner"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/network.public"/>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+    <tizen:privilege name="http://tizen.org/privilege/websetting"/>
+    <tizen:privilege name="http://tizen.org/privilege/download"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.window"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.channel"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.display"/>
+    <tizen:privilege name="http://tizen.org/privilege/power"/>
+    <tizen:privilege name="http://tizen.org/privilege/volume.set"/>
+    
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <access origin="*" subdomains="true"></access>
+    <tizen:privilege name="http://tizen.org/privilege/websetting"/>
+    <tizen:privilege name="http://tizen.org/privilege/web.service"/>
+    <tizen:privilege name="http://tizen.org/privilege/socket"/>
+    <tizen:privilege name="http://tizen.org/privilege/http"/>
+    
+    <tizen:content-security-policy>*</tizen:content-security-policy>
+    <tizen:allow-navigation>*</tizen:allow-navigation>
+    
+    <tizen:setting screen-orientation="landscape" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
+</widget>

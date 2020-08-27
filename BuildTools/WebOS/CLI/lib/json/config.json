@@ -1,0 +1,22 @@
+{
+    "openLevel" : 0,
+    "profile" : "signage",
+    "defaultAppInfo": {
+        "id": "com.lg.app.signage",
+        "type": "web",
+        "title": "new app",
+        "version": "0.0.1",
+        "main" : {
+            "web" : "index.html",
+            "native": "executable"
+        }
+    },
+    "templateFileName": "signage-templates.json",
+    "logFilePath" : "/media/developer/log/devlog",
+    "install" : {
+        "tempDirForIpk" : "/media/developer/temp",
+        "changeTempDir" : true,
+        "removeIpkAfterInst" : true
+    },
+    "dataDir":".webos/signage"
+}

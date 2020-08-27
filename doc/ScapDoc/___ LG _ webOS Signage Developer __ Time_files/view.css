@@ -1,0 +1,21 @@
+/* searchTop */
+.lgehead_search {display:inline-block;width:140px;height:36px; border:1px solid #dadada;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;background:#fff;}
+.lgehead_search input {display:inline-block !important;text-align:left;}
+.lgehead_search input[type='search'] {background:#fff !important;}
+.ccm-search-block-form .lgehead_search input.ccm-topsearch-block-text {border:0 none !important;margin:0 0 0 1px !important;width:70%;height:34px;background:#fff none !important;padding:0 0 0 6px !important;color:#999 !important;}
+.lgehead_search input[type='submit'].ccm-topsearch-block-submit {padding:0 0 !important;border:none !important;margin:0 !important;border-radius:0 !important;
+background:#fff url(/images/head_search_btn.png) no-repeat left top;display:inline-block;width:26px;height:24px;text-indent:-999999px;outline:none !important;cursor:pointer;} 
+.lgehead_search input[type='image'].ccm-topsearch-block-submit {padding:0 0 !important;border:none !important;margin:0 !important;border-radius:0 !important;
+display:inline-block;width:26px;height:24px;outline:none !important;cursor:pointer;} 
+
+
+.lgehead_search div.ccm-page .btn {border:0 none !important;}
+
+/* media query */
+@media all and (min-width: 0) and (max-width: 768px) {
+	.lgehead_search  {width:70px;}
+	.ccm-search-block-form .lge_head_search input.ccm-topsearch-block-text {width:50%;padding:3px 0 0 6px !important;font-size:11px !important;}
+	.lgehead_search input[type='submit'].ccm-topsearch-block-submit {background-size:90% auto;width:18px;height:auto;margin:5px 0 0 0 !important;}
+	.lgehead_search input[type='image'].ccm-topsearch-block-submit {background-size:90% auto;width:18px;height:auto;margin:5px 0 0 0 !important;}
+
+}

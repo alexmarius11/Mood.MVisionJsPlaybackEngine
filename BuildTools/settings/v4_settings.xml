@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE V4[
+  <!ELEMENT V4 (WEBBASEADDRESS, INDEXV5, SEQ_CATEGORIES, PLAYERS)>
+  <!ELEMENT PLAYERS (PLAYER+)>
+  <!ELEMENT PLAYER (NAME, PWD)>
+  <!ELEMENT WEBBASEADDRESS (#PCDATA)>
+  <!ELEMENT SEQ_CATEGORIES (#PCDATA)>
+  <!ELEMENT INDEXV5 (#PCDATA)>
+  <!ELEMENT NAME (#PCDATA)>
+  <!ELEMENT PWD (#PCDATA)>
+]>
+<V4>
+  <WEBBASEADDRESS>http://mvision.moodmedia.com/v4/</WEBBASEADDRESS>
+  <INDEXV5>indexxml5.asp</INDEXV5>
+  <SEQ_CATEGORIES>seq_cat.asp</SEQ_CATEGORIES>
+  <PLAYERS>
+    <PLAYER>
+      <NAME>default</NAME>
+      <PWD>defaultpwd</PWD>
+    </PLAYER>
+  </PLAYERS>
+</V4>

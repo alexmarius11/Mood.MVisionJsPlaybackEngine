@@ -1,0 +1,75 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:2:1-27:12
+	package
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:3:11-40
+		INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+		INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:5:11-36
+		INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+		INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:4:11-34
+		INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+		INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:7:5-66
+	android:name
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:7:22-64
+application
+ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:8:5-26:19
+	android:extractNativeLibs
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:10:13-45
+	android:label
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:8:18-50
+	android:hardwareAccelerated
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:9:13-47
+	android:icon
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:8:51-87
+	android:networkSecurityConfig
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:11:9-69
+activity#com.example.webview.MyActivity
+ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:16:9-25:20
+	android:label
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:19:19-51
+	android:hardwareAccelerated
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:18:19-53
+	android:configChanges
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:17:19-69
+	android:theme
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:20:19-77
+	android:name
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:16:19-44
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:21:13-24:29
+action#android.intent.action.MAIN
+ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:22:17-68
+	android:name
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:22:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:23:17-76
+	android:name
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml:23:27-74
+uses-sdk
+INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+		INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+		ADDED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml
+		INJECTED from C:\kits\____android\WebviewVideo-master1\app\src\main\AndroidManifest.xml

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE CLIENT_SETTINGS[
+  <!ELEMENT CLIENT_SETTINGS (ENVIRONMENT, TCV5, ENV_UPDATES, SERVER_WSUS_URL)>
+  <!ELEMENT ENVIRONMENT (ENV_NAME, EARLY_ADOPTER)>
+  <!ELEMENT TCV5 (SERVER_WEBBASE_URL, MEDIA_FILES)>
+  <!ELEMENT MEDIA_FILES (BASE_FOLDER)>
+  <!ELEMENT ENV_UPDATES (SERVER_WEBBASE_URL)>
+  <!ELEMENT ENV_NAME (#PCDATA)>
+  <!ELEMENT EARLY_ADOPTER (#PCDATA)>
+  <!ELEMENT SERVER_WEBBASE_URL (#PCDATA)>
+  <!ELEMENT BASE_FOLDER (#PCDATA)>
+  <!ELEMENT SERVER_WSUS_URL (#PCDATA)>
+]>
+<CLIENT_SETTINGS>
+  <ENVIRONMENT>
+    <ENV_NAME>MCDONALDS</ENV_NAME>
+    <EARLY_ADOPTER>0</EARLY_ADOPTER>
+  </ENVIRONMENT>
+  <TCV5>
+	<!--
+    <SERVER_WEBBASE_URL>http://mvision.moodmedia.com/v5/</SERVER_WEBBASE_URL>
+    <SERVER_WEBBASE_URL>http://mvision-uat.moodmedia.com/v5/</SERVER_WEBBASE_URL>
+    <SERVER_WEBBASE_URL>http://mvision-uat.moodmedia.com/v5/</SERVER_WEBBASE_URL>
+	-->
+    <SERVER_WEBBASE_URL>http://mvision-qa.moodnet.eu/v5/</SERVER_WEBBASE_URL>
+	 
+    <MEDIA_FILES>
+      <BASE_FOLDER>medias</BASE_FOLDER>
+    </MEDIA_FILES>
+  </TCV5>
+  <ENV_UPDATES>
+	<!--
+    <SERVER_WEBBASE_URL>http://mvision.moodmedia.com/env_updates/</SERVER_WEBBASE_URL>
+    <SERVER_WEBBASE_URL>http://mvision-qa.moodmedia.com/env_updates/</SERVER_WEBBASE_URL>
+    <SERVER_WEBBASE_URL>http://mvision-build.moodmedia.com/env_updates/</SERVER_WEBBASE_URL>
+	-->
+    <SERVER_WEBBASE_URL>http://mvision-build.moodmedia.com/env_updates/</SERVER_WEBBASE_URL>
+  </ENV_UPDATES>
+  <SERVER_WSUS_URL>https://mvision-wsus-us.moodmedia.com</SERVER_WSUS_URL>
+  <!-- When it is empty, use same adress than TCV5/SERVER_WEBBASE_URL with wsus- prefix -->
+</CLIENT_SETTINGS>

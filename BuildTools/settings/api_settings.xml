@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApiSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <API_TOKEN>FB5ED944377FC2E532B28C3F5B844A94BE01C072FC99A34A95FBD99278468D64</API_TOKEN>
+  <API_TIMEOUT>300</API_TIMEOUT>
+  <API_PLAYERNAME>/v5/api/ccf/playerName/</API_PLAYERNAME>
+  <API_RT_CHANNEL>/v5/api/ccf/getTagItems</API_RT_CHANNEL>
+</ApiSettings>

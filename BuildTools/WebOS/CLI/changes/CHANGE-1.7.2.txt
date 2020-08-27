@@ -1,0 +1,4 @@
+cbf6e52	2018-07-17		Add signage_ndk profile
+4b0324b	2018-08-10		Check the version rule on packaging
+47801e8	2018-07-11		Restruct release package
+9695147	2018-08-02		List up ares-device-info in ares command list

@@ -1,0 +1,1159 @@
+declare function require(moduleNames: string[], onLoad: (...args: any[]) => void): void;
+
+import amConfigurationServicesServiceLocator   = require("../../../../../app/ts/abstract/am_configurationservices/a_servicelocator/A_ServiceLocator");
+
+import amGeneralError                          = require("../../../../../app/ts/abstract/am_general/a_error/A_Error");
+import amGeneralFactoryDescription             = require("../../../../../app/ts/abstract/am_general/a_factorydescription/A_FactoryDescription");
+import amConfigurationServicesServiceContainer = require("../../../../../app/ts/abstract/am_configurationservices/a_servicecontainer/A_ServiceContainer");
+import amTransversalServicesLogService         = require("../../../../../app/ts/abstract/am_transversalservices/a_logservice/A_LogService");
+
+import amConfigurationServices2 = require("../../../../../app/ts/abstract/am_configurationservices/a_servicelocator/I_ServiceLocator_FactorySetup");
+import amConfigurationServices3 = require("../../../../../app/ts/abstract/am_configurationservices/a_servicelocator/I_ServiceLocator_EntityCreation");
+import amConfigurationServices4 = require("../../../../../app/ts/abstract/am_configurationservices/a_servicelocator/I_ServiceLocator_ServiceCreation");
+
+import amConfigurationServicesPlatformConfigurator  = require("../../../../../app/ts/abstract/am_configurationservices/a_platformconfigurator/A_PlatformConfigurator");
+
+import amGeneralServiceFactories    = require("../../../../../app/ts/abstract/am_general/a_service/A_ServiceFactories");
+import amGeneralEntityFactories     = require("../../../../../app/ts/abstract/am_general/a_entity/A_EntityFactories");
+
+import amGeneralServiceFactory      = require("../../../../../app/ts/abstract/am_general/a_service/AFactory_Service");
+import amGeneralEntityFactory       = require("../../../../../app/ts/abstract/am_general/a_entity/AFactory_Entity");
+import amGeneralFactoryDescriptions = require("../../../../../app/ts/abstract/am_general/a_factorydescription/A_FactoryDescriptions");
+import amGeneralService             = require("../../../../../app/ts/abstract/am_general/a_service/A_Service");
+import amGeneralEntity              = require("../../../../../app/ts/abstract/am_general/a_entity/A_Entity");
+import amGeneralProperties          = require("../../../../../app/ts/abstract/am_general/a_property/A_Properties");
+import amGeneralProperty            = require("../../../../../app/ts/abstract/am_general/a_property/A_Property");
+import amGeneralServices            = require("../../../../../app/ts/abstract/am_general/a_service/A_Services");
+
+import rmGeneralService             = require("../../../../../app/ts/reusable/rm_general/r_service/R_Service");
+import rmGeneralError               = require("../../../../../app/ts/reusable/rm_general/r_error/R_Error");
+import rmGeneralProperty            = require("../../../../../app/ts/reusable/rm_general/r_property/R_Property");
+import rmGeneralProperties          = require("../../../../../app/ts/reusable/rm_general/r_property/R_Properties");
+import rmGeneralFactoryDescription  = require("../../../../../app/ts/reusable/rm_general/r_factorydescription/R_FactoryDescription");
+import rmGeneralFactoryDescriptions = require("../../../../../app/ts/reusable/rm_general/r_factorydescription/R_FactoryDescriptions");
+import rmGeneralServices            = require("../../../../../app/ts/reusable/rm_general/r_service/R_Services");
+import rmGeneralServiceFactories    = require("../../../../../app/ts/reusable/rm_general/r_service/R_ServiceFactories");
+import rmGeneralEntityFactories     = require("../../../../../app/ts/reusable/rm_general/r_entity/R_EntityFactories");
+
+import rmConfigurationServicesPlatformConfigurator  = require("../../../../../app/ts/reusable/rm_configurationservices/r_platformconfigurator/R_PlatformConfigurator");
+import rmConfigurationServicesServiceLocator        = require("../../../../../app/ts/reusable/rm_configurationservices/r_servicelocator/R_ServiceLocator");
+import rmConfigurationServicesServiceContainer      = require("../../../../../app/ts/reusable/rm_configurationservices/r_servicecontainer/R_ServiceContainer");
+
+import rmConfigurationServices2 = require("../../../../../app/ts/reusable/rm_configurationservices/r_servicelocator/IImpl_ServiceLocator_FactorySetup_R");
+import rmConfigurationServices3 = require("../../../../../app/ts/reusable/rm_configurationservices/r_servicelocator/IImpl_ServiceLocator_EntityCreation_R");
+import rmConfigurationServices4 = require("../../../../../app/ts/reusable/rm_configurationservices/r_servicelocator/IImpl_ServiceLocator_ServiceCreation_R");
+
+//import rmTransversalServices3 = require("../../../../../app/ts/reusable/rm_transversalservices/r_logservice/R_LogService");
+//import mod2_NFactory_SDK_WebOS = require("../../../../../app/ts/native/nm_transversalservices/n_sdk_webos/NFactory_SDK_WebOS");
+//import * as rmConfig                  from "../../../../../config/StartupConfig";
+//------------------------------------------------------
+import * as mod_NFactory_SDK_WebOS             from "../../../../../app/ts/native/nm_transversalservices/n_sdk_webos/NFactory_SDK_WebOS";
+import * as mod_NFactory_VideoRenderer_WebOS   from "../../../../../app/ts/native/nm_renderingservices/n_videorenderer_webos/NFactory_VideoRenderer_WebOS";
+
+import * as mod_NFactory_SDK_Tizen             from "../../../../../app/ts/native/nm_transversalservices/n_sdk_tizen/NFactory_SDK_Tizen";
+import * as mod_NFactory_VideoRenderer_Tizen   from "../../../../../app/ts/native/nm_renderingservices/n_videorenderer_tizen/NFactory_VideoRenderer_Tizen";
+
+import * as mod_NFactory_SDK_NodeJs            from "../../../../../app/ts/native/nm_transversalservices/n_sdk_nodejs/NFactory_SDK_NodeJs";
+import * as mod_NFactory_SDK_StandaloneBrowser from "../../../../../app/ts/native/nm_transversalservices/n_sdk_standalonebrowser/NFactory_SDK_StandaloneBrowser";
+
+import * as mod_RFactory_ImageRenderer         from "../../../../../app/ts/reusable/rm_renderingservices/r_imagerenderer/RFactory_ImageRenderer";
+import * as mod_RFactory_BackgroundRenderer    from "../../../../../app/ts/reusable/rm_renderingservices/r_backgroundrenderer/RFactory_BackgroundRenderer";
+import * as mod_RFactory_FillRectRenderer      from "../../../../../app/ts/reusable/rm_renderingservices/r_fillrectrenderer/RFactory_FillRectRenderer";
+import * as mod_RFactory_FlashRenderer         from "../../../../../app/ts/reusable/rm_renderingservices/r_flashrenderer/RFactory_FlashRenderer";
+import * as mod_RFactory_HtmlRenderer          from "../../../../../app/ts/reusable/rm_renderingservices/r_htmlrenderer/RFactory_HtmlRenderer";
+import * as mod_RFactory_RenderingZone         from "../../../../../app/ts/reusable/rm_renderingservices/r_renderingzone/RFactory_RenderingZone";
+import * as mod_RFactory_ScreenSaverRenderer   from "../../../../../app/ts/reusable/rm_renderingservices/r_screensaverrenderer/RFactory_ScreenSaverRenderer";
+import * as mod_RFactory_TvHdmiPassThroughSrv  from "../../../../../app/ts/reusable/rm_renderingservices/r_tvhdmipassthroughsrv/RFactory_TvHdmiPassThroughSrv";
+import * as mod_RFactory_VideoRenderer         from "../../../../../app/ts/reusable/rm_renderingservices/r_videorenderer/RFactory_VideoRenderer";
+
+import * as mod_RFactory_LogService            from "../../../../../app/ts/reusable/rm_transversalservices/r_logservice/RFactory_LogService";
+import * as mod_RFactory_UtilsService          from "../../../../../app/ts/reusable/rm_transversalservices/r_utilsservice/RFactory_UtilsService";
+import * as mod_RFactory_XMLConfigurator       from "../../../../../app/ts/reusable/rm_transversalservices/r_xmlconfigurator/RFactory_XMLConfigurator";
+
+import * as mod_RFactory_ChronService          from "../../../../../app/ts/reusable/rm_nonrenderingservices/r_chronservice/RFactory_ChronService";
+import * as mod_RFactory_DiagnosticsService    from "../../../../../app/ts/reusable/rm_nonrenderingservices/r_diagnosticsservice/RFactory_DiagnosticsService";
+import * as mod_RFactory_EnvUpdaterService     from "../../../../../app/ts/reusable/rm_nonrenderingservices/r_envupdaterservice/RFactory_EnvUpdaterService";
+import * as mod_RFactory_LiveCommandsService   from "../../../../../app/ts/reusable/rm_nonrenderingservices/r_livecommandsservice/RFactory_LiveCommandsService";
+import * as mod_RFactory_MonitoringService     from "../../../../../app/ts/reusable/rm_nonrenderingservices/r_monitoringservice/RFactory_MonitoringService";
+import * as mod_RFactory_PlayerFilesUpdater    from "../../../../../app/ts/reusable/rm_nonrenderingservices/r_playerfilesupdater/RFactory_PlayerFilesUpdater";
+import * as mod_RFactory_PurgeService          from "../../../../../app/ts/reusable/rm_nonrenderingservices/r_purgeservice/RFactory_PurgeService";
+import * as mod_RFactory_SendLogService        from "../../../../../app/ts/reusable/rm_nonrenderingservices/r_sendlogservice/RFactory_SendLogService";
+import * as mod_RFactory_StatisticsService     from "../../../../../app/ts/reusable/rm_nonrenderingservices/r_statisticsservice/RFactory_StatisticsService";
+import * as mod_RFactory_WatchDogService       from "../../../../../app/ts/reusable/rm_nonrenderingservices/r_watchdogservice/RFactory_WatchDogService";
+//-------------------------------------------------------
+
+export module rm_configurationservices
+{
+  export class R_ServiceLocator extends rmGeneralService.rm_general.R_Service 
+                                implements amConfigurationServicesServiceLocator.am_configurationservices.A_ServiceLocator
+  {
+
+    //--- data members
+    _srvFactories: amGeneralServiceFactories.am_general.A_ServiceFactories;  //Array<amGeneralFactoryService.am_general.AFactory_Service>;
+    _entFactories: amGeneralEntityFactories.am_general.A_EntityFactories;   //Array<amGeneralFactoryEntity.am_general.AFactory_Entity>;
+
+    //---------- interfaces
+    _iFactorySetup    : amConfigurationServices2.am_configurationservices.I_ServiceLocator_FactorySetup ;
+    _iEntityCreation  : amConfigurationServices3.am_configurationservices.I_ServiceLocator_EntityCreation ;    
+    _iServiceCreation : amConfigurationServices4.am_configurationservices.I_ServiceLocator_ServiceCreation ;    
+
+    //----------- composants 
+    
+    //----------- constructor 
+    constructor( aFactoryDescription: amGeneralFactoryDescription.am_general.A_FactoryDescription, 
+                 aServiceContainer  : amConfigurationServicesServiceContainer.am_configurationservices.A_ServiceContainer,
+                 aLogService        : amTransversalServicesLogService.am_transversalservices.A_LogService,
+                 error              : amGeneralError.am_general.A_Error)  
+    {      
+      super(aFactoryDescription, aServiceContainer, aLogService, error);
+
+      this._iFactorySetup    = new rmConfigurationServices2.rm_configurationservices.IImpl_ServiceLocator_FactorySetup_R(this) ;
+      this._iEntityCreation  = new rmConfigurationServices3.rm_configurationservices.IImpl_ServiceLocator_EntityCreation_R(this) ;
+      this._iServiceCreation = new rmConfigurationServices4.rm_configurationservices.IImpl_ServiceLocator_ServiceCreation_R(this) ;      
+
+      this._srvFactories = this.createDefaultServiceFactories(error); //new Array<amGeneralFactoryService.am_general.AFactory_Service>(); //temporary
+      this._entFactories = this.createDefaultEntityFactories(error);  //new Array<amGeneralFactoryEntity.am_general.AFactory_Entity>();
+
+    }
+
+    //------------------------------
+    public injectDependencies(error : amGeneralError.am_general.A_Error) : void
+    {
+    }
+    
+    //------------------
+    public addServiceFactory(aServiceFactory: amGeneralServiceFactory.am_general.AFactory_Service, error: amGeneralError.am_general.A_Error):  void
+    {
+      return this._srvFactories.addServiceFactory(aServiceFactory, error);
+    }
+    
+    //------------------
+    public addEntityFactory(aEntityFactory: amGeneralEntityFactory.am_general.AFactory_Entity, error: amGeneralError.am_general.A_Error):  void
+    {
+      return this._entFactories.addEntityFactory(aEntityFactory, error);
+    }
+
+    //----------------------
+    public createAllStartupServices( error: amGeneralError.am_general.A_Error) : void
+    {
+      var listSrvFactories = this._srvFactories.getServiceFactories(error);
+      var idx = 0;
+      for (let aServiceFactory of listSrvFactories) 
+      {
+        //aServiceFactory.createService(aServiceFactory.get...);
+        idx++;
+        document.getElementById("maindiv").innerHTML += "<h3>" + idx + ". " + aServiceFactory.getFactoryName() + "</h3>";
+        //alert(aServiceFactory.getFactoryName());
+      }
+    }
+    
+    
+    //-------------- setup Service Factories;
+    public setupServiceFactories(factoryDescriptions: amGeneralFactoryDescriptions.am_general.A_FactoryDescriptions, error: amGeneralError.am_general.A_Error):  void
+    {
+      var listSrvFactoryDescriptions = factoryDescriptions.getFactoryDescriptions(error);
+      var promises = new Array();
+      var idx: number = -1;
+      var aSrvLocator = this;
+      for (let aServiceFactoryDesc of listSrvFactoryDescriptions) 
+      {
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "NFactory_SDK_WebOS")
+        {
+          idx++;
+          promises.push(
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                 require(["../../../../../app/ts/native/nm_transversalservices/n_sdk_webos/NFactory_SDK_WebOS"], (dynNFactorySDKWebOS: typeof mod_NFactory_SDK_WebOS) => {
+                    var aServiceFactory : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynNFactorySDKWebOS.nm_transversalservices.NFactory_SDK_WebOS(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )  
+          )
+          promises[idx]
+          .then(function(aServiceFactory)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory,error);
+          }).catch(
+            function(err){}
+          ) 
+        }
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "NFactory_SDK_Tizen")
+        {
+          idx++;
+          promises.push(
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                 require(["../../../../../app/ts/native/nm_transversalservices/n_sdk_tizen/NFactory_SDK_Tizen"], (dynNFactorySDKTizen: typeof mod_NFactory_SDK_Tizen) => {
+                    var aServiceFactory : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynNFactorySDKTizen.nm_transversalservices.NFactory_SDK_Tizen(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )  
+          )
+          promises[idx]
+          .then(function(aServiceFactory)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory,error);
+          }).catch(
+            function(err){}
+          ) 
+        }
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "NFactory_SDK_NodeJs")
+        {
+          idx++;
+          promises.push(
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                 require(["../../../../../app/ts/native/nm_transversalservices/n_sdk_nodejs/NFactory_SDK_NodeJs"], (dynNFactory_SDK_NodeJs: typeof mod_NFactory_SDK_NodeJs) => {
+                    var aServiceFactory : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynNFactory_SDK_NodeJs.nm_transversalservices.NFactory_SDK_NodeJs(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )  
+          )
+          promises[idx]
+          .then(function(aServiceFactory)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory,error);
+          }).catch(
+            function(err){}
+          ) 
+        }
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "NFactory_SDK_StandaloneBrowser")
+        {
+          idx++;
+          promises.push(
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                 require(["../../../../../app/ts/native/nm_transversalservices/n_sdk_standalonebrowser/NFactory_SDK_StandaloneBrowser"], 
+                  (dynNFactory_SDK_StandaloneBrowser: typeof mod_NFactory_SDK_StandaloneBrowser) => {
+                    var aServiceFactory : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynNFactory_SDK_StandaloneBrowser.nm_transversalservices.NFactory_SDK_StandaloneBrowser(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )  
+          )
+          promises[idx]
+          .then(function(aServiceFactory)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory,error);
+          }).catch(
+            function(err){}
+          ) 
+        }
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "NFactory_VideoRenderer_WebOS")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/native/nm_renderingservices/n_videorenderer_webos/NFactory_VideoRenderer_WebOS"], (dynNFactory_VideoRenderer_WebOS: typeof mod_NFactory_VideoRenderer_WebOS) => {
+                    var aServiceFactory : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynNFactory_VideoRenderer_WebOS.nm_renderingservices.NFactory_VideoRenderer_WebOS(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )  
+          )
+          promises[idx]
+          .then(function(aServiceFactory)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory,error);
+          }).catch(
+            function(err){}
+          ) 
+        }
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "NFactory_VideoRenderer_Tizen")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/native/nm_renderingservices/n_videorenderer_tizen/NFactory_VideoRenderer_Tizen"], 
+                  (dynNFactory_VideoRenderer_Tizen: typeof mod_NFactory_VideoRenderer_Tizen) => {
+                    var aServiceFactory : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynNFactory_VideoRenderer_Tizen.nm_renderingservices.NFactory_VideoRenderer_Tizen(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )  
+          )
+          promises[idx]
+          .then(function(aServiceFactory)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory,error);
+          }).catch(
+            function(err){}
+          ) 
+        }
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_ImageRenderer")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_renderingservices/r_imagerenderer/RFactory_ImageRenderer"], 
+                   (dynRFactory_ImageRenderer: typeof mod_RFactory_ImageRenderer) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_ImageRenderer.rm_renderingservices.RFactory_ImageRenderer(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_BackgroundRenderer")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_renderingservices/r_backgroundrenderer/RFactory_BackgroundRenderer"], 
+                   (dynRFactory_BackgroundRenderer: typeof mod_RFactory_BackgroundRenderer) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_BackgroundRenderer.rm_renderingservices.RFactory_BackgroundRenderer(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_FillRectRenderer")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_renderingservices/r_fillrectrenderer/RFactory_FillRectRenderer"], 
+                   (dynRFactory_FillRectRenderer: typeof mod_RFactory_FillRectRenderer) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_FillRectRenderer.rm_renderingservices.RFactory_FillRectRenderer(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_FlashRenderer")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_renderingservices/r_flashrenderer/RFactory_FlashRenderer"], 
+                   (dynRFactory_FlashRenderer: typeof mod_RFactory_FlashRenderer) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_FlashRenderer.rm_renderingservices.RFactory_FlashRenderer(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_HtmlRenderer")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_renderingservices/r_htmlrenderer/RFactory_HtmlRenderer"], 
+                   (dynRFactory_HtmlRenderer: typeof mod_RFactory_HtmlRenderer) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_HtmlRenderer.rm_renderingservices.RFactory_HtmlRenderer(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_RenderingZone")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_renderingservices/r_renderingzone/RFactory_RenderingZone"], 
+                   (dynRFactory_RenderingZone: typeof mod_RFactory_RenderingZone) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_RenderingZone.rm_renderingservices.RFactory_RenderingZone(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_ScreenSaverRenderer")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_renderingservices/r_screensaverrenderer/RFactory_ScreenSaverRenderer"], 
+                   (dynRFactory_ScreenSaverRenderer: typeof mod_RFactory_ScreenSaverRenderer) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_ScreenSaverRenderer.rm_renderingservices.RFactory_ScreenSaverRenderer(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_TvHdmiPassThroughSrv")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_renderingservices/r_tvhdmipassthroughsrv/RFactory_TvHdmiPassThroughSrv"], 
+                   (dynRFactory_TvHdmiPassThroughSrv: typeof mod_RFactory_TvHdmiPassThroughSrv) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_TvHdmiPassThroughSrv.rm_renderingservices.RFactory_TvHdmiPassThroughSrv(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_VideoRenderer")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_renderingservices/r_videorenderer/RFactory_VideoRenderer"], 
+                   (dynRFactory_VideoRenderer: typeof mod_RFactory_VideoRenderer) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_VideoRenderer.rm_renderingservices.RFactory_VideoRenderer(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_LogService")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_transversalservices/r_logservice/RFactory_LogService"], 
+                   (dynRFactory_LogService: typeof mod_RFactory_LogService) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_LogService.rm_transversalservices.RFactory_LogService(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_UtilsService")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_transversalservices/r_utilsservice/RFactory_UtilsService"], 
+                   (dynRFactory_UtilsService: typeof mod_RFactory_UtilsService) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_UtilsService.rm_transversalservices.RFactory_UtilsService(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_XMLConfigurator")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_transversalservices/r_xmlconfigurator/RFactory_XMLConfigurator"], 
+                   (dynRFactory_XMLConfigurator: typeof mod_RFactory_XMLConfigurator) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_XMLConfigurator.rm_transversalservices.RFactory_XMLConfigurator(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_ChronService")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_nonrenderingservices/r_chronservice/RFactory_ChronService"], 
+                   (dynRFactory_ChronService: typeof mod_RFactory_ChronService) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_ChronService.rm_nonrenderingservices.RFactory_ChronService(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_DiagnosticsService")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_nonrenderingservices/r_diagnosticsservice/RFactory_DiagnosticsService"], 
+                   (dynRFactory_DiagnosticsService: typeof mod_RFactory_DiagnosticsService) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_DiagnosticsService.rm_nonrenderingservices.RFactory_DiagnosticsService(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_EnvUpdaterService")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_nonrenderingservices/r_envupdaterservice/RFactory_EnvUpdaterService"], 
+                   (dynRFactory_EnvUpdaterService: typeof mod_RFactory_EnvUpdaterService) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_EnvUpdaterService.rm_nonrenderingservices.RFactory_EnvUpdaterService(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_LiveCommandsService")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_nonrenderingservices/r_livecommandsservice/RFactory_livecommandsService"], 
+                   (dynRFactory_LiveCommandsService: typeof mod_RFactory_LiveCommandsService) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_LiveCommandsService.rm_nonrenderingservices.RFactory_LiveCommandsService(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_MonitoringService")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_nonrenderingservices/r_monitoringservice/RFactory_MonitoringService"], 
+                   (dynRFactory_MonitoringService: typeof mod_RFactory_MonitoringService) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_MonitoringService.rm_nonrenderingservices.RFactory_MonitoringService(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_PlayerFilesUpdater")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_nonrenderingservices/r_playerfilesupdater/RFactory_PlayerFilesUpdater"], 
+                   (dynRFactory_PlayerFilesUpdater: typeof mod_RFactory_PlayerFilesUpdater) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_PlayerFilesUpdater.rm_nonrenderingservices.RFactory_PlayerFilesUpdater(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        }         
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_PurgeService")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_nonrenderingservices/r_purgeservice/RFactory_PurgeService"], 
+                   (dynRFactory_PurgeService: typeof mod_RFactory_PurgeService) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_PurgeService.rm_nonrenderingservices.RFactory_PurgeService(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_SendLogService")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_nonrenderingservices/r_sendlogservice/RFactory_SendLogService"], 
+                   (dynRFactory_SendLogService: typeof mod_RFactory_SendLogService) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_SendLogService.rm_nonrenderingservices.RFactory_SendLogService(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_StatisticsService")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_nonrenderingservices/r_statisticsservice/RFactory_StatisticsService"], 
+                   (dynRFactory_StatisticsService: typeof mod_RFactory_StatisticsService) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_StatisticsService.rm_nonrenderingservices.RFactory_StatisticsService(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------------------------------
+        if (aServiceFactoryDesc._factoryName == "RFactory_WatchDogService")
+        {
+          idx++;
+          promises.push( 
+          new Promise( 
+            function (resolve, reject)
+            {
+              try{
+                  require(["../../../../../app/ts/reusable/rm_nonrenderingservices/r_watchdogservice/RFactory_WatchDogService"], 
+                   (dynRFactory_WatchDogService: typeof mod_RFactory_WatchDogService) => {
+                    var aServiceFactory2 : amGeneralServiceFactory.am_general.AFactory_Service 
+                          = new dynRFactory_WatchDogService.rm_nonrenderingservices.RFactory_WatchDogService(aServiceFactoryDesc, error);
+                    resolve(aServiceFactory2);
+                  });
+              }catch(e){
+                reject(error); 
+              }
+            }                                     
+          )
+          )  
+          promises[idx]
+          .then(function(aServiceFactory2)
+          {
+            aSrvLocator._iFactorySetup.addServiceFactory(aServiceFactory2,error);
+          }).catch(
+            function(err){}
+          ) 
+        } 
+        //----------------------------------------
+      }
+      
+      //-------------------------------
+      Promise.all(promises).then(values => { 
+        //console.log(values);
+        //----------------------------
+        this._iServiceCreation.createAllStartupServices(error);
+        if (error.isError())
+        {
+          alert("Fatal Error: R_ServiceContainer.startup cannot create all startup services in aServiceLocator._iServiceCreation.createAllStartupServices");
+          return ; 
+        }
+      });
+
+      //listSrvFactoryDescriptions.forEach( (crtEntFactory, index) => {
+        // to do: with conditional import  create each related service-factory
+      //});  
+    }  
+    
+    //-------------- setup Entity Factories;
+    public setupEntityFactories(factoryDescriptions: amGeneralFactoryDescriptions.am_general.A_FactoryDescriptions, error: amGeneralError.am_general.A_Error):  void
+    {
+      var listEntFactoryDescriptions = factoryDescriptions.getFactoryDescriptions(error);
+      listEntFactoryDescriptions.forEach( (crtEntFactory, index) => {
+        // to do: with conditional import  create each related entity-factory
+      });  
+    }  
+
+
+    //----------------------------------
+    //  Entity Creation 
+    //----------------------------------
+
+    //-------------- create Entity
+    public createEntity(entityName: string, error:  amGeneralError.am_general.A_Error): amGeneralEntity.am_general.A_Entity
+    {
+      this._entFactories.getEntityFactories(error).forEach( (crtEntFactory, index) => {
+        // to do: with conditional import  call crtEntFactory.createEntity till one creation will succeed
+     });  
+     return null;
+    }
+
+    //----------- create a default Error object
+    public createDefaultError() : amGeneralError.am_general.A_Error
+    {
+      return new rmGeneralError.rm_general.R_Error(); 
+    }
+
+    //----------- create a default Error object
+    public static startupCreateDefaultError() : amGeneralError.am_general.A_Error
+    {
+      return new rmGeneralError.rm_general.R_Error(); 
+    }
+   
+    //----------- create a default Property object
+    public createDefaultProperty(error : amGeneralError.am_general.A_Error) : amGeneralProperty.am_general.A_Property
+    {
+      return new rmGeneralProperty.rm_general.R_Property(); 
+    }
+   
+    //----------- create a default list of Properties
+    public createDefaultProperties(error : amGeneralError.am_general.A_Error)  : amGeneralProperties.am_general.A_Properties
+    {
+      return new rmGeneralProperties.rm_general.R_Properties(); 
+    }
+       
+   
+    //----------- create a default list of Factory Descriptions
+    public createDefaultFactoryDescriptions(error : amGeneralError.am_general.A_Error)  : amGeneralFactoryDescriptions.am_general.A_FactoryDescriptions
+    {
+      return new rmGeneralFactoryDescriptions.rm_general.R_FactoryDescriptions(); 
+    }
+
+    //----------- create a default Factory Description
+    public createDefaultFactoryDescription(error : amGeneralError.am_general.A_Error) : amGeneralFactoryDescription.am_general.A_FactoryDescription
+    {
+      return new rmGeneralFactoryDescription.rm_general.R_FactoryDescription(); 
+    }
+
+    //----------- create a default Factory Description
+    public static startupCreateDefaultFactoryDescription(error : amGeneralError.am_general.A_Error) : amGeneralFactoryDescription.am_general.A_FactoryDescription
+    {
+      return new rmGeneralFactoryDescription.rm_general.R_FactoryDescription(); 
+    }
+
+    //----------- create a default list of Service factories
+    public createDefaultServiceFactories(error : amGeneralError.am_general.A_Error)  : amGeneralServiceFactories.am_general.A_ServiceFactories
+    {
+      return new rmGeneralServiceFactories.rm_general.R_ServiceFactories(); 
+    }
+
+    //----------- create a default list of Service factories
+    public createDefaultEntityFactories(error : amGeneralError.am_general.A_Error)  : amGeneralEntityFactories.am_general.A_EntityFactories
+    {
+      return new rmGeneralEntityFactories.rm_general.R_EntityFactories(); 
+    }
+    
+    //----------------------------------
+    //  Services Creation 
+    //----------------------------------
+
+    //--------------- create service 
+    public createService( aFactoryDescription : amGeneralFactoryDescription.am_general.A_FactoryDescription, 
+                          aServiceContainer   : amConfigurationServicesServiceContainer.am_configurationservices.A_ServiceContainer, 
+                          serviceProperties   : amGeneralProperties.am_general.A_Properties, 
+                          aLogService         : amTransversalServicesLogService.am_transversalservices.A_LogService,
+                          error:  amGeneralError.am_general.A_Error): amGeneralService.am_general.A_Service
+    {
+      this._srvFactories.getServiceFactories(error).forEach( (crtSrvFactory, index) => {
+            // to do: with conditional import  call crtSrvFactory.createService  till one creation will succeed
+      });  
+      return null;
+    }
+
+    //--------------------------- create a default service list
+    public createDefaultServices(error: amGeneralError.am_general.A_Error) : amGeneralServices.am_general.A_Services
+    {
+      return new rmGeneralServices.rm_general.R_Services();
+    }
+    
+    //--------------------------- create a default service list
+    public static startupCreateDefaultServices(error: amGeneralError.am_general.A_Error) : amGeneralServices.am_general.A_Services
+    {
+      return new rmGeneralServices.rm_general.R_Services();
+    }
+    
+    //----------- create the default service container
+    public static startupCreateDefaultServiceContainer(error : amGeneralError.am_general.A_Error)  : 
+                                                           amConfigurationServicesServiceContainer.am_configurationservices.A_ServiceContainer
+    {
+      var aNewServiceContainer  : amConfigurationServicesServiceContainer.am_configurationservices.A_ServiceContainer;
+      var aServiceContainer     : amConfigurationServicesServiceContainer.am_configurationservices.A_ServiceContainer;
+
+      var aFactoryDescription: amGeneralFactoryDescription.am_general.A_FactoryDescription;
+      aFactoryDescription = R_ServiceLocator.startupCreateDefaultFactoryDescription(error);
+      aFactoryDescription.setNames("AFactory_ServiceContainer", "R_ServiceContainer", "A_ServiceContainer", "R_ServiceContainer_1");
+
+      var aLogService  : amTransversalServicesLogService.am_transversalservices.A_LogService = null; //not created yet
+
+      aServiceContainer = null; //not created yet, it will become the new one
+
+      aNewServiceContainer = new rmConfigurationServicesServiceContainer.rm_configurationservices.R_ServiceContainer
+                                              (aFactoryDescription, aServiceContainer, aLogService, error);
+      //aServiceContainer._iServiceManager.addService(aServiceContainer); //outside
+      return aNewServiceContainer; 
+    }
+
+
+    //----------- create the default service container
+    public static startupCreateDefaultPlatformConfigurator(
+                                      aServiceContainer  : amConfigurationServicesServiceContainer.am_configurationservices.A_ServiceContainer,
+                                      error : amGeneralError.am_general.A_Error)  
+                                                : amConfigurationServicesPlatformConfigurator.am_configurationservices.A_PlatformConfigurator
+    {
+      var aNewPlatformConfigurator  : amConfigurationServicesPlatformConfigurator.am_configurationservices.A_PlatformConfigurator;
+
+      var aFactoryDescription: amGeneralFactoryDescription.am_general.A_FactoryDescription;
+      aFactoryDescription = R_ServiceLocator.startupCreateDefaultFactoryDescription(error);
+      aFactoryDescription.setNames("AFactory_PlatformConfigurator", "R_PlatformConfigurator", "A_PlatformConfigurator", "R_PlatformConfigurator_1");
+
+      var aLogService  : amTransversalServicesLogService.am_transversalservices.A_LogService = null; //not created yet
+
+      aNewPlatformConfigurator = new rmConfigurationServicesPlatformConfigurator.rm_configurationservices.R_PlatformConfigurator
+                                              (aFactoryDescription, aServiceContainer, aLogService, error);
+      //aServiceContainer._iServiceManager.addService(aServiceContainer);
+      return aNewPlatformConfigurator; 
+    }
+
+    
+    //----------- create the default Service Locator
+    public static startupCreateDefaultServiceLocator(
+                  aServiceContainer  : amConfigurationServicesServiceContainer.am_configurationservices.A_ServiceContainer,
+                  error : amGeneralError.am_general.A_Error)  
+                    : amConfigurationServicesServiceLocator.am_configurationservices.A_ServiceLocator
+    {
+      var aNewServiceLocator  : amConfigurationServicesServiceLocator.am_configurationservices.A_ServiceLocator;
+
+      var aFactoryDescription: amGeneralFactoryDescription.am_general.A_FactoryDescription;
+      aFactoryDescription = R_ServiceLocator.startupCreateDefaultFactoryDescription(error);
+      aFactoryDescription.setNames("AFactory_ServiceLocator", "R_ServiceLocator", "A_ServiceLocator", "R_ServiceLocator_1");
+
+      var aLogService  : amTransversalServicesLogService.am_transversalservices.A_LogService = null; //not created yet
+
+      aNewServiceLocator = new rmConfigurationServicesServiceLocator.rm_configurationservices.R_ServiceLocator
+                                         (aFactoryDescription, aServiceContainer, aLogService, error);
+      //aServiceContainer._iServiceManager.addService(aServiceContainer);
+      return aNewServiceLocator; 
+    }
+
+  }
+} 

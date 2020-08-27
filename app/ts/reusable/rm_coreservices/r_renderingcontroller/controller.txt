@@ -1,0 +1,572 @@
+namespace MVisionPlayer.Controllers
+{
+    public class RenderingController : IRenderingController
+    {
+        #region private variables
+
+        IMainWindow _mainWindow;
+
+        IApplicationDirectories _applicationDirectories;
+        IMediaPlayerFactory _mediaPlayerFactory;
+
+        bool _shouldMakeFormVisible;
+        bool _shouldSetMainWindowSizeAndPosition;
+
+        IXMLProcessor _xmlProcessor;
+
+        bool _initialized;
+
+        PlaybackApplication _playbackEngine;
+
+        object _syncLock = new object();
+
+        Dictionary<Guid, UIZone> _managedZones;
+
+        #endregion
+
+        #region constructor
+
+        public RenderingController(IApplicationDirectories applicationDirectories_, IMediaPlayerFactory mediaPlayerFactory_, IXMLProcessor xmlProcessor_)
+        {
+            this._applicationDirectories = applicationDirectories_;
+            this._mediaPlayerFactory = mediaPlayerFactory_;
+            this._xmlProcessor = xmlProcessor_;
+
+            this._shouldMakeFormVisible = true;
+            this._shouldSetMainWindowSizeAndPosition = true;
+
+            this._managedZones = new Dictionary<Guid, UIZone>();
+        }
+
+        #endregion
+
+        #region IRenderingController implementation
+
+        public bool Initialize(IMainWindow mainWindow)
+        {
+            try
+            {
+                this._mainWindow = mainWindow;
+                this._mediaPlayerFactory.OnUIPlayerReady += _mediaPlayerFactory_OnUIPlayerReady;
+                this._mediaPlayerFactory.OnMediaStarted += _mediaPlayerFactory_OnMediaStarted;
+                this._mediaPlayerFactory.OnMediaHanging += _mediaPlayerFactory_OnMediaHanging;
+                this._mediaPlayerFactory.OnZoneCreated += _mediaPlayerFactory_OnZoneCreated;
+                this._mediaPlayerFactory.OnZoneStopped += _mediaPlayerFactory_OnZoneStopped;
+                this._mediaPlayerFactory.OnZoneDestroyed += _mediaPlayerFactory_OnZoneDestroyed;
+                this._initialized = true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Globals.InfrastructureLogger.Error(ex, "Could not initialize playback controller.");
+                return false;
+            }
+        }
+
+        public bool StartPlayback()
+        {
+            if (!this._initialized)
+            {
+                Globals.PlaybackLogger.Error("Could not start playback because the playback controller has not been initialized.");
+                return false;
+            }
+            //configure the custom screen saver
+            string customScreenSaverConfigurationFile = _applicationDirectories.getScreenSaverDirectory().getAbsolutePath() + "\\" + StorageConstants.CUSTOM_SCREEN_SAVER_CONFIG_FILE;
+            ScreenSaverSettingsParser screenSaverSettingsParser = new ScreenSaverSettingsParser();
+            ScreenSaverMediaItem customScreenSaverMediaItem = screenSaverSettingsParser.parse(customScreenSaverConfigurationFile, this._xmlProcessor);
+            if (customScreenSaverMediaItem == null)
+            {
+                Globals.InfrastructureLogger.Error("There was an error configuring the custom screen saver. A custom screen saver will not be used.");
+            }
+
+            //initialize the Java playback engine
+            try
+            {
+                ScreenSaverMediaItem defaultScreenSaverMediaItem = new ScreenSaverMediaItem();
+                defaultScreenSaverMediaItem.setMediaType(MediaType.IMAGE);
+                defaultScreenSaverMediaItem.setContentFilePath(_applicationDirectories.getScreenSaverDirectory().getAbsolutePath() + "\\" + StorageConstants.DEFAULT_SCREEN_SAVER_FILE_NAME);
+                defaultScreenSaverMediaItem.setMediaProperties(new ImageMediaProperties(IFrameMediaProperties.__Fields.SIZE_UNKNOWN, IFrameMediaProperties.__Fields.SIZE_UNKNOWN, IImageMediaProperties.ScaleType.STRETCH));
+
+                this._playbackEngine = new PlaybackApplication(this._applicationDirectories, this._mediaPlayerFactory, new ConsoleAppender());
+
+                this._playbackEngine.getWindowsPlaybackComponent().getApplicationSettings().setCustomScreenSaverMediaItem(customScreenSaverMediaItem);
+                this._playbackEngine.getWindowsPlaybackComponent().getApplicationSettings().setDefaultScreenSaverMediaItem(defaultScreenSaverMediaItem);
+            }
+            catch (Exception ex)
+            {
+                Globals.PlaybackLogger.Error(ex, "There was an error initializing the Java playback engine");
+                return false;
+            }
+            //start the Java playback engine
+            try
+            {
+                this._playbackEngine.startService();
+            }
+            catch (Exception ex)
+            {
+                Globals.PlaybackLogger.Error(ex, "There was an error starting the Java playback engine");
+                return false;
+            }
+            return true;
+        }
+
+        public bool EndPlayback()
+        {
+            try
+            {
+                lock (_syncLock)
+                {
+                    if (_playbackEngine != null)
+                    {
+                        this._playbackEngine.stopService();
+                        this._playbackEngine = null;
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Globals.PlaybackLogger.Error(ex, "There was an error destroying the Java playback engine");
+                return false;
+            }
+        }
+
+        public bool RestartPlayback()
+        {
+            try
+            {
+                Debug.WriteLine("Rendering controller sleeping for 1 second before restarting playback....");
+                Thread.Sleep(1000);
+                Debug.WriteLine("Rendering controller - restarting playback");
+                _playbackEngine.getWindowsPlaybackComponent().getNotificationsManager().sendNotification(new com.mood.mvision.notifications.Notification(com.mood.mvision.notifications.NotificationIds.MVISION_PLAYLIST_UPDATED, java.lang.Boolean.FALSE));
+                Debug.WriteLine("Rendering controller - Restart playback notification sent");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Globals.PlaybackLogger.Error(ex, "There was an error restarting the Java playback engine. Playback cannot be restarted.");
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region event handlers
+
+        void _mediaPlayerFactory_OnUIPlayerReady(Guid zoneIdentifier_, IBaseMediaPlayer player_)
+        {
+            //uu RenderMediaPlayerOffScreen(zoneIdentifier_, player_);
+        }
+
+        void _mediaPlayerFactory_OnMediaStarted(Guid zoneIdentifier_, IBaseMediaPlayer player_, IBaseMediaPlayer previousMediaPlayer_, Action<IBaseMediaPlayer> playerRemovedCallback)
+        {
+            //uu RenderMediaPlayer(zoneIdentifier_, player_, previousMediaPlayer_, playerRemovedCallback);
+        }
+
+
+        void _mediaPlayerFactory_OnMediaHanging(Guid zoneIdentifier_, IBaseMediaPlayer player_)
+        {
+            /* uu
+            if (player_ != null)
+            {
+                Control playerControlInError = (Control)player_;
+                Debug.WriteLine("Removing hanging player from zone " + zoneIdentifier_.ToString("D"));
+                RemoveMediaPlayer(zoneIdentifier_, playerControlInError, null);
+            } */
+        }
+
+        void _mediaPlayerFactory_OnZoneCreated(Guid zoneIdentifier_, ZoneCoordinates zoneCoordinates_, Rectangle zoneBoundary_)
+        {
+            //gg: add a new renderin zone
+            MainForm._renderingMng.do_zones_add_RenderingZone(zoneIdentifier_, zoneCoordinates_, zoneBoundary_);  //Control renderingContainer_
+
+            /*
+            //mm: if is shutting down don't allow a new zone to be created
+            if (MainForm._zOrderMng.isShuttingDown())
+              return;
+
+            RenderingContainer renderingContainer = new RenderingContainer();
+            renderingContainer.Top = zoneBoundary_.Top;
+            renderingContainer.Left = zoneBoundary_.Left;
+            renderingContainer.Width = zoneBoundary_.Width;
+            renderingContainer.Height = zoneBoundary_.Height;
+            renderingContainer.Visible = false;
+
+            UIZone uiZone = new UIZone() { RenderingContainer = renderingContainer, ZoneBoundary = zoneBoundary_ };
+
+            ZoneZIndex zoneZIndex = zoneCoordinates_.getZoneZIndex();
+            int[] zIndexArray = zoneZIndex.getZIndexArray();
+            int zIndex = 1;
+            if (zIndexArray != null && zIndexArray.Length > 0)
+                zIndex = zIndexArray[zIndexArray.Length - 1];
+            int zOrder = 0;
+            lock (_syncLock)
+            {
+                if (!this._managedZones.ContainsKey(zoneIdentifier_))
+                {
+                    this._managedZones.Add(zoneIdentifier_, uiZone);
+                    //Debug.WriteLine("Added new zone " + zoneIdentifier_.ToString("D") + " to managed zones");
+                    //this._mainWindow.AddRenderingContainer(renderingContainer, zIndex);
+                    this._mainWindow.AddRenderingContainer(zoneIdentifier_, renderingContainer, zoneZIndex);
+                    //Debug.WriteLine("Added new zone " + zoneIdentifier_.ToString("D") + " to UI");
+
+                    //mm: add the zone in zOrderMng for additional zOrder logic for external windows
+                    //zOrder = 0;
+                    //if (zIndexArray.Length == 3)
+                      //zOrder = zIndexArray[2];
+                    //MainForm._zOrderMng.addZOrderClient(new ZOrderClient(ZOrderMng.newId(), zoneIdentifier_, 0,0,0,0, zOrder,0, (IntPtr)0,(IntPtr)0));
+
+                }
+            }*/
+        }
+
+        void _mediaPlayerFactory_OnZoneStopped(Guid zoneIdentifier_, IBaseMediaPlayer previousMediaPlayer_, IBaseMediaPlayer nextMediaPlayer_, IBaseMediaPlayer currentMediaPlayer_, Action<IBaseMediaPlayer> playerRemovedCallback)
+        {
+            //MainForm._renderingMng.do_stop_and_shutdown_Service_on_RenderingZone(zoneIdentifier_);
+            //gg: add a new renderin zone
+            //MainForm._renderingMng.do_stop_Service_and_remove_RenderingZone(zoneIdentifier_);//, zoneCoordinates_, zoneBoundary_);  //Control renderingContainer_
+
+            //Debug.WriteLine("Zone " + zoneIdentifier_.ToString("D") + " has stopped");
+            /*
+            if (previousMediaPlayer_ != null)
+            {
+                Control previousPlayerControl = (Control)previousMediaPlayer_;
+                //Debug.WriteLine("Removing next player from zone " + zoneIdentifier_.ToString("D"));
+                RemoveMediaPlayer(zoneIdentifier_, previousPlayerControl, playerRemovedCallback);
+            }
+
+            if (nextMediaPlayer_ != null)
+            {
+                Control nextPlayerControl = (Control)nextMediaPlayer_;
+                //Debug.WriteLine("Removing next player from zone " + zoneIdentifier_.ToString("D"));
+                RemoveMediaPlayer(zoneIdentifier_, nextPlayerControl, playerRemovedCallback);
+            }
+
+            if (currentMediaPlayer_ != null)
+            {
+                Control currentPlayerControl = (Control)currentMediaPlayer_;
+                //Debug.WriteLine("Removing current player from zone " + zoneIdentifier_.ToString("D"));
+                RemoveMediaPlayer(zoneIdentifier_, currentPlayerControl, playerRemovedCallback);
+            }
+
+            if (this._managedZones.ContainsKey(zoneIdentifier_))
+            {
+                UIZone uiZone = this._managedZones[zoneIdentifier_];
+                RenderingContainer renderingContainer = uiZone.RenderingContainer;
+                this._mainWindow.HideRenderingContainer(renderingContainer);
+                //Debug.WriteLine("Zone " + zoneIdentifier_.ToString("D") + " hidden from UI");
+            }*/
+        }
+
+        void _mediaPlayerFactory_OnZoneDestroyed(Guid zoneIdentifier_)
+        {
+            //gg: add a new renderin zone
+            //MainForm._renderingMng.do_stop_Service_and_remove_RenderingZone(zoneIdentifier_);//, zoneCoordinates_, zoneBoundary_);  //Control renderingContainer_
+            //MainForm._renderingMng.do_zones_remove_RenderingZone(zoneIdentifier_);
+            /*
+            if (this._managedZones.ContainsKey(zoneIdentifier_))
+            {
+                UIZone uiZone = this._managedZones[zoneIdentifier_];
+                RenderingContainer renderingContainer = uiZone.RenderingContainer;
+
+                lock (this._syncLock)
+                {
+                    this._managedZones.Remove(zoneIdentifier_);
+                    //Debug.WriteLine("Zone " + zoneIdentifier_.ToString("D") + " removed from managed list");
+                    uiZone = null;
+
+                    //mm remove jowZone from zOrder Management
+                    MainForm._jowZoneMng.removeJOWZoneByGuid(zoneIdentifier_);
+
+                    //mm: Remove the zone from the zOrderMng of external windows too.
+                    MainForm._zOrderMng.removeZOrderClientByGuid(zoneIdentifier_);
+                }
+                this._mainWindow.RemoveRenderingContainer(renderingContainer);
+                //Debug.WriteLine("Zone " + zoneIdentifier_.ToString("D") + " removed from UI");
+                //Debug.WriteLine("Controller currently managing " + this._managedZones.Count + " zones.");
+            }*/
+        }
+
+        #endregion
+        /*
+        #region visual positioning and rendering
+
+        void SetMainWindowSizeAndPosition()
+        {
+            IntPtr windowsMode = NativeMethods.HWND_TOP;
+
+#if !DEBUG
+            ISettingsManager settingsManager = Globals.SettingsManager;
+            IRendererSettings rendererConfiguration = (IRendererSettings)settingsManager.GetSettingsConfiguration(SettingsConfigurationType.RENDERER);
+            if(rendererConfiguration.AlwaysOnTop)
+            {
+                windowsMode = NativeMethods.HWND_TOPMOST;
+                this._mainWindow.ParentForm.TopMost = true;
+            }
+#endif
+
+            var left = DisplayInfo.TopLeft.X;
+            var top = DisplayInfo.TopLeft.Y;
+            var width = DisplayInfo.Boundary.Width;
+            var height = DisplayInfo.Boundary.Height;
+            NativeMethods.SetWindowPos(this._mainWindow.ParentForm.Handle, windowsMode, left, top, width, height, NativeMethods.SWP_SHOWWINDOW);
+            this._mainWindow.ParentForm.Width = width;
+            this._mainWindow.ParentForm.Height = height;
+
+            //mm: set main window handle in zOrderMng
+            MainForm._zOrderMng.setMainWindowHandle(this._mainWindow.ParentForm.Handle);
+        }
+
+        void RenderMediaPlayerOffScreen(Guid zoneIdentifier_, IBaseMediaPlayer player_)
+        {
+            //Debug.WriteLine("Begin RenderMediaPlayerOffScreen in zone " + zoneIdentifier_.ToString("D"));
+            Control playerControl = (Control)player_;
+            RenderingContainer renderingContainer = null;
+            if (this._managedZones.ContainsKey(zoneIdentifier_))
+            {
+                UIZone uiZone = this._managedZones[zoneIdentifier_];
+                renderingContainer = uiZone.RenderingContainer;
+            }
+            if (renderingContainer == null)
+                return;
+            //Debug.WriteLine("Found rendering container for zone " + zoneIdentifier_.ToString("D"));
+            renderingContainer.Invoke((Action)(delegate
+            {
+                //Debug.WriteLine("Inside Invoke for zone " + zoneIdentifier_.ToString("D"));
+                if (_shouldSetMainWindowSizeAndPosition)
+                {
+                    _shouldSetMainWindowSizeAndPosition = false;
+                    SetMainWindowSizeAndPosition();
+                }
+                if (!renderingContainer.Controls.Contains(playerControl))
+                {
+                    //Debug.WriteLine("Getting screen boundary for player in zone " + zoneIdentifier_.ToString("D"));
+                    Rectangle controlBoundary = player_.getScreenBoundary();
+                    //Debug.WriteLine("Obtained screen boundary for player in zone " + zoneIdentifier_.ToString("D"));
+                    playerControl.Width = controlBoundary.Width;
+                    playerControl.Height = controlBoundary.Height;
+                    //Debug.WriteLine("Set size for player control in zone " + zoneIdentifier_.ToString("D"));
+                    //if (player_.MediaType == com.mood.mvision.api.mediaplayer.data.MediaType.VIDEO)
+                    //{
+                    //    playerControl.Left = 0;//video controls will not be put off screen actually, because if they are on the secondary monitor, 
+                    //    //they stutter when moved from the first monitor to the next
+                    //}
+                    //else
+                        playerControl.Left = -(DisplayInfo.Boundary.Width + 1);
+
+                    //Debug.WriteLine("Adding player control to rendering container for zone " + zoneIdentifier_.ToString("D"));
+                    renderingContainer.Controls.Add(playerControl);
+                    //Debug.WriteLine("Control added to rendering container for zone " + zoneIdentifier_.ToString("D"));
+                }
+                MainForm._zOrderMng.setRenderingContainerByGuid(zoneIdentifier_, renderingContainer);
+                if (!renderingContainer.Visible && !player_.IsHidden)//not reusing the rendering container. the rendering contaner is reused for the channel zone, which is destroyed at the app exit
+                {
+                    //-- mm: don't show the rendering container in prepare phase. Otherwise there are issues on transparent / non-transparent transitions 
+                    //int crtUrlType = MainForm._zOrderMng.getUrlTypeByGuid(zoneIdentifier_);
+                    //if (crtUrlType  == ZOrderClient.UrlType_HtmlChromiumWPF) ) // at this moment is still the PREVIOUS ONE for zOrderMng                        
+                    if (true) //if (player_.MediaType != com.mood.mvision.api.mediaplayer.data.MediaType.FLASH)
+                      return ;                   
+                    this._mainWindow.ShowRenderingContainer(renderingContainer);
+                }
+            }));
+        }
+
+        void RenderMediaPlayer(Guid zoneIdentifier_, IBaseMediaPlayer player_, IBaseMediaPlayer previousMediaPlayer_, Action<IBaseMediaPlayer> playerRemovedCallback)
+        {
+            Control playerControl = (Control)player_;
+
+            RenderingContainer renderingContainer = null;
+            Rectangle zoneBoundary = Rectangle.Empty;
+            if (this._managedZones.ContainsKey(zoneIdentifier_))
+            {
+                UIZone uiZone = this._managedZones[zoneIdentifier_];
+                renderingContainer = uiZone.RenderingContainer;
+                zoneBoundary = uiZone.ZoneBoundary;
+            }
+            if (renderingContainer == null || zoneBoundary == Rectangle.Empty)
+            {
+                //Debug.WriteLine("Rendering controller could not render player in zone " + zoneIdentifier_.ToString("D") + " because it could not find the rendering container or the zone boundary is empty");
+                return;
+            }
+
+            if (renderingContainer.Disposing || renderingContainer.IsDisposed)
+            {
+                //Debug.WriteLine("Rendering controller could not render player in zone " + zoneIdentifier_.ToString("D") + " because the rendering container is disposed");
+                return;
+            }
+            renderingContainer.Invoke((Action)(delegate
+            {
+                if (renderingContainer.IsEmpty)
+                {
+                    renderingContainer.IsEmpty = false;
+                    renderingContainer.Left = zoneBoundary.Left;
+                }
+                if (player_.IsOffScreen)
+                {
+                    player_.IsOffScreen = false;
+                    Debug.WriteLine("Moved OFFSCREEN player in zone " + zoneIdentifier_.ToString("D") + " to " + playerControl.Left.ToString());
+
+                    if (previousMediaPlayer_ != null)
+                    {
+                        Control previousPlayerControl = (Control)previousMediaPlayer_;
+                        if (previousPlayerControl == playerControl)
+                        {
+                            //Debug.WriteLine("WARNING! Previous player is the same as current player and will be removed");
+                        }
+                        //if (player_.MediaType == com.mood.mvision.api.mediaplayer.data.MediaType.VIDEO &&
+                        //    previousMediaPlayer_.MediaType != com.mood.mvision.api.mediaplayer.data.MediaType.VIDEO)
+                        //{
+                        //    //wait 150 ms if we transition from a non video media to a video media to improve transition
+                        //    //not required for video to video transition because videos paint the host control background with the last frame
+                        //    System.Threading.Tasks.Task.Delay(150).ContinueWith((antecedent) =>
+                        //    {
+                        //        playerControl.Left = 0;//these are relative to the rendering container parent so they should always be zero
+                        //        playerControl.Top = 0;
+                        //        RemoveMediaPlayer(zoneIdentifier_, previousPlayerControl, playerRemovedCallback);
+                        //        //Debug.WriteLine("Previous player in zone " + zoneIdentifier_.ToString("D") + " was removed with delay");
+                        //    });
+                        //}
+                        //else
+                        //{
+                            RemoveMediaPlayer(zoneIdentifier_, previousPlayerControl, playerRemovedCallback);
+                            playerControl.Left = 0;//these are relative to the rendering container parent so they should always be zero
+                            playerControl.Top = 0;
+                            //Debug.WriteLine("Previous player in zone " + zoneIdentifier_.ToString("D") + " was removed without delay");
+                        //}
+                    }
+                    else
+                    {
+                        playerControl.Left = 0;//these are relative to the rendering container parent so they should always be zero
+                        playerControl.Top = 0;
+                    }
+                }
+                if (_shouldMakeFormVisible)
+                {
+                    this._mainWindow.ParentForm.Opacity = 1d;
+                    _shouldMakeFormVisible = false;
+                }
+            }));
+        }
+
+        void RemoveMediaPlayer(Guid zoneIdentifier_, Control playerControl_, Action<IBaseMediaPlayer> playerRemovedCallback)
+        {
+            RenderingContainer renderingContainer = null;
+            if (this._managedZones.ContainsKey(zoneIdentifier_))
+            {
+                UIZone uiZone = this._managedZones[zoneIdentifier_];
+                renderingContainer = uiZone.RenderingContainer;
+            }
+            if (renderingContainer == null)
+                return;
+            if (renderingContainer.InvokeRequired)
+            {
+                renderingContainer.Invoke((Action)(delegate
+                {
+                    safeRemoveMediaPlayer(playerControl_, renderingContainer, playerRemovedCallback);
+                }));
+            }
+            else
+            {
+                safeRemoveMediaPlayer(playerControl_, renderingContainer, playerRemovedCallback);
+            }
+        }
+
+        void safeRemoveMediaPlayer(Control playerControl_, Control renderingContainer, Action<IBaseMediaPlayer> playerRemovedCallback)
+        {
+            IBaseMediaPlayer player = (IBaseMediaPlayer)playerControl_;
+            if (renderingContainer.Controls.Contains(playerControl_))
+            {
+                if (!player.RequiresLastFrameRedraw)
+                {
+                    //this player we just remove doesn't need to paint the parent background but the player before it might have done that. 
+                    //so, if necessary we clear the parent's background
+                    clearZoneBackground(playerControl_.Parent);
+                }
+            }
+            renderingContainer.Controls.Remove(playerControl_);
+            Debug.WriteLine("Control REMOVED FROM UI");
+            if (playerRemovedCallback != null)
+            {
+                playerRemovedCallback(player);
+            }
+        }
+
+
+        void clearZoneBackground(Control controlContainer_)
+        {
+            try
+            {
+                Bitmap oldBackground = (Bitmap)controlContainer_.BackgroundImage;
+
+                controlContainer_.BackgroundImage = null;
+
+                if (oldBackground != null)
+                {
+                    oldBackground.Dispose();
+                    oldBackground = null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error cleaning up container background. Transitions performance may be affected.  " + ex.Message);
+            }
+        }
+
+        #endregion
+         */
+    }
+
+    public class UIZone
+    {
+        public Rectangle ZoneBoundary { get; set; }
+        //uu public RenderingContainer RenderingContainer { get; set; }
+    }
+
+    public class ConsoleAppender : ch.qos.logback.core.AppenderBase
+    {
+        internal virtual void append(ILoggingEvent @event)
+        {
+            StringBuilder logBuilder = new StringBuilder();
+            // @event.getThreadName()
+            logBuilder.Append(@event.getLevel().levelStr);
+            logBuilder.Append(" -- ");
+            logBuilder.Append(@event.getThreadName());
+            logBuilder.Append(" -- ");
+            logBuilder.Append(@event.getLoggerName());
+            logBuilder.Append(" -- ");
+            logBuilder.Append(@event.getFormattedMessage());
+
+            IThrowableProxy throwableProxy = @event.getThrowableProxy();
+            if (throwableProxy != null)
+            {
+                logBuilder.Append(ThrowableProxyUtil.asString(throwableProxy));
+            }
+
+            Debug.WriteLine(logBuilder);
+        }
+
+        protected override void append(object obj)
+        {
+            var @event = (ILoggingEvent)obj;
+            StringBuilder logBuilder = new StringBuilder();
+            // @event.getThreadName()
+            logBuilder.Append(@event.getLevel().levelStr);
+            logBuilder.Append(" -- ");
+            logBuilder.Append(@event.getThreadName());
+            logBuilder.Append(" -- ");
+            logBuilder.Append(@event.getLoggerName());
+            logBuilder.Append(" -- ");
+            logBuilder.Append(@event.getFormattedMessage());
+
+            IThrowableProxy throwableProxy = @event.getThrowableProxy();
+            if (throwableProxy != null)
+            {
+                logBuilder.Append(ThrowableProxyUtil.asString(throwableProxy));
+            }
+
+            Debug.WriteLine(logBuilder.ToString());
+        }
+    }
+}
+

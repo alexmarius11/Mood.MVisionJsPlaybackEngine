@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+function onChangeImgCanvasSize() 
+{
+  var imgDisplayType = document.getElementById("idImgDisplayType");
+  var imgCanvasX = document.getElementById("idImgCanvasX");
+  var imgCanvasY = document.getElementById("idImgCanvasY");
+  var imgDiv = document.getElementById("idImgDiv");
+  var img = document.getElementById("idImg");
+
+  imgDiv.style.width = imgCanvasX.value;
+  imgDiv.style.height = imgCanvasY.value;
+
+  onChangeDisplayType();
+}
+function onChangeDisplayType() 
+{
+  var imgDisplayType = document.getElementById("idImgDisplayType");
+  var imgDiv = document.getElementById("idImgDiv");
+  var img = document.getElementById("idImg");
+
+  var imgRealWidth = img.naturalWidth;
+  var imgRealHeight = img.naturalHeight;
+
+  var imgNewWidth = img.naturalWidth;
+  var imgNewHeight = img.naturalHeight;
+
+  //var imgCanvasX = document.getElementById("idImgCanvasX");
+  //var imgCanvasY = document.getElementById("idImgCanvasY");
+
+  var canvasWidth = imgDiv.offsetWidth;
+  var canvasHeight = imgDiv.offsetHeight;
+
+  var ratioX = 1;
+  var ratioY = 1;
+  if(canvasWidth > 0)
+    ratioX = imgRealWidth/canvasWidth;
+  if(canvasHeight > 0)
+    ratioY = imgRealHeight/canvasHeight;
+
+  if(imgDisplayType.value=="CENTER")
+  {
+    img.style.width=imgRealWidth+"px";
+    img.style.height=imgRealHeight+"px";
+    img.style.marginLeft=(canvasWidth-imgRealWidth)/2+"px";
+    img.style.marginRight=(canvasWidth-imgRealWidth)/2+"px";
+    img.style.marginTop=(canvasHeight-imgRealHeight)/2+"px";
+    img.style.marginBottom=(canvasHeight-imgRealHeight)/2+"px";
+  }
+  if(imgDisplayType.value=="FILL")
+  {
+    img.style.width="";
+    img.style.height="";
+    img.style.marginLeft=0;
+    img.style.marginRight=0;
+    img.style.marginTop=0;
+    img.style.marginBottom=0;
+
+    if(ratioX < ratioY)
+    {
+      imgNewWidth = canvasWidth;
+      imgNewHeight = imgRealHeight * (imgNewWidth/imgRealWidth);
+
+      img.style.width=imgNewWidth+"px";
+      img.style.marginTop=(canvasHeight-imgNewHeight)/2+"px";
+      img.style.marginBottom=(canvasHeight-imgNewHeight)/2+"px";
+    }
+    else
+    {
+      imgNewHeight = canvasHeight;
+      imgNewWidth = imgRealWidth * (imgNewHeight/imgRealHeight);
+
+      img.style.height=imgNewHeight+"px";
+      img.style.marginLeft=(canvasWidth-imgNewWidth)/2+"px";
+      img.style.marginRight=(canvasWidth-imgNewWidth)/2+"px";
+    }
+  }
+  if(imgDisplayType.value=="FIT")
+  {
+    img.style.width="";
+    img.style.height="";
+    img.style.marginLeft=0;
+    img.style.marginRight=0;
+    img.style.marginTop=0;
+    img.style.marginBottom=0;
+    if(ratioX > ratioY)
+    {
+      imgNewWidth = canvasWidth;
+      imgNewHeight = imgRealHeight * (imgNewWidth/imgRealWidth);
+      img.style.width=imgNewWidth+"px";
+      img.style.marginTop=(canvasHeight-imgNewHeight)/2+"px";
+      img.style.marginBottom=(canvasHeight-imgNewHeight)/2+"px";
+    }
+    else
+    {
+      imgNewHeight = canvasHeight;
+      imgNewWidth = imgRealWidth * (imgNewHeight/imgRealHeight);
+      img.style.height=imgNewHeight+"px";
+      img.style.marginLeft=(canvasWidth-imgNewWidth)/2+"px";
+      img.style.marginRight=(canvasWidth-imgNewWidth)/2+"px";
+    }
+  }
+  if(imgDisplayType.value=="STRETCH")
+  {
+    img.style.width=canvasWidth+"px";
+    img.style.height=canvasHeight+"px";
+    img.style.marginLeft=0;
+    img.style.marginRight=0;
+    img.style.marginTop=0;
+    img.style.marginBottom=0;
+  }
+  if(imgDisplayType.value=="NORMAL")
+  {
+    img.style.width=imgRealWidth+"px";
+    img.style.height=imgRealHeight+"px";
+    img.style.marginLeft=0;
+    img.style.marginRight=0;
+    img.style.marginTop=0;
+    img.style.marginBottom=0;
+  }
+}
+</script>
+
+<hr>
+	<center>
+//		<div>
+			<div>
+				<h3>Display Image</h3>
+			</div>
+			<div>
+				<h4>File: 
+					<input readonly id="idImgStorageName" value=""/> 
+					<input readonly id="idImgPathName" value=""/>
+					<input readonly id="idImgFileName" value=""/> 
+				</h4>
+				<h4>
+					<P>
+						Canvas X: <input id="idImgCanvasX" value="800px" onchange="onChangeImgCanvasSize()"/>
+					</P>
+					<P>
+						Canvas Y: <input id="idImgCanvasY" value="400px" onchange="onChangeImgCanvasSize()"/>
+					</P>
+					<P>
+						Display Type: 
+							<select id="idImgDisplayType" onchange="onChangeDisplayType()">
+								<option value="CENTER">CENTER</option>
+								<option value="FILL">FILL</option>
+								<option value="FIT">FIT</option>
+								<option value="STRETCH">STRETCH</option>
+								<option value="NORMAL">NORMAL</option>
+							</select>
+					</P>
+				</h4>
+			</div>
+			<div id="idImgDiv"  style="background-color:lightblue;height: 400px;width: 800px;overflow: hidden; position: relative;"> 
+				<img id="idImg" src="1234.jpg" onload="onChangeDisplayType()">
+			</div> 
+			<div>
+				<button type="button" onclick="">Close</button>
+			</div>
+		</div>
+	</center>
+<hr>
+</body>
+</html>
+

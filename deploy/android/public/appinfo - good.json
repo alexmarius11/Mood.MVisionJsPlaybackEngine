@@ -1,0 +1,11 @@
+{
+    "id": "com.moodmedia.app.moodvisualsolution",
+    "version": "0.0.1",
+    "vendor": "MoodMedia",
+    "type": "web",
+    "main": "index.html",
+    "title": "Multimedia",
+    "icon": "icon.png",
+    "largeIcon": "largeIcon.png",
+    "inspectable": true
+}

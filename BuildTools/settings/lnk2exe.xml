@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE LNK2EXE [
+     <!ELEMENT LNK2EXE (APPLICATIONS)>
+     <!ELEMENT APPLICATIONS (APPLICATION*)>
+	 <!ELEMENT APPLICATION (NAME,RUN_MODE)>
+     <!ELEMENT NAME (#PCDATA)>
+     <!ELEMENT RUN_MODE (#PCDATA)>
+]>
+<LNK2EXE>
+	<APPLICATIONS>
+		<APPLICATION>
+			<NAME>popup_guard.exe</NAME>
+			<RUN_MODE>shell</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>tc_offline_update.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>key_listener.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>run_as_server_proc.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>TeamCoV5.Player.Winform.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>BandwidthServer.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>generic_downloader.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>log_engine.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>SCHEDULER_SVC.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>tc_vod_module.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>WpfRenaultSwitch.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>Overlay.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+		<APPLICATION>
+			<NAME>FlashTrigger.exe</NAME>
+			<RUN_MODE>FireAndForget</RUN_MODE><!--Shell, Shellexecute, Wait,FireAndForget,RouteConsoleOutput   -->
+		</APPLICATION>
+	</APPLICATIONS>
+</LNK2EXE>

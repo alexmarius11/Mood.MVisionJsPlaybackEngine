@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<iframe id="myFrame" src="/default_iframe.html" style="height:380px;width:100%"></iframe>
+
+<p>Click the "Tryit" button to hide the first H1 element in the iframe (another document).</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+  var iframe = document.getElementById("myFrame");
+  iframe.onload = function()
+  {
+    alert("iframe onload");
+  }
+  iframe.contentWindow.onerror = function()
+  {
+    alert("iframe onerror");
+  }
+  iframe.contentWindow.onload = function()
+  {
+    alert("window onload");
+    alert(this.document.title);
+  }
+    iframe.contentWindow.onerror = function()
+  {
+    alert("window onerror");
+  }
+  iframe.contentWindow.document.onload = function()
+  {
+    alert("document onload");
+  }
+  iframe.contentWindow.document.onerror = function()
+  {
+    alert("document onerror");
+  }
+  
+  
+function myFunction() {
+  var iframe = document.getElementById("myFrame");
+  var elmnt = iframe.contentWindow.document;
+  alert(elmnt.title);
+}
+</script>
+
+</body>
+</html>

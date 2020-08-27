@@ -1,0 +1,7 @@
+https://www.freecodecamp.org/news/building-a-node-js-application-on-android-part-1-termux-vim-and-node-js-dfa90c28958f/
+
+apt update && apt upgrade
+apt install coreutils
+apt install vim 
+apt install nodejs
+

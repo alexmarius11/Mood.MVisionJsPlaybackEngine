@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)http://webossignage.developer.lge.com/api/scap-api/scap-library/file-pathname/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="http://webossignage.developer.lge.com/images/favicon.ico">     <link rel="stylesheet" type="text/css" href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/bootstrap-modified.css">
+    
+    		<link rel="stylesheet" href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/cont_common_en.css" type="text/css">
+		
+	<link rel="stylesheet" type="text/css" href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/TED_Content_Style.css">
+	<script type="text/javascript" async="" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/analytics.js.download"></script><script type="text/javascript" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/Osinfo.js.download"></script>
+    <link href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/main.css" rel="stylesheet" type="text/css" media="all">    
+<title>::: LG | webOS Signage Developer :: Handling File Paths</title>
+
+
+<meta name="generator" content="concrete5 - 5.7.5.9"><link rel="shortcut icon" href="http://webossignage.developer.lge.com/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="http://webossignage.developer.lge.com/images/favicon.ico" type="image/x-icon">
+<script type="text/javascript">
+    var CCM_DISPATCHER_FILENAME = "/index.php";
+    var CCM_CID = "920";
+    var CCM_EDIT_MODE = false;
+    var CCM_ARRANGE_MODE = false;
+    var CCM_IMAGE_PATH = "/concrete/images";
+    var CCM_TOOLS_PATH = "/index.php/tools/required";
+    var CCM_APPLICATION_URL = "http://webossignage.developer.lge.com";
+    var CCM_REL = "";
+</script>
+
+<link href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/jquery-ui.css" rel="stylesheet" type="text/css" media="all">
+<link href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/jquery-rating.css" rel="stylesheet" type="text/css" media="all">
+<link href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/font-awesome.css" rel="stylesheet" type="text/css" media="all">
+<script type="text/javascript" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/jquery.js.download"></script>
+<!--[if lt IE 9]><script type="text/javascript" src="/concrete/js/ie/html5-shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script type="text/javascript" src="/concrete/js/ie/respond.js"></script><![endif]-->
+<link href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/account.css" rel="stylesheet" type="text/css" media="all">
+<link href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/view.css" rel="stylesheet" type="text/css" media="all">
+<link href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/view(1).css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" type="text/css" href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/TED_Content_Style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	            <link rel="stylesheet" href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/cont_signage.css" type="text/css">
+    
+    <script>
+        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement('style')
+            msViewportStyle.appendChild(
+                document.createTextNode(
+                    '@-ms-viewport{width:auto!important}'
+                )
+            )
+            document.querySelector('head').appendChild(msViewportStyle)
+        }
+    </script>
+    
+    <script type="text/javascript">// <![CDATA[
+var resources = ["&lt;script type='text/javascript' src='/js/syntaxhighlighter/scripts/shCore.js'&gt;&lt;/script&gt;",
+				"&lt;script type='text/javascript' src='/js/syntaxhighlighter/scripts/shAutoloader.js'&gt;&lt;/script&gt;",
+				"&lt;link href='/css/syntaxhighlighter/styles/shCore.css' rel='stylesheet' type='text/css' /&gt;",
+				"&lt;link href='/css/syntaxhighlighter/styles/shThemeMidnight.css' rel='stylesheet' type='text/css' /&gt;"];
+for(var i=0; i<resources.length; i++){
+	var ele = resources[i];
+	ele = ele.replace(/&lt;/g,'<').replace(/&gt;/g,'>')
+	//$(ele).appendTo('head');
+	document.write(ele);
+}
+// ]]>
+</script><script type="text/javascript" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/shCore.js.download"></script><script type="text/javascript" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/shAutoloader.js.download"></script><link href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/shCore.css" rel="stylesheet" type="text/css"><link href="./___ LG _ webOS Signage Developer __ Handling File Paths_files/shThemeMidnight.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">// <![CDATA[
+		function path() {
+			var args = arguments, result = [];
+			for(var i = 0; i < args.length; i++)
+				result.push(args[i].replace('@', '/js/syntaxhighlighter/scripts/'));
+			return result
+		}		
+		$(document).ready(function () {
+			SyntaxHighlighter.autoloader.apply(null, path(
+				'cpp c					@shBrushCpp.js',
+				'css					@shBrushCss.js',
+				'js jscript javascript	@shBrushJScript.js',
+				'text plain				@shBrushPlain.js',
+				'xml xhtml xslt html	@shBrushXml.js',
+				'java					@shBrushJava.js',
+				'bash shell				@shBrushBash.js',
+				'php					@shBrushPhp.js',
+				'python					@shBrushPython.js',
+				'sql					@shBrushSql.js',
+				'vb						@shBrushVb.js'
+			));
+			SyntaxHighlighter.all();
+            SyntaxHighlighter.defaults.toolbar = false;	
+            lineWrap();
+		});
+		
+		function lineWrap(){
+		    var wrap = function () {
+		        var elems = document.getElementsByClassName('syntaxhighlighter');
+		        for (var j = 0; j < elems.length; ++j) {
+		            var sh = elems[j];
+		            var gLines = sh.getElementsByClassName('gutter')[0].getElementsByClassName('line');
+		            var cLines = sh.getElementsByClassName('code')[0].getElementsByClassName('line');
+		            var stand = 15;
+		            for (var i = 0; i < gLines.length; ++i) {
+		                var h = $(cLines[i]).height();
+		                if (h != stand) {
+		                    console.log(i);
+		                    gLines[i].setAttribute('style', 'height: ' + h + 'px !important;');
+		                }
+		            }
+		        }
+		     };
+		    var whenReady = function () {
+		        if ($('.syntaxhighlighter').length === 0) {
+		            setTimeout(whenReady, 800);
+		        } else {
+		            wrap();
+		        }
+		    };
+		    whenReady();
+		};
+		
+		$(window).resize(function(){lineWrap()});
+// ]]>
+	
+	
+	
+</script>
+</head>
+<body>
+
+
+    <script type="text/javascript" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/jquery-2.1.0.min.js.download"></script>
+<script type="text/javascript">
+
+$(function(){
+	$('a').click(function() {
+
+		if ($(this).attr('href') !== undefined) {
+			var d=$(this).attr("href").toLowerCase();
+			if( d.indexOf("http")==0 && d.indexOf("http://webossignage.developer.lge.com")==-1 && d.indexOf("http://webossignage.developer.lge.com")==-1  ){	
+				$.ajax({
+					url: '/index.php/tools/event_create?url='+ escape($(this).attr("href")),
+					success: function(response){
+						$('#ajax-content').html(response);
+					}
+				});
+			}
+		}
+	
+	    
+	});
+});
+
+</script>
+<div id="ajax-content"></div>
+
+
+    
+<div id="HTMLBlock108852" class="HTMLBlock">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116298590-1');
+</script>
+</div>
+<div class="ccm-page page-type-wos-article-01 page-template-right-sidebar">
+<script>
+$(function(){
+
+	$( "#btnGoEmpLoginUI").click(function(e) {
+		
+		var osInfoDev = OSInfoDev();
+    
+	    if( osInfoDev == "Windows CE" || osInfoDev == "Windows 95"   
+	    	   || osInfoDev == "Windows Millennium Edition (Windows Me)" || osInfoDev == "Windows 98" 
+	    	   || osInfoDev == "Microsoft Windows NT 4.0" || osInfoDev == "Windows 2000" 
+	    	   || osInfoDev == "Windows 2000, Service Pack 1 (SP1)" || osInfoDev == "Windows XP" ) {
+		    var xpPopup = document.getElementById("xpPopup");
+		    xpPopup.style.display = 'block';
+	
+	    }else {
+	        $("#emp_login_ui_direct").submit();
+			e.preventDefault();
+	    }
+    
+    
+		
+	});
+	
+	$( "#hideXpPopup").click(function(e) {
+	    var popup = document.getElementById("xpPopup");
+	    xpPopup.style.display = 'none';
+	});
+
+    $(".dropdown").hover(            
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+                $(this).toggleClass('open');
+                
+            },
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+                $(this).toggleClass('open');
+                
+            });
+
+    $(".topnav > li.dropdown > a").focus(function() {
+    		$('header .dropdown-menu').stop( true, true ).fadeOut("fast");
+            $(this).next('ul.dropdown-menu').stop( true, true ).fadeIn("fast");
+            $(this).toggleClass('open');
+    });
+
+    $(".topnav > li.dropdown li.dropdown a").focus(function() {
+        $(this).next('ul.dropdown-menu').stop( true, true ).fadeIn("fast");
+        $(this).toggleClass('open');
+	});
+
+    $("main a").focus(function() {
+    	$('header .dropdown-menu').stop( true, true ).fadeOut("fast");
+	});
+
+    
+
+
+	$(".dropdown").click(function () {
+
+		if($(this).hasClass('OPEN_THIS')){
+			$(this).removeClass('OPEN_THIS');
+			$('#dropdown-menu', this).hide();
+		}else{
+			$(this).addClass('OPEN_THIS');
+			$('#dropdown-menu', this).show();
+		}
+		
+		
+    });
+		
+});
+</script>
+<header>
+
+<form name="emp_login_ui_direct" id="emp_login_ui_direct" action="https://us.lgaccount.com/login/sign_in" method="post">
+	<input type="HIDDEN" name="expire_session" value="Y">
+	<input type="HIDDEN" name="callbackUrl" value="http://webossignage.developer.lge.com/SsoLogin.php?returnURL=http%3A%2F%2Fwebossignage.developer.lge.com%2Fapi%2Fscap-api%2Fscap-library%2Ffile-pathname%2F">
+	<input type="HIDDEN" name="division" value="cto:webossignage.developer">
+	<input type="HIDDEN" name="svcCode" value="SVC609">
+	<input type="HIDDEN" name="show_3rd_party_login" value="N">
+	<input type="HIDDEN" name="country" value="US">
+	<input type="HIDDEN" name="authSvr" value="emp">
+
+	
+</form>
+
+
+	<div id="top-bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div id="logo">
+						                        <a href="http://webossignage.developer.lge.com/">
+                    	<picture>
+                    	<img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/webossignage_logo.png" alt="webOS Signage developer site logo" class="ccm-image-block img-responsive">
+                    	</picture>
+                    	</a>
+					</div>
+				</div>
+				<div class="col-sm-9" id="header-right">
+					<div class="smenu">
+						<div class="log">
+															<span><a href="http://webossignage.developer.lge.com/login/logout/1563288239%3A09124c289587998e8d2c69d1b4abcb61/">Sign Out</a></span>
+								<span><a href="https://webossignage.developer.lge.com/account/user_auth/">My Account</a></span>
+								
+								
+								<!-- span><a href="https://developer.lge.com/secure/EnterPassword.dev?rtnUrl=http%3A%2F%2Fwebossignage.developer.lge.com%2Fapi%2Fscap-api%2Fscap-library%2Ffile-pathname%2F">My Account</a></span-->
+								
+								<!--//  partner DB form-->
+																								<!--//  partner DB form end-->
+								<!--//  thinq dashbaord form-->
+																
+																<!--//  thinq dashbaord end-->
+				
+								
+													</div>
+						
+						<div class="head_search_box">
+							
+
+    <form action="http://webossignage.developer.lge.com/search/" method="get" class="ccm-search-block-form"><input name="search_paths" type="hidden" value="/signage-home"><div class="lgehead_search"><input name="query" type="text" value="" class="ccm-topsearch-block-text" placeholder="Search" onfocus="this.placeholder = &#39;&#39;" onblur="this.placeholder = &#39;Search&#39;"> <input name="submit" type="image" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/head_search_btn.png" alt="Search" value="search" class="btn ccm-topsearch-block-submit"></div></form>
+						</div>
+												<div class="head_quick">
+							<div class="etcLink">
+								<ul>
+									<li class="dropdown" style="z-index: 1;">
+										<a class="dropdown-toggle" href="http://webossignage.developer.lge.com/api/scap-api/scap-library/file-pathname/#" data-toggle="dropdown"><div class="family"><b class="caret"></b><span class="familySiteTitle">LG Developer Sites</span></div></a>
+										<ul class="dropdown-menu" style="z-index: 1; display: none;" id="dropdown-menu">
+											<li class="family-underbar"></li>
+											<li class="dropdown-sub2"><a title="LG Developer" class="dropdown-toggle" href="http://developer.lge.com/"><font class="thisSite-before" id="legacyNew">LG Developer</font></a></li>
+											<li class="dropdown-sub"><a title="LG Mobile Developer" class="dropdown-toggle" href="http://mobile.developer.lge.com/">LG Mobile Developer</a></li>
+											<li class="dropdown-sub"><a title="LG SmartThinQ Developer" class="dropdown-toggle" href="http://thinq.developer.lge.com/">LG SmartThinQ Developer</a></li>
+											<li class="dropdown-sub"><a title="Pro:Centric Developer" class="dropdown-toggle" href="http://procentric.developer.lge.com/">Pro:Centric Developer</a></li>
+											<li class="dropdown-sub"><a title="webOS Signage Developer" class="dropdown-toggle" href="http://webossignage.developer.lge.com/">webOS Signage Developer</a></li>
+											<li class="dropdown-sub"><a title="webOS TV Developer" class="dropdown-toggle" href="http://webostv.developer.lge.com/">webOS TV Developer</a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+												
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="top_nav">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					
+
+    
+<div class="ccm-responsive-navigation original"><ul class="topnav"><li class=" dropdown"><a href="javascript:void(0);" target="_self">DISCOVER</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DISCOVER_web_OS_Signage.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/discover/webos-signage/discover-webos-signage/" target="_self" class="first">webOS Signage</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/discover/webos-signage/discover-webos-signage/" target="_self" class="second">Discover webOS Signage</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/discover/webos-signage/getting-started/" target="_self" class="second">Getting Started</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/discover/webos-signage/showcases/" target="_self" class="second">Showcases</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/discover/webos-signage/ui/" target="_self" class="second">User Interface</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DISCOVER_Specifications.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/discover/specification/" target="_self" class="first">Specifications</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/discover/specification/hardware-spec/" target="_self" class="second">Hardware Specification</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/discover/specification/platform-spec/" target="_self" class="second">Platform Specification</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/discover/specification/comparison-webos30-signage/" target="_self" class="second">Feature Comparison of webOS Signage</a></li></ul></li><li class="depth_only"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DISCOVER_Watch_n_Learn.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/discover/watch-n-learn/" target="_self" class="second">Watch n Learn</a></li><li class="depth_only" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DISCOVER_Our_Partners.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/discover/our-partners/" target="_self" class="second">Our Partners</a></li><li class="depth_only"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DISCOVER_Download_WebOS_Logo.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/discover/download-webos-logo/" target="_self" class="second">Download webOS Logo</a></li></ul></li><li class=" dropdown"><a href="javascript:void(0);" target="_self">DEVICE</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVICE_General_Settings.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/device/general-settings/auto-setting/" target="_self" class="first">General Settings</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/device/general-settings/auto-setting/" target="_self" class="second">Auto-Setting</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/general-settings/factory-reset/" target="_self" class="second">Factory Reset</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/general-settings/keyboard-language/" target="_self" class="second">Keyboard Language</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/general-settings/server-info/" target="_self" class="second">Server Info</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/general-settings/display-orientation/" target="_self" class="second">Display Orientation</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/general-settings/time/" target="_self" class="second">Time</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVICE_Add-on_Devices.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/device/add-on-devices/" target="_self" class="first">Add-on Devices</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/device/add-on-devices/pc-less-touch/" target="_self" class="second">PC-less Touch</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/add-on-devices/sensors/" target="_self" class="second">Sensors</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/add-on-devices/thermal-printer/" target="_self" class="second">Thermal Printer</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DIEVICE_Connectivity.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/device/connectivity/" target="_self" class="first">Connectivity</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/device/connectivity/beacon/" target="_self" class="second">Beacon</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/connectivity/dhcp-options/" target="_self" class="second">DHCP Options</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/connectivity/port-control/" target="_self" class="second">Port Control</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/connectivity/proxy-server/" target="_self" class="second">Proxy Server</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/connectivity/remotely-powering-and-device/" target="_self" class="second">Remotely Powering On and Off Device</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/device/connectivity/softap/" target="_self" class="second">SoftAP</a></li></ul></li><li class="depth_only" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVICE_WebOS_Box.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/device/webos-box/" target="_self" class="second">webOS Box</a></li></ul></li><li class=" dropdown"><a href="javascript:void(0);" target="_self">DEVELOP</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_ApplicationDevelopment.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/development-process/" target="_self" class="first">Web App</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/development-process/tutorial/" target="_self" class="second">Beginner Tutorial</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/development-process/steps-developing-appps/" target="_self" class="second">Steps for Developing Apps</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/development-process/requirements/" target="_self" class="second">Preparing What You Need</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/development-process/app-packaging/" target="_self" class="second">Packaging Your App</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/development-process/app-deploying/" target="_self" class="second">Deploying Your App</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/development-process/debugging-your-app/" target="_self" class="second">Debugging Your App</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/development-process/app-metadata/" target="_self" class="second">Web App Metadata</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_JS_Service.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/js-service/" target="_self" class="first">JS Service</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/js-service/js-service-basics/" target="_self" class="second">JS Service Basics</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/js-service/js-service-dev-steps/" target="_self" class="second">Steps for Developing JS Services</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/js-service/creating-js-service/" target="_self" class="second">Creating JS Service Project</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/js-service/developing-js-service/" target="_self" class="second">Developing JS Services</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/js-service/calling-js-service/" target="_self" class="second">Using JS Services</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/js-service/deploying-js-services/" target="_self" class="second">Deploying JS Services</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/js-service/debugging-js-services/" target="_self" class="second">Debugging JS Services</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/js-service/service-metadata/" target="_self" class="second">JS Service Metadata</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/js-service/webos-service-api-reference/" target="_self" class="second">webos-service API Reference</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_Media_Playback.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/media-playback/" target="_self" class="first">Media Playback</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/media-playback/gapless-video-playback/" target="_self" class="second">Gapless Playback: Filename Conversion</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/media-playback/gap-less-video-playback-mp4/" target="_self" class="second">Gapless Playback: Playlist</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/media-playback/two-video-tags/" target="_self" class="second">Two Video Tags</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/media-playback/four-video-tags/" target="_self" class="second">Four Video Tags</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/media-playback/video-texture-graphics/" target="_self" class="second">Video Texture for Graphics</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/media-playback/multicast-streaming/" target="_self" class="second">Multicast Streaming</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/media-playback/multi-screen-synchronization/" target="_self" class="second">Multi-Screen Synchronization</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/media-playback/video-loop/" target="_self" class="second">Looping Video</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/media-playback/playing-sound/" target="_self" class="second">Playing a Sound</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/media-playback/resolution-ultra-stretch-model/" target="_self" class="second">Resolution for Ultra Stretch Model</a></li></ul></li><li class="depth1" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_System_Features.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/system-features/" target="_self" class="first">System Features</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/system-features/using-relative-path/" target="_self" class="second">Accessing Storage with Relative Path</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/system-features/allowing-cross-domain/" target="_self" class="second">Allowing Cross Domain</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/system-features/automatic-reloading-application/" target="_self" class="second">Automatic Reloading Application</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/system-features/change-hostname/" target="_self" class="second">Changing Hostname</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/system-features/dev-mode/" target="_self" class="second">Developer Mode</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/system-features/expand-size-indexeddb/" target="_self" class="second">Expanding Size of IndexedDB</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/system-features/improving-css-performance/" target="_self" class="second">Improving CSS Performance</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/system-features/register-self-signed-certificate/" target="_self" class="second">Registering SSC through UI</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/system-features/shared-path-app-and-js-service/" target="_self" class="second">Shared Path for App and JS Service</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_User_Input.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/user-input/" target="_self" class="first">User Input</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/user-input/custom-rcu-key/" target="_self" class="second">Customizable RCU Key</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/user-input/key-event-handling/" target="_self" class="second">Handling Key Events</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/user-input/virtual-keyboard/" target="_self" class="second">Using Virtual Keyboard</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_Sample_and_Temliate.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/sample/" target="_self" class="first">Sample &amp; Template</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/sample/remote-control-sample/" target="_self" class="second">Remote Control Sample</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/sample/scap-sample/" target="_self" class="second">SCAP Sample  App</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/sample/test-app/" target="_self" class="second">UDP Streaming Test App</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/sample/code-samples/" target="_self" class="second">JS Service Sample</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/sample/webrtc/" target="_self" class="second">WebRTC Sample</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/sample/fashion-jewelry/" target="_self" class="second">Fashion/Jewelry</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/sample/fids/" target="_self" class="second">Flight Information Display System</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/sample/qsr-retail/" target="_self" class="second">QSR/Retail</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/sample/public-place-education/" target="_self" class="second">Public Place/Education</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/develop/sample/modular-app-template/" target="_self" class="second">Modular App Template</a></li></ul></li></ul></li><li class=" dropdown active"><a href="javascript:void(0);" target="_self">API</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_StandardWebAPIs.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/" target="_self" class="first">Standard Web APIs</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/" target="_self" class="second">HTML5</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/css3-standard/" target="_self" class="second">CSS3</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/mediaoption-parameter/" target="_self" class="second">mediaOption Parameter</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_SCAP_API.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/scap-api/" target="_self" class="first">SCAP API</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/" target="_self" class="second">Using SCAP Library</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/scap-api/platform-compatibility/" target="_self" class="second">Platform Compatibility</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/" target="_self" class="second">SCAP API v1.6</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/" target="_self" class="second">SCAP API v1.5</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/" target="_self" class="second">SCAP API v1.4</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/" target="_self" class="second">SCAP API v1.3</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/scap-api/scap12/" target="_self" class="second">SCAP API v1.2</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/scap-api/scap11/" target="_self" class="second">SCAP API v1.1</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/scap-api/scap10/" target="_self" class="second">SCAP API v1.0</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_Luna_Service_API.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/luna-service-api/" target="_self" class="first">Luna Service API</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/api/luna-service-api/essentials-of-api-service-call/" target="_self" class="second">Essentials of an API Service Call</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/luna-service-api/scap-js-service/" target="_self" class="second">SCAP on JS Service</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/luna-service-api/activity-manager/" target="_self" class="second">Activity Manager</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/luna-service-api/application-manager/" target="_self" class="second">Application Manager</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/luna-service-api/audio/" target="_self" class="second">Audio</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/luna-service-api/connection-manager/" target="_self" class="second">Connection Manager</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/luna-service-api/device-information/" target="_self" class="second">Device Information</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/luna-service-api/device-unique-id/" target="_self" class="second">Device Unique ID</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/luna-service-api/system-service/" target="_self" class="second">System Service</a></li></ul></li><li class="depth1" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_Beacom_API.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/beacon-api/" target="_self" class="first">Beacon API</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/api/beacon-api/android/" target="_self" class="second">Beacon API for Android</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/beacon-api/ios/" target="_self" class="second">Beacon API for iOS</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_Harmony_API.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/harmony-api/" target="_self" class="first">Harmony API</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/api/harmony-api/using-harmony-library/" target="_self" class="second">Using Harmony Library</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/" target="_self" class="second">Harmony API v1.4</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/" target="_self" class="second">Harmony API v1.3</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_CustomJS_API.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/custom-api/" target="_self" class="first">CustomJS API</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/api/custom-api/using-customjs-library/" target="_self" class="second">Using CustomJS Library</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/api/custom-api/latest/" target="_self" class="second">CustomJS API v1.2</a></li></ul></li></ul></li><li class=" dropdown"><a href="javascript:void(0);" target="_self">SDK</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth_only" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/SDK_Installation.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/sdk/installation/" target="_self" class="second">Installation</a></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/SDK_Tools.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/sdk/tools/" target="_self" class="first">Tools</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/sdk/tools/emulator/" target="_self" class="second">Emulator</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/sdk/tools/cli/" target="_self" class="second">Command Line Interface</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/sdk/tools/ide/" target="_self" class="second">IDE</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/sdk/tools/sublime-text/" target="_self" class="second">Sublime Text Plugin</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/sdk/tools/beanviser/" target="_self" class="second">Beanviser</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/sdk/tools/beanpare/" target="_self" class="second">Beanpare (Beta)</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/sdk/tools/beanstaller/" target="_self" class="second">Beanstaller (Beta)</a></li></ul></li><li class="depth_only"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/SDK_Release_Notes.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/sdk/sdk-release-notes/" target="_self" class="second">Release Notes</a></li><li class="depth_only" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/SDK_Privacy_Policy_forApp.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/sdk/privacy-policy-app/" target="_self" class="second">Privacy Policy for App</a></li></ul></li><li class=" dropdown"><a href="javascript:void(0);" target="_self">FIRMWARE</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/FIRMAWARE_Updating_Firmware.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/firmware/updating-firmware/" target="_self" class="first">Updating Firmware</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/firmware/updating-firmware/checking-firmware-version/" target="_self" class="second">Checking Firmware Version</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/firmware/updating-firmware/manually-launching-sw-update-menu/" target="_self" class="second">Manually Launching SW Update Menu</a></li></ul></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/FIRMAWARE_Updating_Firmware.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/" target="_self" class="first">Downloading Firmware</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/webos-signage-40-models/" target="_self" class="second">webOS Signage 4.0 Models</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/webos-signage-32-models/" target="_self" class="second">webOS Signage 3.2 (3.0+) Models</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/webos-signage-30-models/" target="_self" class="second">webOS Signage 3.0 Models</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/webos-signage-20-models/" target="_self" class="second">webOS Signage 2.0 Models</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/webos-signage-10-models/" target="_self" class="second">webOS Signage 1.0 Models</a></li></ul></li></ul></li><li class=" dropdown"><a href="javascript:void(0);" target="_self">COMMUNITY</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/COMMUNITY_News.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/community/news/" target="_self" class="first">News</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/community/news/news/" target="_self" class="second">News</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/community/news/updated-articles/" target="_self" class="second">Updated Articles</a></li></ul></li><li class="depth_only"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/COMMUNITY_FAQ.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/common-page/faq" target="_self" class="second">FAQ</a></li><li class="depth1"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/COMMUNITY_Forum.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/community/forum/" target="_self" class="first">Forums</a><ul style="display: block;"><li class="depth2"><a href="http://webossignage.developer.lge.com/community/forum/partner-forum/" target="_self" class="second">Partner Forum</a></li><li class="depth2"><a href="http://webossignage.developer.lge.com/community/forum/open-forum/" target="_self" class="second">Open Forum (βετα)</a></li></ul></li></ul></li></ul></div><div class="ccm-responsive-menu-launch"><i></i></div>
+
+
+    
+<div id="HTMLBlock156038" class="HTMLBlock">
+<p><span class="left_line"></span>
+<a href="http://webossignage.developer.lge.com/filter-page" title="Search by tag" class="fa_tag"><i class="fa fa-tag"></i>
+<span id="fa_font">Search by tag</span>
+</a>
+<span class="right_line"></span>
+</p>
+<style type="text/css">
+
+#top_nav .fa_tag {
+    color: #fff !important;
+    top: 10px;
+    position: absolute;
+    right: 25px;
+    font-size: 16px;
+    padding: 5px;
+}
+
+#top_nav #fa_font{display: inline-block;
+    font-size: 16px;}
+
+#top_nav a.fa_tag:hover{ text-decoration:none; color:#ff8500 !important; }
+
+#top_nav .left_line {width: 1px;
+    background-color: #fff;
+    height: 50px;
+    position: absolute;
+    right: 152px;}
+#top_nav .right_line {width: 1px;
+    background-color: #fff;
+    height: 50px;
+    position: absolute;
+    right: 15px;}
+
+@media all and (min-width: 0) and (max-width: 768px) {
+	#top_nav .fa_tag {
+	    top: 5px;
+	    right: 80px;
+	}
+
+	#top_nav .left_line {width: 1px;
+	    background-color: #fff;
+	    height: 42px;
+	    position: absolute;
+	    right: 190px;}
+	#top_nav .right_line {width: 1px;
+	    background-color: #fff;
+	    height: 42px;
+	    position: absolute;
+	    right: 70px;}
+}
+
+</style></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div id="xpPopup" style="display:none; position:absolute; width:100%; top:100px; z-index: 101;">
+	<div id="xpPopup2" style="display:block; border: 1px solid #a9a9a9; padding:10px 25px; width:758px; background-color: #ffffff; margin:0 auto;">
+		<div style="line-height:20px;padding:40px 0 30px;">
+			<h4>[Action Required: Windows XP OS users] End of Support for 3DES Cipher</h4><br>
+	        <span style="FONT-SIZE: 11pt;">For security reasons, we have discontinued the support for 3DES Cipher. 
+	        After this discontinuation of support for 3DES cipher, machines running on Windows XP, 
+	        that do not support any more recent and secure ciphers than 3DES, will not be able to access the Sign In 
+	        and My Account pages.<br><br>
+			If you're a Windows XP user, we strongly recommend upgrading your OS.</span>
+		</div>
+		
+		<div style="padding: 15px 25px; text-align: right; border-top: 1px solid #a9a9a9;">
+			<a href="javascript:void()" id="hideXpPopup">Close</a>
+		</div>
+	</div>
+</div>
+
+
+<main>
+	        	<div class="container">
+		
+
+    <nav role="navigation" aria-label="head_location"><ol class="head_location"><li><a href="http://webossignage.developer.lge.com/" target="_self">webOSSignage Home</a></li><li><a href="javascript:void(0);" target="_self">API</a></li><li><a href="http://webossignage.developer.lge.com/api/scap-api/" target="_self">SCAP API</a></li><li><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/" target="_self">Using SCAP Library</a></li><li class="active">Handling File Paths</li></ol></nav>
+	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-content">
+				<div class="DIV_contentarea">
+				
+
+    <h1 class="page-title">Handling File Paths</h1>
+
+
+
+
+
+
+
+                
+                
+	
+                
+
+    <p>This article informs you <a class="TED_hyperlink" href="http://webossignage.developer.lge.com/api/scap-api/scap-library/file-pathname/#specify-file">how to specify a file/directory location</a> for a SCAP API method and <a class="TED_hyperlink" href="http://webossignage.developer.lge.com/api/scap-api/scap-library/file-pathname/#access-file">how to access the files</a> in the local storage, USB flash drive and a remote server.</p>
+
+<p>For detailed information on accessing files on the local storage using relative paths, see <a class="TED_hyperlink" href="http://webossignage.developer.lge.com/develop/system-features/using-relative-path/">Accessing Local Storage with Relative Paths</a>.</p>
+
+<h2 class="TED_H2" id="specify-file">SPECIFYING FILE LOCATION FOR SCAP API</h2>
+
+<p>To specify a file path as a parameter for a SCAP API method, use the URI format. If the pathname given to a SCAP API is not found, directories for the given pathname will be created automatically. See below for more detail on URI scheme.</p>
+
+<h3 class="TED_H3">RESTRICTIONS</h3>
+
+<ul>
+	<li>If the URI starts with <span class="italic">file://</span>, the URI shall be composed of the following characters only.
+
+	<ul>
+		<li>Alphabets: a–z, A–Z</li>
+		<li>Numbers: 0–9</li>
+		<li>Hyphen (-), Period(.), Underscore (_)</li>
+	</ul>
+	</li>
+	<li>The maximum length allowed for a URI is 255.</li>
+	<li>Double-dot slash (<span class="italic">../</span>) is not allowed.</li>
+</ul>
+
+<h3 class="TED_H3">URI SCHEME</h3>
+
+<p>Use the following URI schemes for specifying a file or a directory, in using the SCAP API.</p>
+
+<table class="tbListCol">
+	<tbody>
+		<tr>
+			<th>File Location</th>
+			<th>URI Scheme</th>
+		</tr>
+		<tr>
+			<td>Local Storage</td>
+			<td>file://internal/</td>
+		</tr>
+		<tr>
+			<td>USB Flash Drive</td>
+			<td>file://usb:[index]/</td>
+		</tr>
+		<tr>
+			<td>SD Card</td>
+			<td>file://sdcard:[index]/</td>
+		</tr>
+		<tr>
+			<td>Remote Server (HTTP)</td>
+			<td>http://, https://</td>
+		</tr>
+		<tr>
+			<td rowspan="3">Remote Server (FTP)</td>
+			<td>ftp:// (FTP)</td>
+		</tr>
+		<tr>
+			<td>sftp:// (FTP with SSH file transfer protocol)</td>
+		</tr>
+		<tr>
+			<td>ftps:// (FTP over SSL/TLS)</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2 class="TED_H2" id="access-file">ACCESSING THE RESULT FILES</h2>
+
+<p>To access a file or a directory manipulated (e.g. copied) by the SCAP API, use the pathnames provided below. Note not to use the following pathnames with the SCAP APIs. These paths are to be used by the standard HTML5 APIs and JavaScript APIs.</p>
+
+<p><strong>With relative path:</strong></p>
+
+<table class="tbListCol">
+	<tbody>
+		<tr>
+			<th>App Location</th>
+			<th>File Location</th>
+			<th class="w60">Path to file</th>
+		</tr>
+		<tr>
+			<td colspan="1" rowspan="3">Local Storage</td>
+			<td>Local Storage</td>
+			<td>./content</td>
+		</tr>
+		<tr>
+			<td>USB Flash Drive</td>
+			<td>./content/external/usb/[usb_port_num]</td>
+		</tr>
+		<tr>
+			<td>SD Card</td>
+			<td>./content/external/sdcard/[sd_card_slot_num]</td>
+		</tr>
+		<tr>
+			<td colspan="1" rowspan="3">USB Flash Drive</td>
+			<td>Local Storage</td>
+			<td>Not available</td>
+		</tr>
+		<tr>
+			<td>USB Flash Drive</td>
+			<td>
+			<p>./content</p>
+			</td>
+		</tr>
+		<tr>
+			<td>SD Card</td>
+			<td>Not available</td>
+		</tr>
+		<tr>
+			<td colspan="1" rowspan="3">Remote Server</td>
+			<td>Local Storage</td>
+			<td>Not available</td>
+		</tr>
+		<tr>
+			<td>USB Flash Drvie</td>
+			<td>Not available</td>
+		</tr>
+		<tr>
+			<td>SD Card</td>
+			<td>Not available</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="TED_noteBox">
+<ul>
+	<li>If your app redirects or (the user moves) from the app's root directory to another page, placed in different directory or domain, your app will be blocked from accessing resources using the relative paths (start&nbsp;with ./content).</li>
+	<li>When your app in USB flash drive tries&nbsp;to access&nbsp;the file in USB flash drivce, USB port no.1 will be used by default.</li>
+</ul>
+</div>
+
+<p><strong>With local HTTP server path:</strong></p>
+
+<table class="tbListCol">
+	<tbody>
+		<tr>
+			<th>App Location</th>
+			<th>File Location</th>
+			<th class="w60">Path to file</th>
+		</tr>
+		<tr>
+			<td colspan="1" rowspan="3">
+			<p>Local Storage,<br>
+			USB Flash Drive,<br>
+			Remote Server</p>
+			</td>
+			<td>Local Storage</td>
+			<td>http://127.0.0.1:9080/[file_name]</td>
+		</tr>
+		<tr>
+			<td>USB Flash Drive</td>
+			<td>http://127.0.0.1:9080/external/usb/[usb_port_num]</td>
+		</tr>
+		<tr>
+			<td>SD Card</td>
+			<td>http://127.0.0.1:9080/external/sdcard/[sd_card_slot_num]</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="TED_noteBox">
+<ul>
+	<li>Use <span class="strong">127.0.0.1</span> instead of <span class="strong">localhost</span>, because if the DNS server field on a signage device is not specified, accessing a file may take a while.</li>
+	<li>External access to the <span class="strong">signage device's IP address:9080</span> is forbidden. For example, if a signage device's IP address is <span class="italic">192.168.0.3</span> and your PC IP is <span class="italic">192.168.0.2</span>, you cannot access <span class="italic">192.168.0.3:9080/filename</span> from your PC.</li>
+</ul>
+</div>
+
+<h2 class="TED_H2">REAL FILE LOCATION</h2>
+
+<h3 class="TED_H3">USB FLASH DRIVE</h3>
+
+<p>The actual location of a file copied/moved/written to in a USB flash drive is located in the directory given below.</p>
+
+<p class="TED_bg_grey_code">[USB_root]/procentric/scap/application/content/</p>
+
+<p><span class="italic">[USB_root]/procentric/scap/application/</span> is where you put your app in if you choose to <a class="TED_hyperlink" href="http://webossignage.developer.lge.com/develop/development-process/app-deploying/" target="_blank">deploy your app to a USB flash drive</a>.</p>
+
+<h3 class="TED_H3">SD CARD</h3>
+
+<p>The actual location of a file copied/moved/written to an SD card is located in the directory given below.</p>
+
+<p class="TED_bg_grey_code">[SD_card_root]/procentric/scap/application/content/</p>
+
+
+                
+				
+								
+				                                
+				</div>
+            </div>
+            <div class="col-sm-3 col-sidebar">
+                <div class="sb-head-navigation">
+									</div>
+				<div class="sb-head">
+									</div>
+				<div class="sb-header padding-space-s">
+					
+
+    
+<style type="text/css" id="nav-css">
+.nav>li>a:hover,.nav>li>a:focus {
+    background-color: #fff !important;
+}
+
+.nav {}
+.nav li {position: relative;}
+.nav li a span.bul01{display:block; position:absolute; right:0; top:0;cursor:pointer; width:20px; height:30px; background:url(/images/icon/icon_lnb_dp.gif) no-repeat 2px 50%;}
+.nav li.open a span.bul01, .nav li.selec a span.bul01{background:url(/images/icon/icon_lnb_dp_on.gif) no-repeat 2px 50%;}
+.nav li.open2 a span.bul01{background:url(/images/icon/icon_lnb_dp_op.gif) no-repeat 2px 50% !important;}
+.nav .depth2 li a span.bul02{display:block; position:absolute; right:0px; top:0; cursor:pointer;width:20px; height:30px; background:url(/images/icon/icon_lnb_dp.gif) no-repeat 2px 50%;}
+.nav .depth2 li.open a span.bul02, #lnb .depth2 li.selec a span.bul02, .nav .depth2 li.open2 a span.bul02{background:url(/images/icon/icon_lnb_dp_op.gif) no-repeat 2px 50% !important;}
+
+.nav .depth3 li a span.bul03{display:block; position:absolute; right:0; top:0; cursor:pointer;width:20px; height:30px; background:url(/images/icon/icon_lnb_dp.gif) no-repeat 2px 50%;}
+.nav .depth3 li.open a span.bul03, .nav .depth3 li.selec a span.bul03, .nav .depth3 li.open2 a span.bul03{background:url(/images/icon/icon_lnb_dp_op.gif) no-repeat 2px 50% !important;}
+
+.nav .depth4 li a span.bul04{display:block; position:absolute; right:0; top:0; cursor:pointer;width:20px; height:30px; background:url(/images/icon/icon_lnb_dp.gif) no-repeat 2px 50%;}
+.nav .depth4 li.open a span.bul04, .nav .depth4 li.selec a span.bul04, .nav .depth4 li.open2 a span.bul04{background:url(/images/icon/icon_lnb_dp_op.gif) no-repeat 2px 50% !important;}
+
+.nav .depth5 li a span.bul05{display:block; position:absolute; right:0; top:0; cursor:pointer;width:20px; height:30px; background:url(/images/icon/icon_lnb_dp.gif) no-repeat 2px 50%;}
+.nav .depth5 li.open a span.bul05, .nav .depth5 li.selec a span.bul05, .nav .depth5 li.open2 a span.bul05{background:url(/images/icon/icon_lnb_dp_op.gif) no-repeat 2px 50% !important;}
+
+.nav .depth6 li a span.bul06{display:block; position:absolute; right:0; top:0; cursor:pointer;width:20px; height:30px; background:url(/images/icon/icon_lnb_dp.gif) no-repeat 2px 50%;}
+.nav .depth6 li.open a span.bul06, .nav .depth6 li.selec a span.bul06, .nav .depth6 li.open2 a span.bul06{background:url(/images/icon/icon_lnb_dp_op.gif) no-repeat 2px 50% !important;}
+
+</style>
+
+<script type="text/javascript">
+
+function clickMenu(url, cID) {
+    var currentPagecID = '';
+    var color = $('#menuLi_'+cID+' > ul').css("border-left-color");
+
+       // 동일한 메뉴를 클릭한 경우에는 메뉴를 접기만 한다.
+        var showStatus=$('#menuLi_'+cID+' > ul').css('display');
+        if (showStatus == 'block') {
+            
+            $('#menuLi_'+cID).removeClass('select');
+            $('#menuLi_'+cID).removeClass('open');
+            $('#menuLi_'+cID+' li').removeClass('open');
+            $('#menuLi_'+cID+' ul').slideUp(200);
+            
+        	if($('#menuLi_'+cID+' span').hasClass('bul01')){
+            	$('#menuLi_'+cID+' span.bul01').css('background', 'url(/images/icon/icon_lnb_dp_on2.png) no-repeat 2px 50%');
+            	$('#menuLi_'+cID+'> a').addClass('open');
+            	$('#menuLi_'+cID).addClass('open');
+            }
+            
+           
+        } else {
+            $('#menuLi_'+cID+' > ul').slideDown(200);
+            if (currentPagecID == cID) $('#menuLi_'+cID).addClass('select');
+            $('#menuLi_'+cID).addClass('open');
+            if($('#menuLi_'+cID+' span').hasClass('bul01')){
+            	$('#menuLi_'+cID+' span.bul01').css('background', 'url(/images/icon/icon_lnb_dp_on.gif) no-repeat 2px 50%');
+            }
+        }
+        
+}
+
+function clickMenu2(url, cID) {
+
+        var showStatus=$('#menuLi_'+cID+' > ul').css('display');
+        if (showStatus == 'none') {
+        	$('#menuLi_'+cID).addClass('open2');
+        	$('#menuLi_'+cID+' > ul').slideToggle(200, function(){
+				$('#menuLi_'+cID+' > ul').css({"overflow":"hidden"});
+			});
+
+            if($('#menuLi_'+cID+' span').hasClass('bul01')){
+            	var stylecolor = "1px solid " + $('#menuLi_'+cID+' > ul').css("border-left-color");
+            	$('#menuLi_'+cID+' > ul').css({"border-top":stylecolor});
+            }
+
+        }else {
+            $('#menuLi_'+cID).removeClass('open2');
+            $('#menuLi_'+cID+' li').removeClass('open2');
+            $('#menuLi_'+cID+' > ul').slideUp(200, function(){
+				$('#menuLi_'+cID+' > ul').css({"border-top":"none", "overflow":"auto"});
+			});
+            
+            
+        }
+        
+}
+
+</script>
+<ul class="nav"><li id="menuLi_837" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/" target="_self" class=""><span class="sidename">Standard Web APIs</span><span class="bul01" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/supported-standard-web-apis/&#39;, &#39;837&#39;);return false"></span></a><ul class="depth2" style="display:none;"><li id="menuLi_843" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/" target="_self" class=""><span class="sidename">HTML5</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/&#39;, &#39;843&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_862" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/audio-video/" target="_self" class=""><span class="sidename">Audio &amp; Video</span></a></li><li id="menuLi_864" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/canvas/" target="_self" class=""><span class="sidename">Canvas</span></a></li><li id="menuLi_863" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/communication/" target="_self" class=""><span class="sidename">Communication</span></a></li><li id="menuLi_869" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/history/" target="_self" class=""><span class="sidename">History</span></a></li><li id="menuLi_868" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/indexed-db/" target="_self" class=""><span class="sidename">IndexedDB</span></a></li><li id="menuLi_866" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/offline-web-applications/" target="_self" class=""><span class="sidename">Offline Web Application</span></a></li><li id="menuLi_865" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/svg/" target="_self" class=""><span class="sidename">SVG</span></a></li><li id="menuLi_896" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/webgl/" target="_self" class=""><span class="sidename">WebGL</span></a></li><li id="menuLi_867" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/web-storage/" target="_self" class=""><span class="sidename">Web Storage</span></a></li><li id="menuLi_870" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/web-workers/" target="_self" class=""><span class="sidename">Web Workers</span></a></li></ul></li><li id="menuLi_844" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/css3-standard/" target="_self" class=""><span class="sidename">CSS3</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/supported-standard-web-apis/css3-standard/&#39;, &#39;844&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_871" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/css3-standard/static-css/" target="_self" class=""><span class="sidename">Static CSS</span></a></li><li id="menuLi_872" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/css3-standard/dynamic-css/" target="_self" class=""><span class="sidename">Dynamic CSS</span></a></li></ul></li><li id="menuLi_858" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/mediaoption-parameter/" target="_self" class=""><span class="sidename">mediaOption Parameter</span></a></li></ul></li><li id="menuLi_839" class="nav-path-selected open" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/" target="_self" class="nav-path-selected open"><span class="sidename">SCAP API</span><span class="bul01" onclick="javascript:clickMenu(&#39;http://webossignage.developer.lge.com/api/scap-api/&#39;, &#39;839&#39;);return false"></span></a><ul class="depth2" style="display:block;"><li id="menuLi_847" class="nav-path-selected open" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/" target="_self" class="nav-path-selected open"><span class="sidename">Using SCAP Library</span><span class="bul02" onclick="javascript:clickMenu(&#39;http://webossignage.developer.lge.com/api/scap-api/scap-library/&#39;, &#39;847&#39;);return false"></span></a><ul class="depth3" style="display:block;"><li id="menuLi_897" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/adding-scap-library/" target="_self" class=""><span class="sidename">Adding SCAP library</span></a></li><li id="menuLi_898" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/calling-scap/" target="_self" class=""><span class="sidename">Calling SCAP API</span></a></li><li id="menuLi_899" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/making-sequential-api-calls/" target="_self" class=""><span class="sidename">Making Sequential API Calls</span></a></li><li id="menuLi_900" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/getting-scap-api-return/" target="_self" class=""><span class="sidename">Getting SCAP API Return Value</span></a></li><li id="menuLi_920" class="nav-selected nav-path-selected select open" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/file-pathname/" target="_self" class="nav-selected nav-path-selected select open"><span class="sidename">Handling File Paths</span></a></li><li id="menuLi_901" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/read-write-file/" target="_self" class=""><span class="sidename">Reading &amp; Writing Files</span></a></li></ul></li><li id="menuLi_856" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/platform-compatibility/" target="_self" class=""><span class="sidename">Platform Compatibility</span></a></li><li id="menuLi_8553" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/" target="_self" class=""><span class="sidename">SCAP API v1.6</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/scap-api/latest/&#39;, &#39;8553&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_8554" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/configuration/" target="_self" class=""><span class="sidename">Configuration</span></a></li><li id="menuLi_8555" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/deviceinfo/" target="_self" class=""><span class="sidename">DeviceInfo</span></a></li><li id="menuLi_8556" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/inputsource/" target="_self" class=""><span class="sidename">InputSource</span></a></li><li id="menuLi_8557" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/power/" target="_self" class=""><span class="sidename">Power</span></a></li><li id="menuLi_8558" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/security/" target="_self" class=""><span class="sidename">Security</span></a></li><li id="menuLi_8559" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/signage/" target="_self" class=""><span class="sidename">Signage</span></a></li><li id="menuLi_8560" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/sound/" target="_self" class=""><span class="sidename">Sound</span></a></li><li id="menuLi_8561" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/storage/" target="_self" class=""><span class="sidename">Storage</span></a></li><li id="menuLi_8562" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/time/" target="_self" class=""><span class="sidename">Time</span></a></li><li id="menuLi_8563" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/utility/" target="_self" class=""><span class="sidename">Utility</span></a></li><li id="menuLi_8564" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/video/" target="_self" class=""><span class="sidename">Video</span></a></li><li id="menuLi_8565" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/errorcode/" target="_self" class=""><span class="sidename">Error Code</span></a></li></ul></li><li id="menuLi_5844" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/" target="_self" class=""><span class="sidename">SCAP API v1.5</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/scap-api/scap15/&#39;, &#39;5844&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_5857" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/configuration/" target="_self" class=""><span class="sidename">Configuration</span></a></li><li id="menuLi_5858" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/deviceinfo/" target="_self" class=""><span class="sidename">DeviceInfo</span></a></li><li id="menuLi_5847" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/inputsource/" target="_self" class=""><span class="sidename">InputSource</span></a></li><li id="menuLi_5848" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/power/" target="_self" class=""><span class="sidename">Power</span></a></li><li id="menuLi_5849" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/security/" target="_self" class=""><span class="sidename">Security</span></a></li><li id="menuLi_5850" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/signage/" target="_self" class=""><span class="sidename">Signage</span></a></li><li id="menuLi_5851" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/sound/" target="_self" class=""><span class="sidename">Sound</span></a></li><li id="menuLi_5852" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/storage/" target="_self" class=""><span class="sidename">Storage</span></a></li><li id="menuLi_5853" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/time/" target="_self" class=""><span class="sidename">Time</span></a></li><li id="menuLi_5854" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/utility/" target="_self" class=""><span class="sidename">Utility</span></a></li><li id="menuLi_5855" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/video/" target="_self" class=""><span class="sidename">Video</span></a></li><li id="menuLi_5856" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/errorcode/" target="_self" class=""><span class="sidename">Error Code</span></a></li></ul></li><li id="menuLi_857" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/" target="_self" class=""><span class="sidename">SCAP API v1.4</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/scap-api/scap14/&#39;, &#39;857&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_921" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/configuration/" target="_self" class=""><span class="sidename">Configuration</span></a></li><li id="menuLi_922" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/deviceinfo/" target="_self" class=""><span class="sidename">DeviceInfo</span></a></li><li id="menuLi_923" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/inputsource/" target="_self" class=""><span class="sidename">InputSource</span></a></li><li id="menuLi_924" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/power/" target="_self" class=""><span class="sidename">Power</span></a></li><li id="menuLi_4709" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/security/" target="_self" class=""><span class="sidename">Security</span></a></li><li id="menuLi_925" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/signage/" target="_self" class=""><span class="sidename">Signage</span></a></li><li id="menuLi_926" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/sound/" target="_self" class=""><span class="sidename">Sound</span></a></li><li id="menuLi_927" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/storage/" target="_self" class=""><span class="sidename">Storage</span></a></li><li id="menuLi_930" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/time/" target="_self" class=""><span class="sidename">Time</span></a></li><li id="menuLi_931" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/utility/" target="_self" class=""><span class="sidename">Utility</span></a></li><li id="menuLi_928" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/video/" target="_self" class=""><span class="sidename">Video</span></a></li><li id="menuLi_929" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/errorcode/" target="_self" class=""><span class="sidename">Error Code</span></a></li><li id="menuLi_3015" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/file-pathname/" target="_self" class=""><span class="sidename">File Paths</span></a></li></ul></li><li id="menuLi_850" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/" target="_self" class=""><span class="sidename">SCAP API v1.3</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/scap-api/scap13/&#39;, &#39;850&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_911" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/configuration/" target="_self" class=""><span class="sidename">Configuration</span></a></li><li id="menuLi_912" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/deviceinfo/" target="_self" class=""><span class="sidename">DeviceInfo</span></a></li><li id="menuLi_913" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/inputsource/" target="_self" class=""><span class="sidename">InputSource</span></a></li><li id="menuLi_914" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/power/" target="_self" class=""><span class="sidename">Power</span></a></li><li id="menuLi_915" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/signage/" target="_self" class=""><span class="sidename">Signage</span></a></li><li id="menuLi_916" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/sound/" target="_self" class=""><span class="sidename">Sound</span></a></li><li id="menuLi_917" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/storage/" target="_self" class=""><span class="sidename">Storage</span></a></li><li id="menuLi_918" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/video/" target="_self" class=""><span class="sidename">Video</span></a></li><li id="menuLi_919" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/errorcode/" target="_self" class=""><span class="sidename">Error Code</span></a></li><li id="menuLi_3032" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/file-pathname/" target="_self" class=""><span class="sidename">File Paths</span></a></li></ul></li><li id="menuLi_846" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap12/" target="_self" class=""><span class="sidename">SCAP API v1.2</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/scap-api/scap12/&#39;, &#39;846&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_888" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap12/configuration/" target="_self" class=""><span class="sidename">Configuration</span></a></li><li id="menuLi_889" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap12/deviceinfo/" target="_self" class=""><span class="sidename">DeviceInfo</span></a></li><li id="menuLi_890" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap12/inputsource/" target="_self" class=""><span class="sidename">InputSource</span></a></li><li id="menuLi_891" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap12/power/" target="_self" class=""><span class="sidename">Power</span></a></li><li id="menuLi_892" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap12/signage/" target="_self" class=""><span class="sidename">Signage</span></a></li><li id="menuLi_893" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap12/sound/" target="_self" class=""><span class="sidename">Sound</span></a></li><li id="menuLi_894" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap12/storage/" target="_self" class=""><span class="sidename">Storage</span></a></li><li id="menuLi_895" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap12/video/" target="_self" class=""><span class="sidename">Video</span></a></li></ul></li><li id="menuLi_845" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap11/" target="_self" class=""><span class="sidename">SCAP API v1.1</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/scap-api/scap11/&#39;, &#39;845&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_880" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap11/configuration/" target="_self" class=""><span class="sidename">Configuration</span></a></li><li id="menuLi_881" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap11/deviceinfo/" target="_self" class=""><span class="sidename">DeviceInfo</span></a></li><li id="menuLi_882" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap11/inputsource/" target="_self" class=""><span class="sidename">InputSource</span></a></li><li id="menuLi_883" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap11/power/" target="_self" class=""><span class="sidename">Power</span></a></li><li id="menuLi_884" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap11/signage/" target="_self" class=""><span class="sidename">Signage</span></a></li><li id="menuLi_885" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap11/sound/" target="_self" class=""><span class="sidename">Sound</span></a></li><li id="menuLi_886" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap11/storage/" target="_self" class=""><span class="sidename">Storage</span></a></li><li id="menuLi_887" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap11/video/" target="_self" class=""><span class="sidename">Video</span></a></li></ul></li><li id="menuLi_842" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap10/" target="_self" class=""><span class="sidename">SCAP API v1.0</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/scap-api/scap10/&#39;, &#39;842&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_861" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap10/configuration/" target="_self" class=""><span class="sidename">Configuration</span></a></li><li id="menuLi_873" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap10/deviceinfo/" target="_self" class=""><span class="sidename">DeviceInfo</span></a></li><li id="menuLi_874" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap10/inputsource/" target="_self" class=""><span class="sidename">InputSource</span></a></li><li id="menuLi_875" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap10/power/" target="_self" class=""><span class="sidename">Power</span></a></li><li id="menuLi_876" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap10/signage/" target="_self" class=""><span class="sidename">Signage</span></a></li><li id="menuLi_877" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap10/sound/" target="_self" class=""><span class="sidename">Sound</span></a></li><li id="menuLi_878" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap10/storage/" target="_self" class=""><span class="sidename">Storage</span></a></li><li id="menuLi_879" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/scap-api/scap10/video/" target="_self" class=""><span class="sidename">Video</span></a></li></ul></li></ul></li><li id="menuLi_6002" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/luna-service-api/" target="_self" class=""><span class="sidename">Luna Service API</span><span class="bul01" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/luna-service-api/&#39;, &#39;6002&#39;);return false"></span></a><ul class="depth2" style="display:none;"><li id="menuLi_6027" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/luna-service-api/essentials-of-api-service-call/" target="_self" class=""><span class="sidename">Essentials of an API Service Call</span></a></li><li id="menuLi_6453" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/luna-service-api/scap-js-service/" target="_self" class=""><span class="sidename">SCAP on JS Service</span></a></li><li id="menuLi_6011" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/luna-service-api/activity-manager/" target="_self" class=""><span class="sidename">Activity Manager</span></a></li><li id="menuLi_6005" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/luna-service-api/application-manager/" target="_self" class=""><span class="sidename">Application Manager</span></a></li><li id="menuLi_6004" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/luna-service-api/audio/" target="_self" class=""><span class="sidename">Audio</span></a></li><li id="menuLi_6006" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/luna-service-api/connection-manager/" target="_self" class=""><span class="sidename">Connection Manager</span></a></li><li id="menuLi_6010" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/luna-service-api/device-information/" target="_self" class=""><span class="sidename">Device Information</span></a></li><li id="menuLi_6007" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/luna-service-api/device-unique-id/" target="_self" class=""><span class="sidename">Device Unique ID</span></a></li><li id="menuLi_6009" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/luna-service-api/system-service/" target="_self" class=""><span class="sidename">System Service</span></a></li></ul></li><li id="menuLi_838" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/" target="_self" class=""><span class="sidename">Beacon API</span><span class="bul01" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/beacon-api/&#39;, &#39;838&#39;);return false"></span></a><ul class="depth2" style="display:none;"><li id="menuLi_848" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/android/" target="_self" class=""><span class="sidename">Beacon API for Android</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/beacon-api/android/&#39;, &#39;848&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_902" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/android/advertisingparser/" target="_self" class=""><span class="sidename">AdvertisingParser</span></a></li><li id="menuLi_903" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/android/beaconobject/" target="_self" class=""><span class="sidename">BeaconObject</span></a></li><li id="menuLi_904" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/android/beaconscanner/" target="_self" class=""><span class="sidename">BeaconScanner</span></a></li><li id="menuLi_905" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/android/beaconutils/" target="_self" class=""><span class="sidename">BeaconUtils</span></a></li><li id="menuLi_906" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/android/onscanresultdata/" target="_self" class=""><span class="sidename">OnScanResultData</span></a></li></ul></li><li id="menuLi_849" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/ios/" target="_self" class=""><span class="sidename">Beacon API for iOS</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/beacon-api/ios/&#39;, &#39;849&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_907" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/ios/lgbeacon/" target="_self" class=""><span class="sidename">LGBeacon</span></a></li><li id="menuLi_908" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/ios/lgbeacondata/" target="_self" class=""><span class="sidename">LGBeaconData</span></a></li><li id="menuLi_909" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/ios/lgbeaconparser/" target="_self" class=""><span class="sidename">LGBeaconParser</span></a></li><li id="menuLi_910" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/beacon-api/ios/lgbeacondelegate/" target="_self" class=""><span class="sidename">LGBeaconDelegate</span></a></li></ul></li></ul></li><li id="menuLi_841" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/" target="_self" class=""><span class="sidename">Harmony API</span><span class="bul01" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/harmony-api/&#39;, &#39;841&#39;);return false"></span></a><ul class="depth2" style="display:none;"><li id="menuLi_4218" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/using-harmony-library/" target="_self" class=""><span class="sidename">Using Harmony Library</span></a></li><li id="menuLi_10304" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/" target="_self" class=""><span class="sidename">Harmony API v1.4</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/&#39;, &#39;10304&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_10325" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/co2/" target="_self" class=""><span class="sidename">CO2</span></a></li><li id="menuLi_10305" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/gpio/" target="_self" class=""><span class="sidename">GPIO</span></a></li><li id="menuLi_10306" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/gps/" target="_self" class=""><span class="sidename">GPS</span></a></li><li id="menuLi_10317" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/humidity/" target="_self" class=""><span class="sidename">Humidity</span></a></li><li id="menuLi_10318" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/light/" target="_self" class=""><span class="sidename">Light</span></a></li><li id="menuLi_10319" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/nfc/" target="_self" class=""><span class="sidename">NFC</span></a></li><li id="menuLi_10320" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/rfid/" target="_self" class=""><span class="sidename">RFID</span></a></li><li id="menuLi_10321" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/temperature/" target="_self" class=""><span class="sidename">Temperature</span></a></li><li id="menuLi_10322" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/thermalprinter/" target="_self" class=""><span class="sidename">ThermalPrinter</span></a></li><li id="menuLi_10323" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/error-code/" target="_self" class=""><span class="sidename">Error Code</span></a></li></ul></li><li id="menuLi_9920" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/" target="_self" class=""><span class="sidename">Harmony API v1.3</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/&#39;, &#39;9920&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_9921" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/gpio/" target="_self" class=""><span class="sidename">GPIO</span></a></li><li id="menuLi_9922" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/gps/" target="_self" class=""><span class="sidename">GPS</span></a></li><li id="menuLi_9923" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/humidity/" target="_self" class=""><span class="sidename">Humidity</span></a></li><li id="menuLi_9924" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/light/" target="_self" class=""><span class="sidename">Light</span></a></li><li id="menuLi_9925" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/nfc/" target="_self" class=""><span class="sidename">NFC</span></a></li><li id="menuLi_9926" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/rfid/" target="_self" class=""><span class="sidename">RFID</span></a></li><li id="menuLi_9927" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/temperature/" target="_self" class=""><span class="sidename">Temperature</span></a></li><li id="menuLi_9928" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/thermalprinter/" target="_self" class=""><span class="sidename">ThermalPrinter</span></a></li><li id="menuLi_859" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/error-code/" target="_self" class=""><span class="sidename">Error Code</span></a></li></ul></li></ul></li><li id="menuLi_4683" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/custom-api/" target="_self" class=""><span class="sidename">CustomJS API</span><span class="bul01" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/custom-api/&#39;, &#39;4683&#39;);return false"></span></a><ul class="depth2" style="display:none;"><li id="menuLi_4721" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/custom-api/using-customjs-library/" target="_self" class=""><span class="sidename">Using CustomJS Library</span></a></li><li id="menuLi_8536" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/custom-api/latest/" target="_self" class=""><span class="sidename">CustomJS API v1.2</span><span class="bul02" onclick="javascript:clickMenu2(&#39;http://webossignage.developer.lge.com/api/custom-api/latest/&#39;, &#39;8536&#39;);return false"></span></a><ul class="depth3" style="display:none;"><li id="menuLi_8537" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/custom-api/latest/constants/" target="_self" class=""><span class="sidename">Constants of CustomJS</span></a></li><li id="menuLi_8538" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/custom-api/latest/configuration/" target="_self" class=""><span class="sidename">Configuration</span></a></li><li id="menuLi_8539" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/custom-api/latest/signage/" target="_self" class=""><span class="sidename">Signage</span></a></li><li id="menuLi_8540" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/custom-api/latest/videosync/" target="_self" class=""><span class="sidename">VideoSync</span></a></li><li id="menuLi_8541" class="" style="display:list-item"><a href="http://webossignage.developer.lge.com/api/custom-api/latest/error-code/" target="_self" class=""><span class="sidename">Error Code</span></a></li></ul></li></ul></li></ul>
+				</div>
+				<div class="sb-footer">
+					
+
+    
+	<!-- detailBox -->
+	<div class="detailBox" style="z-index:10;*z-index:-1;">
+		<!-- See Also -->
+		<div class="asideAlso">
+			<div class="title">See Also</div>
+				<div class="txtbox">
+					<div class="txtInner">
+						<ul>
+                             <li>
+                             	                             	  <a href="http://webossignage.developer.lge.com/develop/system-features/using-relative-path/" target="_self">Using Relative Paths</a>
+                                                           </li>
+						</ul>
+					</div>
+				</div>
+		</div>
+	</div>
+	<!-- //detailBox -->
+
+				</div>
+				<div class="sb-footer">
+					
+
+    <style type="text/css">
+div#feedback-cont, div#feedback-thank {clear: both; margin-top: 20px;
+    padding: 10px;
+    height: 132px;
+    max-width:280px;
+    overflow: hidden;
+    background: url(/images/speech_bubble.png) no-repeat;
+    -webkit-background-size: 100%;
+  	-moz-background-size: 100%;
+  	-o-background-size: 100%;
+  	background-size: 100%;
+
+    }
+
+div#feedback-cont .title{margin:15px 0px 5px 80px;
+    font-size: 14px;}
+
+div#feedback-thank .title{margin:25px 0px 5px 80px;
+    font-size: 14px;}
+    
+div#feedback-cont .feed_img, div#feedback-thank .feed_img{margin:10px; float:left;
+	overflow: hidden;
+	width: 55px;
+	height: 55px;
+    background: url(/images/quotation.png) no-repeat;}
+
+div#feedback-cont .feedback_buttons {
+    margin: 5px 0 0 15px;}
+ 
+#feedback-input-form .feedback_buttons {float: center;
+    margin: 10px 0 0 0px;}
+       
+.feedback_buttons button {margin: 0;
+    padding: 0;
+    width: 72px;
+    height: 25px;
+    line-height: 15px;
+    font-size: 0.9em;}
+    
+.feedback_buttons button{
+    margin-left: 10px;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -moz-transition-duration: 400ms;
+    -webkit-transition-duration: 400ms;
+    transition-duration: 400ms;
+    color: #fff;
+    border: 0;
+    vertical-align: middle;}
+
+#feedback-input-form, #feedback-input-thank{
+	position: fixed;
+    bottom: 100px;
+    right: 60px;
+    z-index: 500;
+    background-color: rgba(225,225,225,0.8);
+    font-size: 14px;
+    width: 400px;
+    height: 498px;
+    max-width: 100%;
+    padding: 20px;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+
+	
+}
+#feedback-input-textarea {
+	padding: 0 10px;
+}
+.form-item {
+	padding: 2px 0px;
+}
+#feedback-input-form textarea{
+	padding: 10px;
+	display: block;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin:10px 0;
+}
+
+#feedback-input-form input[type="checkbox"]{
+	margin:0px;
+}
+
+#feedback-input-form #item{
+	padding: 0 10px;
+}
+
+.title_img{
+	margin: 10px;
+	overflow: hidden;
+	height: 55px;
+    background: url(/images/quotation.png) no-repeat center;
+    width:100%;}
+    
+.thank_title_img{
+	margin: 10px;
+	overflow: hidden;
+	height: 55px;
+    background: url(/images/closing_quote.png) no-repeat center;
+    width:100%;}
+        
+div.close a {
+	float:right;
+	color:#4f585c !important;
+	width:100%;
+	height: 20px;
+	font-size: 13px;}
+
+
+.thank_title{
+	text-align:center;
+	margin:100px 20px 0 20px;
+	
+}
+.thank_desc{
+	text-align:center;
+	margin:10px 20px 0 20px;
+	
+}
+
+#feedback-input-form div, #feedback-input-thank div, .h4{
+	font-size:15px !important;
+}
+.h4{
+	font-weight: 700 !important;
+}
+
+
+/******* media query *******/
+@media all  and  (max-width:1200px) and (min-width:1024px) {
+	
+	div#feedback-cont .feed_img{
+		margin: 5px; 
+		float:left;
+		overflow: hidden;
+	    background: url(/images/quotation.png) no-repeat;
+	    background-size:80%;
+	}
+	
+	div#feedback-cont .title{
+		margin:0px 0px 5px 40px;
+    	font-size: 13px;}
+	
+	div#feedback-cont .feedback_buttons {float:right;margin: 5px 0 0 15px;}
+	
+	.feedback_buttons button {
+		
+		margin: 0px;
+	    padding: 0px;
+	    width: 45px;
+	    height: 18px;
+	    line-height: 13px;
+	    font-size: 0.8em;
+	}
+    
+}
+
+@media all  and  (max-width:480px) and (min-width:0px) {
+	
+	#feedback-input-form, #feedback-input-thank{
+    	right: 0px;
+    	bottom: 20px;
+    }
+    
+    #feedback-input-form div, #feedback-input-thank div, .h4{
+    	font-size:13px !important;
+    }
+}
+
+
+</style>
+<script>
+$(function () {
+	$('button[id=feedback-no]').on('click', function () {
+		$('#feedback-input-form').css('display','block');	
+		$('#feedback-cont').css('display','none');
+		
+    });
+    
+    $('a[id=hide]').on('click', function () {
+    	$('#feedback-input-form input[type=checkbox]').prop('checked',false);
+		$('#feedback-input-form textarea[name=message]').val('');
+		$('#feedback-input-form').css('display','none');
+		$('#feedback-input-thank').css('display','none');		
+		$('#feedback-cont').css('display','block');
+
+    });
+    
+    $('button[id=feedback-submit]').on('click', function (event) {
+    	
+    	event.preventDefault(); // Prevent the form from submitting via the browser
+
+    	if((!$('input#ck1').is(':checked')) && (!$('input#ck2').is(':checked')) && (!$('input#ck3').is(':checked')) && (!$('input#ck4').is(':checked')) && (!$('input#ck5').is(':checked')) && ($('textarea#message').val()=="")) {
+
+            alert('Select at least one checkbox.');
+            return false;
+        }
+
+	    $.ajax({
+	      type: "POST",
+	      url: "/index.php/tools/feedback_save?mode=input",
+	      data: $("#feedback-form").serialize()
+	    }).done(function(data) {
+	    
+	    	$('#feedback-input-form').css('display','none');	
+	    	$('#feedback-input-thank').css('display','block');	
+	      // Optionally alert the user of success here...
+	    }).fail(function(jqXHR, textStatus, errorMessage) {
+              console.log(errorMessage); // Optional
+	      // Optionally alert the user of an error here...
+	    });
+    
+  	
+	 });
+	 
+	 $('button[id=feedback-yes]').on('click', function (event) {
+    	
+    	event.preventDefault(); // Prevent the form from submitting via the browser
+
+	    $.ajax({
+	      type: "POST",
+	      url: "/index.php/tools/feedback_save?mode=yes",
+	      data: $("#feedback-form").serialize()
+	    }).done(function(data) {
+	    	
+	    	$('#feedback-thank').css('display','block');	
+			$('#feedback-cont').css('display','none');
+	      // Optionally alert the user of success here...
+	    }).fail(function(jqXHR, textStatus, errorMessage) {
+              console.log(errorMessage); // Optional
+	      // Optionally alert the user of an error here...
+	    });
+    
+  	
+	 });
+	
+});
+
+
+</script>
+
+<div id="feedback-form-wrapper">
+	<div id="feedback-cont" class="feedback" style="display: block ;">
+	  <div class="feed_img">
+      	
+      </div>
+      <div class="feedback">
+      	<p class="title">Was this page useful?</p>
+      </div>
+      <div class="feedback_buttons">
+        <button class="feedback-yes" id="feedback-yes">Yes</button>
+        <button class="feedback-no" id="feedback-no">No</button>
+      </div>
+    
+    </div>
+	
+	<div id="feedback-input-form" style="display: none;">
+		<form role="form" method="post" class="feedback-form" action="http://webossignage.developer.lge.com/api/scap-api/scap-library/file-pathname/" id="feedback-form" accept-charset="UTF-8" data-autosubmit="">
+		<input type="hidden" name="cID" id="cID" value="920">
+		<div class="close"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/file-pathname/#" id="hide">Hide</a></div>
+		<div class="title_img"></div>
+		<div class="feedback-item">
+	  	<div class="h4">Which of the following best describe this page? <br>
+	  		Select all that apply.</div>
+		 	<div id="item" class="form-checkbox">
+		 		<div class="form-item">
+			 		<input type="checkbox" id="ck1" name="ck1" value="1" class="form-checkbox">  
+			 		<span class="ui-check">Lacks necessary information</span>
+				</div>
+				<div class="form-item">
+				 <input type="checkbox" id="ck2" name="ck2" value="1" class="form-checkbox">  
+				 <span class="ui-check">Inaccurate or wrong information</span>
+				
+				</div>
+				<div class="form-item">
+				 <input type="checkbox" id="ck3" name="ck3" value="1" class="form-checkbox">  
+				 <span class="ui-check">Difficult to understand</span>
+				
+				</div>
+				<div class="form-item">
+				 <input type="checkbox" id="ck4" name="ck4" value="1" class="form-checkbox">  
+				 <span class="ui-check">Needs more/detailed examples</span>
+				
+				</div>
+				<div class="form-item">
+				 <input type="checkbox" id="ck5" name="ck5" value="1" class="form-checkbox">  
+				 <span class="ui-check">Other (Please specify below.)</span>
+				
+				</div>
+			</div>
+		</div>
+		<div class="h4">Leave us a comment about this page. </div>
+		<div class="form-item form-type-textarea">
+		 <div id="feedback-input-textarea"><textarea class="feedback-message form-textarea" placeholder="Enter text (optional)" id="message" name="message" cols="20" rows="5"></textarea>
+		 	<div class="grippie"></div>
+		 </div>
+		</div>
+		</form>
+		<div class="feedback_buttons" id="actions" style="text-align: center">
+			<button id="feedback-submit" class="feedback-submit">Submit</button>
+		</div>
+	
+	</div>
+	
+	<div id="feedback-thank" class="feedback" style="display: none ;">
+		
+	  	<div class="feed_img">
+      	
+     	</div>
+	    <div class="feedback">
+	      	<p class="title">Thank you for your answer!</p>
+	    </div>
+	    
+    </div>
+    
+    
+    <div id="feedback-input-thank" style="display: none;">
+		<div class="close"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/file-pathname/#" id="hide">Hide</a></div>
+		<div class="thank_title_img"></div>
+		<div class="thank_title">
+	  	<div class="h4">Thank you for your answer!</div>
+		 	
+ 		<div class="thank_desc">
+	 		Your feedback is highly appreciated and will help us improve our service.
+		</div>
+				
+			
+		</div>
+		
+		
+	</div>
+
+</div>
+
+
+
+				</div>
+            </div>
+        </div>
+    </div>
+
+    
+</main>
+
+
+<footer id="footer-theme">
+    <section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+										<div class="footmArea">
+                    	<div class="footm_left">
+                    		<span><a href="http://webossignage.developer.lge.com/common-page/glossary/A/">Glossary</a></span>
+                    		<span><a href="http://webossignage.developer.lge.com/common-page/faq">FAQ</a></span>
+                    		<span><a href="http://webossignage.developer.lge.com/common-page/contact-us">Contact Us</a></span>
+                    	</div>
+                    </div>
+               				</div>
+			</div>
+		</div>
+    </section>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+									</div>
+			</div>
+		</div>
+    </section>
+</footer>
+
+<footer id="concrete5-brand">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+				<div id="footermap">
+	
+					                 	<dl class="copyArea">
+                    	<dt><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/lg_logo.png" alt="LG logo"></dt>
+                    	<dd>
+                    	<p class="menu">
+                    	[&nbsp;<a href="https://developer.lge.com/footer/footer/RetrieveTermsInfo.dev?cntryCode=US&amp;termType=TOU_LGDEVELOPER" target="_blank" title="TERMS &amp; CONDITIONS ENGLISH">TERMS &amp; CONDITIONS</a> | 
+                    	<a href="https://developer.lge.com/footer/footer/RetrieveTermsInfo.dev?cntryCode=KR&amp;termType=TOU_LGDEVELOPER" target="_blank" title="TERMS &amp; CONDITIONS KOREA">이용약관</a>&nbsp;] 
+                    	[&nbsp;<a href="https://developer.lge.com/footer/footer/RetrieveTermsInfo.dev?cntryCode=US&amp;termType=PRV_LGDEVELOPER" target="_blank" title="PRIVACY ENGLISH">PRIVACY POLICY</a> | 
+                    	<a href="https://developer.lge.com/footer/footer/RetrieveTermsInfo.dev?cntryCode=KR&amp;termType=PRV_KR_LGDEVELOPER" style="font-weight: bold;" target="_blank" title="PRIVACY KOREA">개인정보처리방침</a>&nbsp;] 
+                    	[&nbsp;<a href="http://opensource.lge.com/index" target="_blank" title="OPEN SOURCE">OPEN SOURCE</a>&nbsp;]</p>
+                 
+                    
+                 
+                                     
+                    <p class="copyright" style="font-size:12px;">Copyright © 2019 LG Electronics. All Rights Reserved.</p>                    	
+                    	</dd>
+                    </dl>
+					
+					<div id="footer-note" class="languageMulti">
+						
+						<div class="footTop">
+																		</div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</div>
+
+<script type="text/javascript">$(function() { ccm_enableUserProfileMenu(); });</script>
+<script type="text/javascript" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/picturefill.js.download"></script>
+<script type="text/javascript" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/account.js.download"></script>
+<script type="text/javascript" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/dropdown.js.download"></script>
+<script type="text/javascript" src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/view.js.download"></script><div class="ccm-responsive-overlay"><div class="ccm-responsive-navigation"><ul class="topnav"><li class="parent-ul"><a href="javascript:void(0);" target="_self">DISCOVER</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1 parent-ul" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DISCOVER_web_OS_Signage.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/discover/webos-signage/discover-webos-signage/" target="_self" class="first">webOS Signage</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/discover/webos-signage/discover-webos-signage/" target="_self" class="second">Discover webOS Signage</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/discover/webos-signage/getting-started/" target="_self" class="second">Getting Started</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/discover/webos-signage/showcases/" target="_self" class="second">Showcases</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/discover/webos-signage/ui/" target="_self" class="second">User Interface</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DISCOVER_Specifications.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/discover/specification/" target="_self" class="first">Specifications</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/discover/specification/hardware-spec/" target="_self" class="second">Hardware Specification</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/discover/specification/platform-spec/" target="_self" class="second">Platform Specification</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/discover/specification/comparison-webos30-signage/" target="_self" class="second">Feature Comparison of webOS Signage</a></li></ul></li><li class="depth_only last-li"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DISCOVER_Watch_n_Learn.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/discover/watch-n-learn/" target="_self" class="second">Watch n Learn</a></li><li class="depth_only last-li" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DISCOVER_Our_Partners.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/discover/our-partners/" target="_self" class="second">Our Partners</a></li><li class="depth_only last-li"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DISCOVER_Download_WebOS_Logo.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/discover/download-webos-logo/" target="_self" class="second">Download webOS Logo</a></li></ul></li><li class="parent-ul"><a href="javascript:void(0);" target="_self">DEVICE</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1 parent-ul" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVICE_General_Settings.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/device/general-settings/auto-setting/" target="_self" class="first">General Settings</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/general-settings/auto-setting/" target="_self" class="second">Auto-Setting</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/general-settings/factory-reset/" target="_self" class="second">Factory Reset</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/general-settings/keyboard-language/" target="_self" class="second">Keyboard Language</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/general-settings/server-info/" target="_self" class="second">Server Info</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/general-settings/display-orientation/" target="_self" class="second">Display Orientation</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/general-settings/time/" target="_self" class="second">Time</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVICE_Add-on_Devices.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/device/add-on-devices/" target="_self" class="first">Add-on Devices</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/add-on-devices/pc-less-touch/" target="_self" class="second">PC-less Touch</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/add-on-devices/sensors/" target="_self" class="second">Sensors</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/add-on-devices/thermal-printer/" target="_self" class="second">Thermal Printer</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DIEVICE_Connectivity.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/device/connectivity/" target="_self" class="first">Connectivity</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/connectivity/beacon/" target="_self" class="second">Beacon</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/connectivity/dhcp-options/" target="_self" class="second">DHCP Options</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/connectivity/port-control/" target="_self" class="second">Port Control</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/connectivity/proxy-server/" target="_self" class="second">Proxy Server</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/connectivity/remotely-powering-and-device/" target="_self" class="second">Remotely Powering On and Off Device</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/device/connectivity/softap/" target="_self" class="second">SoftAP</a></li></ul></li><li class="depth_only last-li" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVICE_WebOS_Box.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/device/webos-box/" target="_self" class="second">webOS Box</a></li></ul></li><li class="parent-ul"><a href="javascript:void(0);" target="_self">DEVELOP</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1 parent-ul" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_ApplicationDevelopment.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/development-process/" target="_self" class="first">Web App</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/development-process/tutorial/" target="_self" class="second">Beginner Tutorial</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/development-process/steps-developing-appps/" target="_self" class="second">Steps for Developing Apps</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/development-process/requirements/" target="_self" class="second">Preparing What You Need</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/development-process/app-packaging/" target="_self" class="second">Packaging Your App</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/development-process/app-deploying/" target="_self" class="second">Deploying Your App</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/development-process/debugging-your-app/" target="_self" class="second">Debugging Your App</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/development-process/app-metadata/" target="_self" class="second">Web App Metadata</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_JS_Service.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/js-service/" target="_self" class="first">JS Service</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/js-service/js-service-basics/" target="_self" class="second">JS Service Basics</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/js-service/js-service-dev-steps/" target="_self" class="second">Steps for Developing JS Services</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/js-service/creating-js-service/" target="_self" class="second">Creating JS Service Project</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/js-service/developing-js-service/" target="_self" class="second">Developing JS Services</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/js-service/calling-js-service/" target="_self" class="second">Using JS Services</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/js-service/deploying-js-services/" target="_self" class="second">Deploying JS Services</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/js-service/debugging-js-services/" target="_self" class="second">Debugging JS Services</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/js-service/service-metadata/" target="_self" class="second">JS Service Metadata</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/js-service/webos-service-api-reference/" target="_self" class="second">webos-service API Reference</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_Media_Playback.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/media-playback/" target="_self" class="first">Media Playback</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/media-playback/gapless-video-playback/" target="_self" class="second">Gapless Playback: Filename Conversion</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/media-playback/gap-less-video-playback-mp4/" target="_self" class="second">Gapless Playback: Playlist</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/media-playback/two-video-tags/" target="_self" class="second">Two Video Tags</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/media-playback/four-video-tags/" target="_self" class="second">Four Video Tags</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/media-playback/video-texture-graphics/" target="_self" class="second">Video Texture for Graphics</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/media-playback/multicast-streaming/" target="_self" class="second">Multicast Streaming</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/media-playback/multi-screen-synchronization/" target="_self" class="second">Multi-Screen Synchronization</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/media-playback/video-loop/" target="_self" class="second">Looping Video</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/media-playback/playing-sound/" target="_self" class="second">Playing a Sound</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/media-playback/resolution-ultra-stretch-model/" target="_self" class="second">Resolution for Ultra Stretch Model</a></li></ul></li><li class="depth1 parent-ul" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_System_Features.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/system-features/" target="_self" class="first">System Features</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/system-features/using-relative-path/" target="_self" class="second">Accessing Storage with Relative Path</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/system-features/allowing-cross-domain/" target="_self" class="second">Allowing Cross Domain</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/system-features/automatic-reloading-application/" target="_self" class="second">Automatic Reloading Application</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/system-features/change-hostname/" target="_self" class="second">Changing Hostname</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/system-features/dev-mode/" target="_self" class="second">Developer Mode</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/system-features/expand-size-indexeddb/" target="_self" class="second">Expanding Size of IndexedDB</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/system-features/improving-css-performance/" target="_self" class="second">Improving CSS Performance</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/system-features/register-self-signed-certificate/" target="_self" class="second">Registering SSC through UI</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/system-features/shared-path-app-and-js-service/" target="_self" class="second">Shared Path for App and JS Service</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_User_Input.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/user-input/" target="_self" class="first">User Input</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/user-input/custom-rcu-key/" target="_self" class="second">Customizable RCU Key</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/user-input/key-event-handling/" target="_self" class="second">Handling Key Events</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/user-input/virtual-keyboard/" target="_self" class="second">Using Virtual Keyboard</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/DEVELOP_Sample_and_Temliate.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/develop/sample/" target="_self" class="first">Sample &amp; Template</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/sample/remote-control-sample/" target="_self" class="second">Remote Control Sample</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/sample/scap-sample/" target="_self" class="second">SCAP Sample  App</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/sample/test-app/" target="_self" class="second">UDP Streaming Test App</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/sample/code-samples/" target="_self" class="second">JS Service Sample</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/sample/webrtc/" target="_self" class="second">WebRTC Sample</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/sample/fashion-jewelry/" target="_self" class="second">Fashion/Jewelry</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/sample/fids/" target="_self" class="second">Flight Information Display System</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/sample/qsr-retail/" target="_self" class="second">QSR/Retail</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/sample/public-place-education/" target="_self" class="second">Public Place/Education</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/develop/sample/modular-app-template/" target="_self" class="second">Modular App Template</a></li></ul></li></ul></li><li class="active parent-ul"><a href="javascript:void(0);" target="_self">API</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1 parent-ul" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_StandardWebAPIs.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/" target="_self" class="first">Standard Web APIs</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/html5-standard/" target="_self" class="second">HTML5</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/css3-standard/" target="_self" class="second">CSS3</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/supported-standard-web-apis/mediaoption-parameter/" target="_self" class="second">mediaOption Parameter</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_SCAP_API.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/scap-api/" target="_self" class="first">SCAP API</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/scap-api/scap-library/" target="_self" class="second">Using SCAP Library</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/scap-api/platform-compatibility/" target="_self" class="second">Platform Compatibility</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/scap-api/latest/" target="_self" class="second">SCAP API v1.6</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/scap-api/scap15/" target="_self" class="second">SCAP API v1.5</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/scap-api/scap14/" target="_self" class="second">SCAP API v1.4</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/scap-api/scap13/" target="_self" class="second">SCAP API v1.3</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/scap-api/scap12/" target="_self" class="second">SCAP API v1.2</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/scap-api/scap11/" target="_self" class="second">SCAP API v1.1</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/scap-api/scap10/" target="_self" class="second">SCAP API v1.0</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_Luna_Service_API.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/luna-service-api/" target="_self" class="first">Luna Service API</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/luna-service-api/essentials-of-api-service-call/" target="_self" class="second">Essentials of an API Service Call</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/luna-service-api/scap-js-service/" target="_self" class="second">SCAP on JS Service</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/luna-service-api/activity-manager/" target="_self" class="second">Activity Manager</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/luna-service-api/application-manager/" target="_self" class="second">Application Manager</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/luna-service-api/audio/" target="_self" class="second">Audio</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/luna-service-api/connection-manager/" target="_self" class="second">Connection Manager</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/luna-service-api/device-information/" target="_self" class="second">Device Information</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/luna-service-api/device-unique-id/" target="_self" class="second">Device Unique ID</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/luna-service-api/system-service/" target="_self" class="second">System Service</a></li></ul></li><li class="depth1 parent-ul" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_Beacom_API.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/beacon-api/" target="_self" class="first">Beacon API</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/beacon-api/android/" target="_self" class="second">Beacon API for Android</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/beacon-api/ios/" target="_self" class="second">Beacon API for iOS</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_Harmony_API.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/harmony-api/" target="_self" class="first">Harmony API</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/harmony-api/using-harmony-library/" target="_self" class="second">Using Harmony Library</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-4-0/" target="_self" class="second">Harmony API v1.4</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/harmony-api/v1-3-0/" target="_self" class="second">Harmony API v1.3</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/API_CustomJS_API.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/api/custom-api/" target="_self" class="first">CustomJS API</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/custom-api/using-customjs-library/" target="_self" class="second">Using CustomJS Library</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/api/custom-api/latest/" target="_self" class="second">CustomJS API v1.2</a></li></ul></li></ul></li><li class="parent-ul"><a href="javascript:void(0);" target="_self">SDK</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth_only last-li" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/SDK_Installation.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/sdk/installation/" target="_self" class="second">Installation</a></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/SDK_Tools.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/sdk/tools/" target="_self" class="first">Tools</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/sdk/tools/emulator/" target="_self" class="second">Emulator</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/sdk/tools/cli/" target="_self" class="second">Command Line Interface</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/sdk/tools/ide/" target="_self" class="second">IDE</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/sdk/tools/sublime-text/" target="_self" class="second">Sublime Text Plugin</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/sdk/tools/beanviser/" target="_self" class="second">Beanviser</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/sdk/tools/beanpare/" target="_self" class="second">Beanpare (Beta)</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/sdk/tools/beanstaller/" target="_self" class="second">Beanstaller (Beta)</a></li></ul></li><li class="depth_only last-li"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/SDK_Release_Notes.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/sdk/sdk-release-notes/" target="_self" class="second">Release Notes</a></li><li class="depth_only last-li" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/SDK_Privacy_Policy_forApp.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/sdk/privacy-policy-app/" target="_self" class="second">Privacy Policy for App</a></li></ul></li><li class="parent-ul"><a href="javascript:void(0);" target="_self">FIRMWARE</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1 parent-ul" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/FIRMAWARE_Updating_Firmware.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/firmware/updating-firmware/" target="_self" class="first">Updating Firmware</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/firmware/updating-firmware/checking-firmware-version/" target="_self" class="second">Checking Firmware Version</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/firmware/updating-firmware/manually-launching-sw-update-menu/" target="_self" class="second">Manually Launching SW Update Menu</a></li></ul></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/FIRMAWARE_Updating_Firmware.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/" target="_self" class="first">Downloading Firmware</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/webos-signage-40-models/" target="_self" class="second">webOS Signage 4.0 Models</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/webos-signage-32-models/" target="_self" class="second">webOS Signage 3.2 (3.0+) Models</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/webos-signage-30-models/" target="_self" class="second">webOS Signage 3.0 Models</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/webos-signage-20-models/" target="_self" class="second">webOS Signage 2.0 Models</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/firmware/downloading-firmware/webos-signage-10-models/" target="_self" class="second">webOS Signage 1.0 Models</a></li></ul></li></ul></li><li class="parent-ul"><a href="javascript:void(0);" target="_self">COMMUNITY</a><ul style="display: none;padding: 15px 0px;" class="dropdown-menu"><li class="depth1 parent-ul" style="clear:both;"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/COMMUNITY_News.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/community/news/" target="_self" class="first">News</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/community/news/news/" target="_self" class="second">News</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/community/news/updated-articles/" target="_self" class="second">Updated Articles</a></li></ul></li><li class="depth_only last-li"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/COMMUNITY_FAQ.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/common-page/faq" target="_self" class="second">FAQ</a></li><li class="depth1 parent-ul"><span class="nav_thumbnail"><picture><!--[if IE 9]><video style='display: none;'><![endif]--><!--[if IE 9]></video><![endif]--><img src="./___ LG _ webOS Signage Developer __ Handling File Paths_files/COMMUNITY_Forum.png" alt="#" class="img-responsive"></picture></span><a href="http://webossignage.developer.lge.com/community/forum/" target="_self" class="first">Forums</a><ul style="display: none;"><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/community/forum/partner-forum/" target="_self" class="second">Partner Forum</a></li><li class="depth2 last-li"><a href="http://webossignage.developer.lge.com/community/forum/open-forum/" target="_self" class="second">Open Forum (βετα)</a></li></ul></li></ul></li></ul></div></div>
+
+
+
+<div class="ccm-ui" id="ccm-account-menu-container"></div></body></html>

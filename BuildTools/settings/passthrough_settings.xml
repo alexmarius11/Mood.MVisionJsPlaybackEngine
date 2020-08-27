@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE PASS_THROUGH_SETTINGS [
+  <!ELEMENT PASS_THROUGH_SETTINGS (SOURCE)>
+  <!ELEMENT SOURCE (INDEX)>
+  <!ELEMENT INDEX (#PCDATA)>
+]>
+
+<PASS_THROUGH_SETTINGS>
+	<SOURCE>
+		<INDEX>0</INDEX>     		<!--   0=YPBPR (F1 key)   	1=SVIDEO (F2 key)     	2=COMPOSITE  (F3 key)  3=HDMI(Elgato + HDPVR2)-->		
+	</SOURCE>    
+</PASS_THROUGH_SETTINGS>

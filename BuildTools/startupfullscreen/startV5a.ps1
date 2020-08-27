@@ -1,0 +1,1 @@
+.\StartUWPAppFullScreen -app "C:\Users\gabi\AppData\Local\Vivaldi\Application\vivaldi.exe" -value 'http://127.0.0.1:9080/c/W/132/Mood.MVisionJsPlaybackEngine/BuildTools/startupfullscreen/start5.html'

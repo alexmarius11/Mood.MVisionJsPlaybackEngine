@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE VOD_SETTINGS [
+     <!ELEMENT VOD_SETTINGS (COLORS, DISPLAY, MEDIA_INCLUDE, BKG_IMAGE, TIMING)>
+     <!ELEMENT COLORS (TEXT,BORDER,TIME,PROGRESSBAR)>
+     <!ELEMENT TEXT (#PCDATA)>
+     <!ELEMENT BORDER (#PCDATA)>
+     <!ELEMENT TIME (#PCDATA)>
+     <!ELEMENT PROGRESSBAR (#PCDATA)>
+     <!ELEMENT DISPLAY (LOOP_PLAYBACK,TIME_DISPLAY_MODE,IS_PORTRAIT,VIDEO_ANGLE_ROTAT,VIDEO_STRETCH)>
+     <!ELEMENT LOOP_PLAYBACK (#PCDATA)>
+     <!ELEMENT TIME_DISPLAY_MODE (#PCDATA)>
+     <!ELEMENT IS_PORTRAIT (#PCDATA)>
+     <!ELEMENT VIDEO_ANGLE_ROTAT (#PCDATA)>
+     <!ELEMENT VIDEO_STRETCH (#PCDATA)>
+     <!ELEMENT MEDIA_INCLUDE (PAST,CURRENT,FUTURE,VIDEO,IMAGES)>
+     <!ELEMENT PAST (#PCDATA)>
+     <!ELEMENT CURRENT (#PCDATA)>
+     <!ELEMENT FUTURE (#PCDATA)>
+     <!ELEMENT VIDEO (#PCDATA)>
+     <!ELEMENT IMAGES (#PCDATA)>
+     <!ELEMENT BKG_IMAGE (PATH_BKGIMG)>
+     <!ELEMENT PATH_BKGIMG (#PCDATA)>
+     <!ELEMENT TIMING (DELAY_AFTER_COMPLETE_SEC,INACTIVE_TIMEOUT)>
+     <!ELEMENT DELAY_AFTER_COMPLETE_SEC (#PCDATA)>
+     <!ELEMENT INACTIVE_TIMEOUT (#PCDATA)>
+]>
+<VOD_SETTINGS>
+  <COLORS>
+    <TEXT>#FFFF0000</TEXT> <!-- Selected media text color (color name/color code #RRGGBBAA) - Default = #FF0000 -->
+    <BORDER>Red</BORDER> <!-- Selected media border color (color name/color code) - Default = Red -->
+    <TIME>White</TIME> <!-- Clock color (color name/color code) - Default = White -->
+    <PROGRESSBAR />
+  </COLORS>
+  <DISPLAY>
+    <LOOP_PLAYBACK>false</LOOP_PLAYBACK> <!-- Video media looping(True/False) - Default = False -->
+    <TIME_DISPLAY_MODE>12</TIME_DISPLAY_MODE> <!-- Clock format (0/12/24) - Default = 12 -->
+    <IS_PORTRAIT>false</IS_PORTRAIT> <!-- Portrait mode activated(True/False) - Default = False -->
+    <VIDEO_ANGLE_ROTAT>0</VIDEO_ANGLE_ROTAT> <!-- Video angle rotation (0/90/180/270)- Default = 0 -->
+    <VIDEO_STRETCH>Fill</VIDEO_STRETCH> <!-- Video display property (Fill/)- Default = Fill -->
+  </DISPLAY>
+  <MEDIA_INCLUDE>
+    <PAST>false</PAST> <!-- Past media in the playlist displayed (True/False) - Default = False -->
+    <CURRENT>false</CURRENT> <!-- Current media in the playlist displayed(True/False) - Default = True -->
+    <FUTURE>true</FUTURE> <!-- Future media in the playlist displayed(True/False) - Default = True -->
+    <VIDEO>true</VIDEO> <!-- Video media displayed (True/False) - Default = True -->
+    <IMAGES>true</IMAGES> <!-- Image media displayed (True/False) - Default = True -->
+  </MEDIA_INCLUDE>
+  <BKG_IMAGE>
+    <PATH_BKGIMG></PATH_BKGIMG> <!-- Background image path (absolute path) - Default = none -->
+  </BKG_IMAGE>
+  <TIMING>
+    <DELAY_AFTER_COMPLETE_SEC>1</DELAY_AFTER_COMPLETE_SEC> <!-- Delay before going back to the menu at the end of a video (nb of seconds) - Default = 1 -->
+    <INACTIVE_TIMEOUT>0</INACTIVE_TIMEOUT> <!-- Delay before launching playback when no action in VOD (nb of seconds) - Default = 0 -->
+  </TIMING>
+</VOD_SETTINGS>

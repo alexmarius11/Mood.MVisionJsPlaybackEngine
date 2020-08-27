@@ -1,0 +1,9 @@
+﻿<messages>
+	<buffer_message trans_id="0000">
+		<file>D:\moodmedia\software_v5\settings\splash_black.jpg</file>
+		<last_media_in_zone>False</last_media_in_zone>
+		<type>form_image</type>
+		<duration>10000</duration>
+		<position>Stretch</position>
+	</buffer_message>
+</messages>

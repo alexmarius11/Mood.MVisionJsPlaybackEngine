@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AudioAdvertSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LowPriorityAudioApplication>VBoxHeadless.exe</LowPriorityAudioApplication>
+  <HighPriorityAudioApplication>TeamCoV5.Player.Winform.exe</HighPriorityAudioApplication>
+  <AudioSwitchTimeoutInMs>500</AudioSwitchTimeoutInMs>
+  <AudioDegradedDetectionGanularityTimeoutInMs>10000</AudioDegradedDetectionGanularityTimeoutInMs>
+  <AudioDetectionGanularityInMs>20</AudioDetectionGanularityInMs>
+  <AudioPeakDetectionThresholdInPercentage>5</AudioPeakDetectionThresholdInPercentage>
+</AudioAdvertSetting>

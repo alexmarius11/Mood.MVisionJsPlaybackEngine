@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<pcm_settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <language>en</language>
+  <valid_hours day="0">
+    <from>00:00:00</from>
+    <to>23:59:59</to>
+  </valid_hours>
+  <valid_hours day="1">
+    <from>00:00:00</from>
+    <to>23:59:59</to>
+  </valid_hours>
+  <valid_hours day="2">
+    <from>00:00:00</from>
+    <to>23:59:59</to>
+  </valid_hours>
+  <valid_hours day="3">
+    <from>00:00:00</from>
+    <to>23:59:59</to>
+  </valid_hours>
+  <valid_hours day="4">
+    <from>00:00:00</from>
+    <to>23:59:59</to>
+  </valid_hours>
+  <valid_hours day="5">
+    <from>00:00:00</from>
+    <to>23:59:59</to>
+  </valid_hours>
+  <valid_hours day="6">
+    <from>00:00:00</from>
+    <to>23:59:59</to>
+  </valid_hours>
+  <timer>
+    <initial_max_random_delay>30</initial_max_random_delay>
+    <check_period>600</check_period>
+  </timer>
+  <urls>
+    <get_commands>getpendingcommands.asp</get_commands>
+    <post_status_feedback>postcommandstatus.asp</post_status_feedback>
+  </urls>
+</pcm_settings>

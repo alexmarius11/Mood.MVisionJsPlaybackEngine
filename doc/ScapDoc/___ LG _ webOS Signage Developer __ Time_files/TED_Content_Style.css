@@ -1,0 +1,106 @@
+@charset "utf-8";
+
+.head_location {
+    padding-top: 1.6rem !important;
+    padding-bottom: 1.6rem !important;
+}
+div.DIV_contentarea h1.page-title {
+    padding-top: 1.6rem !important;
+    padding-bottom: 1.6rem !important;
+}
+.detailBox .detail {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    line-height: 120% !important;
+    font-size: 1.3rem !important;
+    color: #9ea8ad !important;
+}
+div.DIV_contentarea h2 {
+    font-size: 2.4rem !important;
+    font-weight: 700 !important;
+    line-height: 140% !important;
+    text-transform: none !important;
+}
+.TED_H2 {
+    padding-top: 3.5rem !important;
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    border-bottom: 0.1rem solid #bbb !important;
+}
+div.DIV_contentarea h3 {
+    font-size: 2.2rem !important;
+    font-weight: 700 !important;
+    line-height: 120% !important;
+    text-transform: none !important;
+}
+.TED_H3 {
+    padding-top: 2.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+div.DIV_contentarea h4 {
+    font-size: 2.0rem !important;
+    font-weight: 700 !important;
+    line-height: 110% !important;
+    text-transform: none !important;
+}
+.TED_H4 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 0.2rem !important;
+    color: #555 !important;
+}
+div.DIV_contentarea h5 {
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    line-height: 110% !important;
+    text-transform: none !important;
+}
+.TED_H5 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 0rem !important;
+    text-transform: none !important;
+    color: #666 !important;
+}
+.DIV_contentarea p {
+    word-break: normal !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    font-size: 1.6rem;
+}
+div.DIV_contentarea img {
+    margin-top: 0rem !important;
+    margin-bottom: 1.6rem !important;
+}
+
+.DIV_contentarea p img {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+}
+
+.syntaxhighlighter {
+    margin-top: 0rem !important;
+    margin-bottom: 1.6rem !important;
+}
+.TED_bg_grey_code {
+    margin: 0rem 0 1.6rem 0 !important;
+    padding: 0 1rem 0 1rem !important;
+    font-size: 1.6rem !important;
+    font-family: "Consolas", "Inconsolata", "Deja Vu Sans Mono","Droid Sans Mono","Monofur",'Courier New';
+    background: #ebebeb;
+}
+.DIV_contentarea ol, .DIV_contentarea ul, DIV_contentarea ul {
+    margin: 0rem 0rem 2rem 0rem !important;
+    padding: 0rem 0rem 0rem 1.6rem !important;
+}
+.DIV_contentarea ul ul,.DIV_contentarea ul ol, .DIV_contentarea ol ul, .DIV_contentarea ol ol {
+    margin: 0rem 0rem 0.5rem 0rem !important;
+    padding: 0rem 0rem 0rem 1.6rem !important;
+}
+
+
+
+.notesList dt {
+    padding: 17px 10px 10px 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+

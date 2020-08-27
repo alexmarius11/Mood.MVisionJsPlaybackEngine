@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<KeyListenerSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ElementsToExecute>
+    <KeylistenerElement>
+      <Name>Playlist Updater</Name>
+      <Description>Triggers playlist updater with content and feeds option</Description>
+      <TriggerKeys>
+        <Keys>LControlKey</Keys>
+		<Keys>LMenu</Keys>
+        <Keys>P</Keys>
+      </TriggerKeys>
+      <AssociatedApplication>D:\moodmedia\software_v5\bin\playlistUpdater\playlist_updater.exe</AssociatedApplication>
+      <AssociatedArguments>-c -f</AssociatedArguments>
+    </KeylistenerElement>
+  </ElementsToExecute>
+</KeyListenerSettings>

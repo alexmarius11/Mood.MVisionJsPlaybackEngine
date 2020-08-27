@@ -1,0 +1,982 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- <meta name="viewport" content="width=device-width, height=device-height"> -->
+  <title>Playback Player</title>
+
+<style>
+
+
+  *{
+        margin: 0px;
+        padding: 0px;
+    }
+
+h1 {
+        margin-top: 0px;
+    }
+
+
+
+</style>
+
+  
+  <style>
+      
+      #example1, #example2 {
+          height: 500px;
+          width: 400px;        
+      }  
+      
+      #example1 {
+        background: yellow;
+      }
+      
+      #example2 {
+        background: blue;
+      }
+      
+     *{
+        margin: 0px;
+        padding:0px;
+      }
+      #background_01 {
+          width:100%;
+          height:100%;
+          background: white;
+          position:absolute;
+          display: none;
+      }
+  
+      #zone_01 {
+          left:0px;
+          top:0px;
+          width:1200px;
+          height:800px;
+          background:#3F9;
+          position:absolute;
+          opacity: 1.0;
+          z-index: 100;  
+      }
+  
+      #zone_02 {
+          left:800px;
+          top:400px;
+          width:1200px;
+          height:800px;
+          background:#F66;
+          position:absolute;
+          z-index: 99;
+          
+      }
+  
+      #zone_03 {
+          left:1150px;
+          top:0px;
+          width:800px;
+          height:600px;
+          position:absolute;
+          opacity: 1.0;
+          z-index: 101;
+      }
+  
+      #zone_04 {
+          left:0px;
+          top:500px;
+          width:800px;
+          height:600px;
+          
+          position:absolute;
+          opacity: 0.6;
+          z-index: 102;
+      }
+  
+  body {
+      
+      margin: 0px; 
+      padding: 0px;
+  }
+  </style>
+  
+  
+  <script>
+  var myVar1;
+  //background:#FF6;
+  //overflow:scroll
+  //margin:0 auto;
+  //overflow: hidden;
+
+  function displayNextChild(nodeId) 
+  {
+    
+    var node = document.getElementById(nodeId);
+    var children = node.getElementsByTagName("img"); //node.childNodes;
+    for (var i = 0; i < children.length; i++) 
+    {
+      
+      if (children[i].style.visibility == "visible")
+      {
+        //alert(children[i]);   
+        if (i == children.length - 1 )
+          children[0].style.visibility = "visible";
+        else
+          children[i+1].style.visibility = "visible";
+        children[i].style.visibility = "hidden";
+        break;
+      }
+    }
+  }
+  
+  function displayNextVideoChild(nodeId) 
+  {
+    
+    var node = document.getElementById(nodeId);
+    var children = node.getElementsByTagName("video"); //node.childNodes;
+    for (var i = 0; i < children.length; i++) 
+    {
+      
+      if (children[i].style.visibility == "visible")
+      {
+        //alert(children[i]);
+        if (i == children.length - 1 ){
+          children[i].pause();
+  
+          children[0].play();
+          children[0].style.visibility = "visible";
+        }else{
+          children[i].pause();
+  
+          children[i+1].play();
+          children[i+1].style.visibility = "visible";
+        }
+        children[i].style.visibility = "hidden";
+        break;
+      }
+    }
+  }
+  
+  var timers = [0,0,0,0];
+  
+  function start(idx, nodeId, duration) 
+  {
+    timers[idx] = setInterval(displayNextChild, duration, nodeId);
+  }
+  
+         function myHandler_for_video_in_zone04(e) 
+         {
+          //if(!e) { e = window.event; }
+          //alert("Video Finished in zone 04");
+          displayNextVideoChild("zone_04"); 
+         }
+  
+  function stopAll() 
+  {
+    for (var i = 0 ; i < timers.length ; i++)
+    {
+       if (timers[i] != 0)
+       {
+         clearInterval(timers[i]) ;
+         timers[i] = 0;
+       }
+  
+    }
+    document.getElementById('btnStop').innerHTML="Start Playback";
+    document.getElementById('background_01').style.display="none";
+    document.getElementById('bodyid').style.overflow="auto";
+    document.getElementById('divstopid').style.position="absolute";
+         
+  }
+  
+  function startAll() 
+  {
+    start(0, 'zone_01', 5000); 
+    start(1, 'zone_02', 7000);
+    start(2, 'zone_03', 12000);
+    start(3, 'zone_04', 17000);
+    document.getElementById('btnStop').innerHTML="Stop Playback";
+    document.getElementById('background_01').style.display="block";
+    document.getElementById('bodyid').style.overflow="hidden";
+    document.getElementById('divstopid').style.position="absolute";
+  }
+  
+  function restart() 
+  {
+    if (document.getElementById('btnStop').innerHTML == "Start Playback")  
+      startAll();
+    else
+      stopAll();
+  }
+
+
+  </script>
+  
+ 
+  <script>
+
+    function onChangeUsefullStorage()
+    {
+      var crtUsefullStorage = document.getElementById("idUrlStorage").value;
+      document.getElementById("renderers.file_urlstorage").value = crtUsefullStorage;
+    }
+    
+    function onChangeUsefullPath()
+    {
+      var crtUsefullPath = document.getElementById("idUrlPath").value;
+      document.getElementById("renderers.file_urlpath").value = crtUsefullPath;
+    }
+    
+    function onChangeUsefullFile()
+    {
+      var crtUsefullFile = document.getElementById("idUrlFile").value;
+      document.getElementById("renderers.file_urlname").value = crtUsefullFile;
+    }
+    
+    function onChangeUsefullPath()
+    {
+      var crtUsefullStorage = document.getElementById("idUrlPath").value;
+      document.getElementById("renderers.file_urlpath").value = crtUsefullStorage;
+    }
+    
+    function waitForImageToLoad(imageElement){
+      //return new Promise(resolve=>{imageElement.onload = resolve})
+    }
+    
+    function waitForFrameToLoad(frameElement){
+      //return new Promise(resolve=>{frameElement.onload = resolve})
+    }
+    
+    function waitForVideoToLoad(videoElement){
+      //return new Promise(resolve=>{videoElement.oncanplay = resolve})
+    }
+    
+    var prevMediaType = 0;
+    var crtMediaType = 0;
+    
+    
+    function stopPrevMediaType()
+    {
+      //alert(prevMediaType);
+      if (prevMediaType == 0)
+        return; 
+      if (prevMediaType==1) //Image
+      {
+        //alert("stop image");
+        var myImage = document.getElementById("idImg");
+        myImage.src = "";
+        myImage.style.display = "none";
+      } 
+      if (prevMediaType==2) //Video
+      {
+        //alert("stop video");
+        var myVideo = document.getElementById("idVideo");
+        //myVideo.stop(); //dont do stop
+        myVideo.src="";
+        myVideo.style.display = "none";
+      } 
+      if (prevMediaType==3) //Html
+      {
+        //alert("stop html");
+        var myHtml = document.getElementById("idHtml");
+        //myHtml.src=""; //dont do src=""
+        myHtml.style.display = "none";
+      } 
+    }
+    
+    function stopCrtMediaType()
+    {
+      //alert(prevMediaType);
+      if (crtMediaType == 0)
+        return; 
+      if (crtMediaType==1) //Image
+      {
+        //alert("stop image");
+        var myImage = document.getElementById("idImg");
+        myImage.src = "";
+        myImage.style.display = "none";
+      } 
+      if (crtMediaType==2) //Video
+      {
+        //alert("stop video");
+        var myVideo = document.getElementById("idVideo");
+        //myVideo.stop(); //dont do stop
+        myVideo.src="";
+        myVideo.style.display = "none";
+      } 
+      if (crtMediaType==3) //Html
+      {
+        //alert("stop html");
+        var myHtml = document.getElementById("idHtml");
+        //myHtml.src=""; //dont do src=""
+        myHtml.style.display = "none";
+      } 
+      crtMediaType = 0;
+      prevMediaType = 0;
+    }
+
+    function loadMediaFile()
+    { 
+      //alert("loadMediaFile");
+      prevMediaType = crtMediaType;
+      stopPrevMediaType();
+    
+      crtMediaType = document.getElementById("idMediaType").value;
+      var mediaFileUrlStorage  = document.getElementById("renderers.file_urlstorage").value;
+       var mediaFileUrlPath     = document.getElementById("renderers.file_urlpath").value;
+       var mediaFileUrlName     = document.getElementById("renderers.file_urlname").value;
+       var mediaFileUrlFullName = mediaFileUrlStorage + mediaFileUrlPath + mediaFileUrlName;
+      //alert(mediaFileUrlFullName );
+    
+      if (crtMediaType==1)
+      {
+       var myImage = document.getElementById("idImg");
+       myImage.style.display = "block";
+       //var myImage = document.getElementById("z01img02");
+       //alert(mediaFileUrlFullName);
+       myImage.src = mediaFileUrlFullName;
+       //waitForImageToLoad(myImage).then(()=>{
+         // Image have loaded.
+         onChangeDisplayType();
+         console.log('Loaded image')
+       //});
+      }
+      if (crtMediaType==2)
+      {
+        var myVideo = document.getElementById("idVideo");
+        myVideo.style.display = "block";
+        myVideo.src = mediaFileUrlFullName;
+        //waitForVideoToLoad(myVideo).then(()=>{
+         // Video have loaded.
+         //onChangeDisplayType();
+         myVideo.play();
+         console.log('Video can Play');
+         //alert("video can play");
+       //});
+      }
+    
+      if (crtMediaType==3) //HTML
+      {
+        var myHtml = document.getElementById("idHtml");
+        myHtml.style.display = "block";
+        myHtml.src = mediaFileUrlFullName;
+        //waitForFrameToLoad(myHtml).then(()=>{
+         ////onChangeDisplayType();
+         //console.log('Html Loaded');
+         //alert("Html Loaded");
+       //});
+      }
+    
+    }
+    
+    
+    function onChangeImgCanvasSize() 
+    {
+        var imgDisplayType = document.getElementById("idImgDisplayType");
+        var imgCanvasX = document.getElementById("idImgCanvasX");
+        var imgCanvasY = document.getElementById("idImgCanvasY");
+        var imgDiv = document.getElementById("idImgDiv");
+        var img = document.getElementById("idImg");
+        //var imgDiv = document.getElementById("z01");
+        //var img = document.getElementById("z01img02");
+      
+        imgDiv.style.width = imgCanvasX.value;
+        imgDiv.style.height = imgCanvasY.value;
+      
+        onChangeDisplayType();
+      }
+      function onChangeDisplayType() 
+      {
+        //alert(1);
+        
+    
+        var imgDisplayType = document.getElementById("idImgDisplayType");
+        var imgDiv = document.getElementById("idImgDiv");
+        //var imgDiv = document.getElementById("z01");
+        
+        var img = document.getElementById("idImg");
+        //var img = document.getElementById("z01img02");
+        var imgRealWidth = img.naturalWidth;
+        var imgRealHeight = img.naturalHeight;
+      
+        var imgNewWidth = img.naturalWidth;
+        var imgNewHeight = img.naturalHeight;
+      
+        //var imgCanvasX = document.getElementById("idImgCanvasX");
+        //var imgCanvasY = document.getElementById("idImgCanvasY");
+      
+        var canvasWidth = imgDiv.offsetWidth;
+        var canvasHeight = imgDiv.offsetHeight;
+      
+        var ratioX = 1;
+        var ratioY = 1;
+        if(canvasWidth > 0)
+          ratioX = imgRealWidth/canvasWidth;
+        if(canvasHeight > 0)
+          ratioY = imgRealHeight/canvasHeight;
+      
+        if(imgDisplayType.value=="CENTER")
+        {
+          img.style.width=imgRealWidth+"px";
+          img.style.height=imgRealHeight+"px";
+          img.style.marginLeft=(canvasWidth-imgRealWidth)/2+"px";
+          img.style.marginRight=(canvasWidth-imgRealWidth)/2+"px";
+          img.style.marginTop=(canvasHeight-imgRealHeight)/2+"px";
+          img.style.marginBottom=(canvasHeight-imgRealHeight)/2+"px";
+        }
+        if(imgDisplayType.value=="FILL")
+        {
+          img.style.width="";
+          img.style.height="";
+          img.style.marginLeft=0;
+          img.style.marginRight=0;
+          img.style.marginTop=0;
+          img.style.marginBottom=0;
+      
+          if(ratioX < ratioY)
+          {
+            imgNewWidth = canvasWidth;
+            imgNewHeight = imgRealHeight * (imgNewWidth/imgRealWidth);
+      
+            img.style.width=imgNewWidth+"px";
+            img.style.marginTop=(canvasHeight-imgNewHeight)/2+"px";
+            img.style.marginBottom=(canvasHeight-imgNewHeight)/2+"px";
+          }
+          else
+          {
+            imgNewHeight = canvasHeight;
+            imgNewWidth = imgRealWidth * (imgNewHeight/imgRealHeight);
+      
+            img.style.height=imgNewHeight+"px";
+            img.style.marginLeft=(canvasWidth-imgNewWidth)/2+"px";
+            img.style.marginRight=(canvasWidth-imgNewWidth)/2+"px";
+          }
+        }
+        if(imgDisplayType.value=="FIT")
+        {
+          img.style.width="";
+          img.style.height="";
+          img.style.marginLeft=0;
+          img.style.marginRight=0;
+          img.style.marginTop=0;
+          img.style.marginBottom=0;
+          if(ratioX > ratioY)
+          {
+            imgNewWidth = canvasWidth;
+            imgNewHeight = imgRealHeight * (imgNewWidth/imgRealWidth);
+            img.style.width=imgNewWidth+"px";
+            img.style.marginTop=(canvasHeight-imgNewHeight)/2+"px";
+            img.style.marginBottom=(canvasHeight-imgNewHeight)/2+"px";
+          }
+          else
+          {
+            imgNewHeight = canvasHeight;
+            imgNewWidth = imgRealWidth * (imgNewHeight/imgRealHeight);
+            img.style.height=imgNewHeight+"px";
+            img.style.marginLeft=(canvasWidth-imgNewWidth)/2+"px";
+            img.style.marginRight=(canvasWidth-imgNewWidth)/2+"px";
+          }
+        }
+        if(imgDisplayType.value=="STRETCH")
+        {
+          img.style.width=canvasWidth+"px";
+          img.style.height=canvasHeight+"px";
+          img.style.marginLeft=0;
+          img.style.marginRight=0;
+          img.style.marginTop=0;
+          img.style.marginBottom=0;
+        }
+        if(imgDisplayType.value=="NORMAL")
+        {
+          img.style.width=imgRealWidth+"px";
+          img.style.height=imgRealHeight+"px";
+          img.style.marginLeft=0;
+          img.style.marginRight=0;
+          img.style.marginTop=0;
+          img.style.marginBottom=0;
+        }
+      }
+
+        //---------------------------------------------
+        function stopAllRenderers() 
+        {
+          stopCrtMediaType();
+          document.getElementById('btnRenderers').innerHTML="Show Renderers";
+          document.getElementById('renderers').style.display="none";
+          document.getElementById('bodyid').style.overflow="auto";
+          //document.getElementById('divstopid').style.position="static";         
+        }
+  
+        function startAllRenderers() 
+        {
+          document.getElementById('btnRenderers').innerHTML="Hide Renderers";
+          document.getElementById('renderers').style.display="block";
+          document.getElementById('bodyid').style.overflow="hidden";
+          //document.getElementById('divstopid').style.position="absolute";
+        }
+  
+        function restartRenderers() 
+        {
+          if (document.getElementById('btnRenderers').innerHTML == "Show Renderers")  
+            startAllRenderers();
+          else
+            stopAllRenderers();
+        }
+
+      </script>
+       
+       <script>
+        function myKeyDownFunction() 
+        {
+        }
+        </script>
+      
+</head>
+
+<body id="bodyid" onkeydown="myKeyDownFunction()" style="background-color:black; overflow: hidden; ">
+
+  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+  <script src="https://unpkg.com/video.js/dist/video.js"></script>
+  <script src="https://unpkg.com/videojs-flash/dist/videojs-flash.js"></script>
+  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+
+
+  <script>
+
+    var global_SDKRenderer =
+    {
+      displayFolderFileList  : function(){},
+
+      displayFile            : function(){},
+      displayNewFile         : function(){},
+      eraseDisplayFile       : function(){},
+      saveFile               : function(){},
+      
+      displayDeleteFile      : function(){},
+      eraseDisplayDeleteFile : function(){},
+      deleteFile             : function(){},
+
+      displayCopyFile        : function(){},
+      eraseDisplayCopyFile   : function(){},
+      copyFile               : function(){},
+
+      displayMoveFile      : function(){},
+      eraseDisplayMoveFile : function(){},
+      moveFile             : function(){},
+
+      displayDownloadFile    : function(){},
+      eraseDisplayDownloadFile : function(){},
+      downloadFile             : function(){},
+
+      displayUploadFile        :  function(){},
+      eraseDisplayUploadFile   : function(){},
+      uploadFile               : function(){},
+
+      displayUnzipFile         : function(){},
+      eraseDisplayUnzipFile    : function(){},
+      unzipFile                : function(){},
+
+      displayZipFile           : function(){},
+      eraseDisplayZipFile      : function(){},
+      zipFile                  : function(){},
+
+
+      //--- folder functions
+      displayNewFolder      : function(){},
+      eraseDisplayNewFolder : function(){},
+      createFolder          : function(){},
+
+      displayDeleteFolder   : function(){},
+      eraseDisplayDeleteFolder : function(){},
+      deleteFolder          : function(){},
+
+      displayCopyFolder      : function(){},
+      eraseDisplayCopyFolder : function(){},
+      copyFolder             : function(){},
+
+      displayMoveFolder      : function(){},
+      eraseDisplayMoveFolder : function(){},
+      moveFolder             : function(){},
+
+      displayZipFolder         : function(){},
+      eraseDisplayZipFolder    : function(){},
+      zipFolder                : function(){},
+
+      //------------------
+      start_display_imageFile  : function(){},
+      erase_display_imageFile  : function(){},
+
+      start_display_videoFile  : function(){},
+      erase_display_videoFile  : function(){},
+
+      start_display_streamFile  : function(){},
+      erase_display_streamFile  : function(){},
+
+      start_display_flashFile  : function(){},
+      erase_display_flashFile  : function(){},
+
+      start_display_msdocFile  : function(){},
+      erase_display_msdocFile  : function(){},
+
+      start_display_msexcelFile  : function(){},
+      erase_display_msexcelFile  : function(){},
+
+      //-------------
+      displayComputeAndSaveShaFile      : function(){},
+      eraseDisplayComputeAndSaveShaFile : function(){},
+      computeAndSaveShaFile             : function(){},
+
+      //-------------
+      displayLogRenderer                : function(){},
+      hideLogRenderer                   : function(){},
+      eraseLogRenderer                  : function(){},
+      viewLogFile                       : function(){},
+      closeViewLogFile                  : function(){},
+
+      //---------------
+      displayHardwareSettings        : function(){},
+      closeHardwareSettings          : function(){},
+
+      //---------------
+      displayOpeningHours            : function(){},
+      closeOpeningHours              : function(){},
+
+      //------------------
+      displayScreenSaverConfig       : function(){},
+      closeScreenSaverConfig         : function(){},
+
+      //------------------
+      getDefaultResourceStorageName     : function(){},
+      getDefaultResourceStorageUrlName  : function(){},
+
+      getDefaultStorageUrlName          : function(){},
+
+      //--------------------------
+      prepareAndPlayMediaFile : function(){},
+      changeDesign : function(){},
+
+      //---------------------------
+      playlistLoad : function(){},
+      playlistSave : function(){},
+    } ;
+  </script>
+  
+
+
+<script src="socket.io.js"></script>
+<!-- <script src="/client/client.js"></script> -->
+<script src="require.js" data-main="client/client.js"></script>  
+
+  
+
+<div id="background01" style="z-index:9000;position: absolute; top: 0; left: 0; width:100%; height:100%; background-color:black; overflow: hidden; ">
+     
+  <div id="z01"                style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;">
+
+    <img    id="z01img01"  src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none;"></img>
+    <img    id="z01img02"  src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none;"></img>
+    <video  id="z01video01"     style="position: absolute;  top: 0; left: 0; width:600;height:400; display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z01video02"    style="position: absolute;  top: 0; left: 0; width:600;height:400; display:none; object-fit:fill" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z01html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z01html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z01rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none;"></div>
+    <div    id="z01rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none;"></div>
+    <video  id="z01stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540; display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z01stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540; display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+
+  </div>  
+
+
+  <div id="z02"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden; ">
+
+    <img    id="z02img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none;"></img>
+    <img    id="z02img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none;"></img>
+    <video  id="z02video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z02video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z02html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z02html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z02rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none;"></div>
+    <div    id="z02rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px; display:none;"></div>
+    <video  id="z02stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540; display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z02stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540; display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z03"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+    <img    id="z03img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z03img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z03video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z03video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z03html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z03html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z03rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z03rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z03stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z03stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z04"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z04img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z04img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z04video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z04video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z04html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z04html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z04rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z04rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z04stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z04stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z05"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z05img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z05img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z05video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z05video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z05html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z05html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z05rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z05rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z05stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z05stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z06"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z06img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z06img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z06video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z06video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z06html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z06html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z06rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z06rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z06stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z06stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z07"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden; ">
+
+    <img    id="z07img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z07img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z07video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z07video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z07html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z07html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z07rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z07rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z07stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z07stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+
+  <div id="z08"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z08img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z08img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z08video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z08video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z08html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z08html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z08rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z08rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z08stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z08stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z09"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z09img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z09img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z09video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z09video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z09html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z09html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>  
+    <div    id="z09rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z09rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z09stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z09stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z10"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z10img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z10img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z10video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z10video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z10html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z10html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>  
+    <div    id="z10rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z10rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z10stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540; display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z10stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540; display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+<!-- 
+</div>
+<div id="background02" style="z-index:9000;position: absolute; top: 0; left: 0;  top: 0; left: 0; width:100%; height:100%; background-color:black; overflow: hidden;  display:none;" >
+-->     
+  <div id="z11"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden; ">
+
+    <img    id="z11img01"  src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z11img02"  src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z11video01"       style="position: absolute;  top: 0; left: 0; width:600;height:400;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z11video02"       style="position: absolute;  top: 0; left: 0; width:600;height:400;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z11html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z11html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z11rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z11rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z11stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z11stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+
+  </div>  
+
+
+  <div id="z12"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden; ">
+
+    <img    id="z12img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z12img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z12video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z12video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z12html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z12html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z12rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z12rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z12stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z12stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z13"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+    <img    id="z13img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z13img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z13video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z13video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z13html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z13html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z13rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z13rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z13stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z13stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z14"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z14img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z14img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z14video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z14video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z14html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z14html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z14rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z14rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z14stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z14stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z15"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z15img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z15img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z15video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z15video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z15html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z15html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z15rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z15rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z15stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z15stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z16"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z16img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z16img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z16video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z16video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z16html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z16html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z16rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z16rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z16stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z16stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z017"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden; ">
+
+    <img    id="z17img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z17img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z17video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z17video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z17html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z17html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z17rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z17rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z17stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z17stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+
+  <div id="z18"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z18img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z18img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z18video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z18video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z18html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z18html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <div    id="z18rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z18rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z18stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z18stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z19"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z19img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z19img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z19video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z19video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; object-fit:fill;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z19html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z19html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>  
+    <div    id="z19rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z19rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z19stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z19stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540;  display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z20"                style="position: absolute;display:none;  top: 0; left: 0; width: 600px; height: 400px; overflow: hidden;  ">
+
+    <img    id="z20img01"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <img    id="z20img02"         src=""  style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></img>
+    <video  id="z20video01"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;" preload playsinline><source src="" type="video/mp4"></video>
+    <video  id="z10video02"       style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;" preload playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z20html01" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>
+    <iframe id="z20html02" src="" style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none; overflow: hidden; border:0; background-color:white;" scrolling="no" sandbox="allow-scripts allow-same-origin" allowtransparency="true"></iframe>  
+    <div    id="z20rect01"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <div    id="z20rect02"        style="position: absolute;  top: 0; left: 0; width: 600px; height: 400px;  display:none;"></div>
+    <video  id="z20stream01" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540; display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z20stream02" class="video-js  vjs-default-skin"  style="position: absolute; object-fit:fill; top: 0; left: 0; width:960;height:540; display:none; object-fit:fill;" preload playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+</div>
+
+
+</body>
+</html>

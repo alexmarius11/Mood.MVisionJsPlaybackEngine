@@ -1,0 +1,5 @@
+//clean up the vidoe element
+var videoElement = document.getElementById('id_of_the_video_element_here');
+videoElement.pause();
+videoElement.removeAttribute('src'); // empty source
+videoElement.load();

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE SITE_SETTINGS [
+  <!ELEMENT SITE_SETTINGS (SITE_CODE, NETWORK, OPENING_HOURS)>
+  <!ELEMENT NETWORK (PROXY, BANDWIDTH, BANDWIDTH_WSUS, WCF_SERVER)>
+  <!ELEMENT PROXY (ENABLED,ADDRESS,PORT,USER,PWD)>
+  <!ELEMENT BANDWIDTH (DEFAULT_BW, (DEFAULT_BW_UP?), EXCEPTIONS)>
+  <!ELEMENT EXCEPTIONS (EXCEPTION*)>
+  <!ELEMENT EXCEPTION (EXCEPTION_BW,(EXCEPTION_BW_UP?), START_EX, END_EX)>
+  <!ELEMENT BANDWIDTH_WSUS (DEFAULT_BW_WSUS, EXCEPTION_WSUS)>  
+  <!ELEMENT EXCEPTION_WSUS (START_TIME_EX_WSUS, END_TIME_EX_WSUS, EXCEPTION_BW_WSUS)>
+  <!ELEMENT DEFAULT_BW_WSUS (#PCDATA)>
+  <!ELEMENT START_TIME_EX_WSUS (#PCDATA)>
+  <!ELEMENT END_TIME_EX_WSUS (#PCDATA)>
+  <!ELEMENT EXCEPTION_BW_WSUS (#PCDATA)>  
+  <!ELEMENT WCF_SERVER (PORT)>
+  <!ELEMENT START_EX (DAY, TIME)>
+  <!ELEMENT END_EX (DAY, TIME)>
+  <!ELEMENT OPENING_HOURS (WORKDAY*)>
+  <!ELEMENT WORKDAY (OPEN, CLOSE)>
+  <!ELEMENT OPEN (DAY, TIME)>
+  <!ELEMENT CLOSE (DAY, TIME)>
+  <!ELEMENT SITE_CODE (#PCDATA)>
+  <!ELEMENT ENABLED (#PCDATA)>
+  <!ELEMENT ADDRESS (#PCDATA)>
+  <!ELEMENT PORT (#PCDATA)>
+  <!ELEMENT USER (#PCDATA)>
+  <!ELEMENT PWD (#PCDATA)>
+  <!ELEMENT DEFAULT_BW (#PCDATA)>
+  <!ELEMENT DEFAULT_BW_UP (#PCDATA)>
+  <!ELEMENT EXCEPTION_BW (#PCDATA)>
+  <!ELEMENT EXCEPTION_BW_UP (#PCDATA)>
+  <!ELEMENT DAY (#PCDATA)>
+  <!ELEMENT TIME (#PCDATA)>
+]>
+<SITE_SETTINGS>
+  <SITE_CODE>0000</SITE_CODE>
+  <NETWORK>
+    <PROXY>
+      <ENABLED>0</ENABLED>
+      <ADDRESS></ADDRESS>
+      <PORT></PORT>
+      <USER></USER>
+      <PWD></PWD>
+    </PROXY>
+    <BANDWIDTH>
+      <DEFAULT_BW></DEFAULT_BW>
+	  <!--<DEFAULT_BW_UP></DEFAULT_BW_UP>--><!--if set or uncommented the upload bandwidth is used, if commented the DEFAULT_BW is applied for upload-->
+		<DEFAULT_BW_UP></DEFAULT_BW_UP>
+      <EXCEPTIONS>
+	  <!--<EXCEPTION_BW_UP></EXCEPTION_BW_UP>--><!--if set or uncommented the upload bandwidth is used, if commented the EXCEPTION_BW is applied for upload-->
+	  <!--INFO: <DAY></DAY> => Valid values: SUN, MON, TUE, WED, THU, FRI, SAT-->
+	  <!--INFO: <TIME></TIME> => example: 10:32:26 and can use [$OP] and [$CL]--><!--<EXCEPTION>
+			<EXCEPTION_BW></EXCEPTION_BW>
+			<EXCEPTION_BW_UP></EXCEPTION_BW_UP>
+			<START_EX>
+				<DAY></DAY>
+				<TIME></TIME>
+			</START_EX>
+			<END_EX>
+				<DAY></DAY>
+				<TIME></TIME>
+			</END_EX>
+		</EXCEPTION>-->
+	  </EXCEPTIONS>
+    </BANDWIDTH>
+    <BANDWIDTH_WSUS>
+      <DEFAULT_BW_WSUS></DEFAULT_BW_WSUS>
+      <EXCEPTION_WSUS>
+        <START_TIME_EX_WSUS></START_TIME_EX_WSUS>
+        <END_TIME_EX_WSUS></END_TIME_EX_WSUS>
+        <EXCEPTION_BW_WSUS></EXCEPTION_BW_WSUS>
+      </EXCEPTION_WSUS>
+    </BANDWIDTH_WSUS>
+    <WCF_SERVER>
+      <PORT>82</PORT>
+    </WCF_SERVER>
+  </NETWORK>
+  <OPENING_HOURS>
+    <WORKDAY>
+      <OPEN>
+        <DAY>MON</DAY>
+        <TIME>00:01:00</TIME>
+      </OPEN>
+      <CLOSE>
+        <DAY>MON</DAY>
+        <TIME>23:59:00</TIME>
+      </CLOSE>
+    </WORKDAY>
+    <WORKDAY>
+      <OPEN>
+        <DAY>TUE</DAY>
+        <TIME>00:01:00</TIME>
+      </OPEN>
+      <CLOSE>
+        <DAY>TUE</DAY>
+        <TIME>23:59:00</TIME>
+      </CLOSE>
+    </WORKDAY>
+    <WORKDAY>
+      <OPEN>
+        <DAY>WED</DAY>
+        <TIME>00:01:00</TIME>
+      </OPEN>
+      <CLOSE>
+        <DAY>WED</DAY>
+        <TIME>23:59:00</TIME>
+      </CLOSE>
+    </WORKDAY>
+    <WORKDAY>
+      <OPEN>
+        <DAY>THU</DAY>
+        <TIME>00:01:00</TIME>
+      </OPEN>
+      <CLOSE>
+        <DAY>THU</DAY>
+        <TIME>23:59:00</TIME>
+      </CLOSE>
+    </WORKDAY>
+    <WORKDAY>
+      <OPEN>
+        <DAY>FRI</DAY>
+        <TIME>00:01:00</TIME>
+      </OPEN>
+      <CLOSE>
+        <DAY>FRI</DAY>
+        <TIME>23:59:00</TIME>
+      </CLOSE>
+    </WORKDAY>
+    <WORKDAY>
+      <OPEN>
+        <DAY>SAT</DAY>
+        <TIME>00:01:00</TIME>
+      </OPEN>
+      <CLOSE>
+        <DAY>SAT</DAY>
+        <TIME>23:59:00</TIME>
+      </CLOSE>
+    </WORKDAY>
+    <WORKDAY>
+      <OPEN>
+        <DAY>SUN</DAY>
+        <TIME>00:01:00</TIME>
+      </OPEN>
+      <CLOSE>
+        <DAY>SUN</DAY>
+        <TIME>23:59:00</TIME>
+      </CLOSE>
+    </WORKDAY>
+  </OPENING_HOURS>
+</SITE_SETTINGS>

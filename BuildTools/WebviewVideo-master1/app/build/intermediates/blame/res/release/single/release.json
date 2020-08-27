@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "C:\\kits\\____android\\WebviewVideo-master1\\app\\build\\intermediates\\res\\merged\\release\\xml_network_security_config.xml.flat",
+        "source": "C:\\kits\\____android\\WebviewVideo-master1\\app\\src\\main\\res\\xml\\network_security_config.xml"
+    },
+    {
+        "merged": "C:\\kits\\____android\\WebviewVideo-master1\\app\\build\\intermediates\\res\\merged\\release\\layout_video_progress.xml.flat",
+        "source": "C:\\kits\\____android\\WebviewVideo-master1\\app\\src\\main\\res\\layout\\video_progress.xml"
+    },
+    {
+        "merged": "C:\\kits\\____android\\WebviewVideo-master1\\app\\build\\intermediates\\res\\merged\\release\\drawable-ldpi_ic_launcher.png.flat",
+        "source": "C:\\kits\\____android\\WebviewVideo-master1\\app\\src\\main\\res\\drawable-ldpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\kits\\____android\\WebviewVideo-master1\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "C:\\kits\\____android\\WebviewVideo-master1\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\kits\\____android\\WebviewVideo-master1\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "C:\\kits\\____android\\WebviewVideo-master1\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\kits\\____android\\WebviewVideo-master1\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\kits\\____android\\WebviewVideo-master1\\app\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\kits\\____android\\WebviewVideo-master1\\app\\build\\intermediates\\res\\merged\\release\\layout_main.xml.flat",
+        "source": "C:\\kits\\____android\\WebviewVideo-master1\\app\\src\\main\\res\\layout\\main.xml"
+    }
+]

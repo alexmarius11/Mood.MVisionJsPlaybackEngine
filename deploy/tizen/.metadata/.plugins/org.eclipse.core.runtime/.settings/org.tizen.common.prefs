@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+org.tizen.common.logger.cp=[%d{yyyy.MM.dd HH\:mm\:ss}][%-5p] %F(%L) - %m%n
+org.tizen.common.logger.level=ERROR
+org.tizen.common.logger.location2=%X{userdata_log}/ide-%d{yyyyMMdd}_%d{HHmmss}.log
+org.tizen.common.ui.preferences.sampleserver.location=http\://download.tizen.org/sdk/samples/online

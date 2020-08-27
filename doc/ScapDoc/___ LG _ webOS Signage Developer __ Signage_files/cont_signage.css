@@ -1,0 +1,176 @@
+@charset "utf-8";
+
+/* family site */
+.etcLink .dropdown-menu li a:hover {color: #524c66 !important;}
+
+/* top navgation elements default */
+#top_nav {background:#524c66 !important;}
+div.ccm-page header nav ul li ul li a {color:#524c66 !important;}
+div.ccm-page header nav ul li ul li ul li a {color:#524c66 !important;}
+div.ccm-page header nav ul li.nav-path-selected a {color:#524c66 !important;}
+div.ccm-page header nav ul li.nav-selected.nav-path-selected a {color:#524c66 !important;}
+
+/* top navigation LG_responsive */
+.ccm-responsive-navigation.original .topnav > li {border-left: 1px solid rgba(133, 123, 168, 0.3) !important;}
+.ccm-responsive-navigation.original .topnav > li > a:hover,
+.ccm-responsive-navigation.original .topnav > li > a:focus {color:#524c66 !important;}
+.ccm-responsive-navigation.original .topnav > li > a.active {color:#524c66 !important;}
+.ccm-responsive-navigation.original .topnav > li.dropdown.active a {color:#524c66 !important;}
+.ccm-responsive-navigation.original .topnav > li.noneCls.active a {color:#524c66 !important;}
+.ccm-responsive-navigation.original .topnav > li.active a  {color:#524c66 !important;}
+
+.ccm-responsive-navigation.original .dropdown-menu li a:hover {background:rgba(82,76,102,0.3) !important;}
+.ccm-responsive-navigation.original .dropdown-menu .active > a:hover {background:rgba(82,76,102,0.3) !important;}
+.ccm-responsive-navigation.original .topnav > li.dropdown.active .dropdown-menu li a:hover {background:rgba(82,76,102,0.3) !important;}
+.ccm-responsive-navigation.original .topnav > li.dropdown.active .dropdown-menu .active > a:hover {background:rgba(82,76,102,0.3) !important;}
+
+/* mobile menu */
+.ccm-responsive-overlay {border-bottom:3px solid #524c66 !important;}
+.ccm-responsive-overlay ul li a:hover {color:#524c66;}
+
+/* right sidebar */
+.rightTitle {color: #524c66;}
+.nav > li > a:not(.fa):not(.btn):hover {color:#524c66 !important;}
+.nav > li.nav-path-selected.open a.nav-path-selected.open {background:#524c66 !important;}
+
+ul.depth2 {border-left:4px solid #524c66}
+ul.depth2 li.nav-path-selected.open a.nav-path-selected.open {color:#524c66 !important;}
+.nav li.nav-path-selected.open ul.depth2 li.nav-path-selected a.nav-path-selected.open {background:#fff !important;color:#524c66 !important;}
+ul.depth2 li a:not(.fa):not(.btn):hover {color:#524c66 !important;}
+
+ul.depth3 li.nav-path-selected.open a.nav-path-selected.open {color:#524c66 !important;}
+.nav li.nav-path-selected.open ul.depth4 li.nav-path-selected a.nav-path-selected.open {background:#fff !important;color:#524c66 !important;}
+ul.depth3 li a:not(.fa):not(.btn):hover {color:#524c66 !important;}
+
+ul.depth4 li.nav-path-selected.open a.nav-path-selected.open {color:#524c66 !important;}
+.nav li.nav-path-selected.open ul.depth4 li.nav-path-selected a.nav-path-selected.open {background:#fff !important;color:#524c66 !important;}
+ul.depth4 li a:not(.fa):not(.btn):hover {color:#524c66 !important;}
+
+ul.depth5 li.nav-path-selected.open a.nav-path-selected.open {color:#524c66 !important;}
+.nav li.nav-path-selected.open ul.depth5 li.nav-path-selected a.nav-path-selected.open {background:#fff !important;color:#524c66 !important;}
+ul.depth5 li a:not(.fa):not(.btn):hover {color:#524c66 !important;}
+
+ul.depth6 li.nav-path-selected.open a.nav-path-selected.open {color:#524c66 !important;}
+.nav li.nav-path-selected.open ul.depth6 li.nav-path-selected a.nav-path-selected.open {background:#fff !important;color:#524c66 !important;}
+ul.depth6 li a:not(.fa):not(.btn):hover {color:#524c66 !important;}
+
+/**** contents ****/
+/* location */
+.head_location li a {color: #524c66 !important;}
+
+/* flip notes */
+.notesList dt {background:url(/images/ws/bg_drop_p.gif) no-repeat 0 18px;}
+.notesList dt.ov {background:url(/images/ws/bg_drop_m.gif) no-repeat 0 18px;border-bottom:1px solid #524c66;}
+.notesList dt.ov a {color:#524c66}
+.notesList dt.noIcon {color:#524c66;}
+.notesList dt.noIcon a {color:#524c66;}
+.notesList dt.ad {background:url(/images/ws/bg_drop_open.png) no-repeat;}
+.notesList dt.ad_ov {background:url(/images/ws/bg_drop_close.png) no-repeat;}
+.notesList > dd {border-bottom:1px solid #524c66;}
+
+/* glossary */
+.glossaryWord li.on {color: #524c66 !important;}
+
+/* see also */
+.detailBox .asideAlso .title {color:#524c66} 
+.detailBox .asideAlso .txtbox .txtInner ul li a:hover {color:#524c66 !important;}
+
+/* button-flat */
+.button-flat.button-primary {background-color:#524c66;}
+.button-primary.button-flat:focus, .button-primary.button-flat:hover {background:rgba(82,76,102,0.3)}
+
+.page-list-block .item:hover .item-description {background-color:#524c66;}
+
+/* rdc button */
+.btnApp2 span {color:#524c66;border: 1px solid #524c66;}
+.btnApp3 span {border: 1px solid #524c66; background: #524c66;}
+
+/* mobile topbar */
+.small-display-nav-bar-inner {background-color:#524c66}
+
+/* board */
+.rcrumbs a {color:#524c66;}
+
+/* popup */
+.popupHeader{border-top:4px solid #524c66;}
+
+/* forum board */
+.tbl_forum1 {border-top:2px solid #524c66;}
+.tbl_message_list table {border-top:2px solid #524c66;}
+td.ccm-discussion-replies {border-top: 2px solid #524c66;}
+
+/* faq list */
+a.btnViewAll {color:#524c66 !important; border: 1px solid #524c66;}
+
+/* pagination */
+div.ccm-page .pagination > li.prev a {color:#524c66 !important;}
+div.ccm-page .pagination > li.next a {color:#524c66 !important;}
+div.ccm-page .pagination > li.active span {background:#524c66 !important;}
+div.ccm-page .pagination > li > a {color:#524c66 !important;}
+
+/* forum pagination */
+.div.cm_pagination span.active {color:#524c66 !important;} 
+div.cm_pagination span.cm-page-right a {color:#524c66 !important;}
+div.cm_pagination span.cm-page-left a {color:#524c66 !important;}
+div.cm_pagination span.active {color:#524c66 !important;}
+
+/* thumbnail-grid */
+div.ccm-page div.ccm-block-page-list-thumbnail-grid-wrapper div.ccm-block-page-list-page-entry-grid-thumbnail-hover {background-color:rgba(82, 76, 102, 0.7) !important;}
+
+/* LGE thumbnail-grid */
+.ccm-block-page-list-title {background-color:rgba(82, 76, 102, 0.7) !important;}
+
+/* tbl list */
+.tbList th .updown {background:url(../../images/ws/bg_dn_up.gif) no-repeat 0 0;}
+.tbList th .up {background:url(../../images/ws/bg_dn_up.gif) no-repeat -20px 0;}
+.tbList th .down {background:url(../../images/ws/bg_dn_up.gif) no-repeat -40px 0;}
+
+/* guide search */
+.btnN {color:#524c66;border:1px solid #524c66;}
+.selectBox .menuSelBox{background-color:rgba(82, 76, 102, 0.1);border-top:#5d5c5c solid 3px;}
+.btnSel span strong {color:#524c66;}
+.paging strong {color:#524c66;}
+.ico_video {background:url(../../images/ws/icon_video.gif) no-repeat left 3px;}
+.ico_code {background:url(../../images/ws/icon_code.gif) no-repeat left 3px;}
+
+/* garnet-api */
+.garnet-api .api_self a:hover {color:#524c66 !important;}
+
+/* ui-controls */
+div.ccm-block-page-list-page-entry-text div.ccm-block-page-list-title a {color:#524c66 !important;}
+
+/* mobile menu */
+.ccm-responsive-overlay ul li a:hover {color:#524c66 !important;}
+
+/* LGE search */
+.search_tab {border-bottom:2px solid #524c66 !important;}
+.search_tab li.active { background: #524c66;border:1px solid #524c66;}
+
+
+/**** footer ****/
+.main-footer .copyArea dl dd span a:hover {color:#524c66;}
+.siteNav li {width:14.28%;}
+
+
+/* media query */
+@media all and (min-width: 769px) and (max-width: 1024px) {
+	.siteNav li {width:25%;}
+}
+
+@media all and (min-width: 0) and (max-width: 768px) {
+	.siteNav li {width:50%;}
+}
+
+/* feedback button color */
+.feedback_buttons button{background-color: #524c66 !important;}
+
+/* document block (file list )board */
+table.c5h-document-set-table-wrapper {border-top:2px solid #524c66;}
+.c5h-document-top-filter .searchBtn {background-color: #524c66;}
+.c5h-document-top-filter .searchBtn input[type='button'].document-submit {background-color: #524c66;}
+div.c5h-document-set-filter h3.document-filter-title {color:#524c66 !important;}
+
+/* Page list - LGE Thumnail Grid */
+.ccm-block-page-list-page-entry-grid-thumbnail.lge .ccm-block-page-list-title {background-color:rgba(82, 76, 102, 0.7) !important;padding:5px;text-align:center;}
+
+

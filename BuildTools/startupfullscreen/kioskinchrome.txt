@@ -1,0 +1,181 @@
+https://askubuntu.com/questions/860214/kiosk-with-chrome-on-16-04
+
+Kiosk with Chrome on 16.04
+Ask Question
+
+5
+
+
+2
+How can I setup 16.04 as a Chrome-based "kiosk"? I.e.:
+
+chrome --kiosk as the only app visible to user,
+user can only click on what's showed by Chrome (no Settings, Unity or other apps or other URLs),
+ideally user has maximally limited privileges,
+user has "autologin" (no password required) enabled,
+admin/superuser can login with some magical key combination or something (e.g. Ctrl-Alt-F1 + login + password) and switch to "full friendly desktop".
+Basic googling and other AskUbuntu answers lead me only to some old guides, ~14.04 or older, which I have trouble applying in 16.04 because of many differences between the distributions (systemd vs. old init, also big changes in GUIs, esp. for system settings).
+
+edit: Ideally, I'd prefer a console/script-based guide, so that I could automate it over many computers. But a GUI-based guide would be still better than nothing.
+
+16.04 kiosk
+shareimprove this question
+edited Apr 13 '17 at 12:24
+
+Community?
+1
+asked Dec 13 '16 at 12:24
+
+akavel
+19111 gold badge11 silver badge88 bronze badges
+It's about time for an updated answer about making a Chrome kiosk in Ubuntu. – karel Dec 13 '16 at 12:32 
+add a comment
+2 Answers
+activeoldestvotes
+
+2
+
+Below is what I managed to build in the end, stitching together various scraps and hints I could find plus some "original research" of my own. I consider it very rough and downright ugly in places, but I need some solution, and it seems to work for now. Fingers crossed...
+
+Warning:   PLEASE NOTE you should also consider hardening your Linux for security,
+which is absolutely not covered by the presented script!
+
+#!/bin/bash
+if [ $# -ne 0 ]; then
+    echo "USAGE: mkkiosk.sh"
+    echo "Create new user 'kiosk' and configure LightDM to auto-login this user to a X session running only Chrome"
+    echo "in --kiosk mode."
+    exit 1
+fi
+
+set -x; set -e
+date
+
+# Try to make current user (admin/...) prefer 'ubuntu' to 'kiosk' for session type.
+# TODO: currently doesn't seem to work, lightdm still suggests 'kiosk' session and requires manual clicking to change.
+cat > ~/.dmrc << EOF
+[Desktop]
+Session=ubuntu
+EOF
+
+# Auto-create user 'kiosk'.
+# http://askubuntu.com/a/321943/111779
+# NOTE: auto-login is enabled later (autologin-user)
+getent group kiosk || (
+    sudo su -c "groupadd kiosk"
+    sudo su -c "useradd kiosk -s /bin/bash -m -g kiosk"
+)
+
+# Install Chrome
+# http://askubuntu.com/a/510186/111779
+# TODO: somehow pin Chrome version? reportedly, cmdline flags are
+# unofficial and can change; OTOH, security updates... though in kiosk, we show
+# only one webpage; but admin user also may use Chrome.
+grep chrome /etc/apt/sources.list.d/google-chrome.list >&/dev/null || (
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+    sudo apt-get update && sudo apt-get install -y --no-install-recommends \
+        google-chrome-stable
+)
+
+# https://wiki.archlinux.org/index.php/Display_manager#Session_configuration
+#
+# - For Chrome flags, see:
+#   - http://peter.sh/experiments/chromium-command-line-switches/
+#     (via http://askubuntu.com/a/423632/111779)
+# - TryExec:
+#   not sure what it does, but apparently must be just binary name if present.
+#   (see: https://www.virtualbox.org/svn/vbox/trunk/src/VBox/Additions/linux/lightdm-greeter/liblightdm-gobject-1.5.0/session.c)
+#   TODO: test if we can remove TryExec
+# - IMPORTANT NOTE: If below settings are invalid, the session may just
+#   silently disappear as a choice in LightDM. You can then try to confirm this
+#   by looking in /var/log/lightdm/seat0-greeter.log for message "Ignoring
+#   sesion kiosk".
+sudo bash -c 'cat > /usr/share/xsessions/kiosk.desktop' << EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Kiosk
+Comment=Start a Chrome-based kiosk session
+Exec=/usr/bin/google-chrome --kiosk --window-size=1281,1025 --window-position=0,0 --no-first-run --incognito --no-default-browser-check --disable-translate http://stackoverflow.com
+TryExec=/usr/bin/google-chrome
+Icon=google-chrome
+EOF
+sudo -u kiosk bash -c 'cat > ~kiosk/.dmrc' << EOF
+[Desktop]
+Session=kiosk
+EOF
+# See LightDM "help" in: /usr/share/doc/lightdm/lightdm.conf.gz
+sudo bash -c 'cat > /usr/share/lightdm/lightdm.conf.d/99-kiosk.conf' << EOF
+[Seat:*]
+user-session=kiosk
+EOF
+# Setting below options in only 99-kiosk.conf doesn't seem enough (conflicts on autologin-user).
+sudo bash -c 'cat > /etc/lightdm/lightdm.conf' << EOF
+[Seat:*]
+autologin-guest=false
+autologin-user=kiosk
+autologin-user-timeout=0
+EOF
+
+echo "Done."
+To get back to "normal user", press Alt-F4 to close Chrome; LightDM will show, where you can login to your "normal" admin/root/... (super-)user. To get back to "kiosk", run:
+
+sudo killall lightdm
+TODO: didn't disable screensaver yet (or did it?).
+Also, no warranty, it may shoot off your leg, eat your homework, etc, etc.
+
+shareimprove this answer
+edited Dec 14 '16 at 15:49
+
+muru
+1
+answered Dec 14 '16 at 15:39
+
+akavel
+19111 gold badge11 silver badge88 bronze badges
+add a comment
+
+0
+
+1) Chrome in Kiosk Define a cronjob to launch chrome as kiosk mode and launches everytime system starts. e.g. //File: chrome
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+@reboot [USER] google-chrome --kiosk --incognito [URL]
+Copy this file to /etc/cron.d/
+
+Alternatively, you can create a launcher(a .desktop file) with command
+
+google-chrome --kiosk --incognito [URL]
+and copy this to
+
+/home/[USER]/.config/autostart
+
+This enables autostart of chrome browser only for this user.
+
+2) AutoLogin Open this file:
+
+sudo vi /usr/share/lightdm/lightdm.conf.d/60-lightdm-gtk-greeter.conf
+Create if does not exist.
+
+Then add these lines to this file.
+
+[Seat:*]
+greeter-session=lightdm-gtk-greeter
+autologin-user=[USER]  
+Save this file and restart. This enables the user to auto login. This user has of course, limited privileges.
+
+3) Superuser Login Use CTRL+ALT+T, this opens terminal
+
+gnome-session-quit --logout --force
+Then login as superuser.
+
+shareimprove this answer
+edited Dec 13 '16 at 20:54
+answered Dec 13 '16 at 12:53
+
+krishna
+801111 bronze badges
+1
+Steps 2) and 3) currently seem to do nothing? can they be removed? or do you want to rephrase them? Also, I don't understand step 5) (how to switch the user); also, on what base you claim "This user has of course limited privileges"? As of now, your answer is phrased in hard to understand way. – akavel Dec 13 '16 at 13:15 
+what you mean by step 2 is definition of chrome kiosk mode(which displays only browser and nothing else). And step 3 , you, as a super user, can define the privileges for the default user(which can auto-login). May be I am not clear what you actually want to implement. – krishna Dec 13 '16 at 16:03

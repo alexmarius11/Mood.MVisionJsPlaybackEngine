@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }else{
+       if (this.readyState == 4 && this.status != 200) 
+       {
+         document.getElementById("demo").innerHTML =
+             "error loading page - status: " + this.status;
+       }
+    }
+
+  };
+  try{
+  var url = "https://www.drudgereport.com";
+  xhttp.open("GET", url + ((/\?/).test(url) ? "&" : "?") + (new Date()).getTime());
+  
+  xhttp.open("GET", url, true);
+  //'enabled': false,
+  //'overwrite-origin': true,
+  //'methods': ['GET', 'PUT', 'POST', 'DELETE', 'HEAD', 'OPTIONS', 'PATCH'],
+  //'remove-x-frame': true,
+  //'allow-credentials': true,
+  //'allow-headers-value': '*',
+  //'expose-headers-value': '*',
+  //'allow-headers': true
+  xhttp.setRequestHeader("Access-Control-Allow-Origin","*");
+  xhttp.setRequestHeader("Access-Control-Allow-Methods","GET, PUT, POST, DELETE, HEAD, OPTIONS, PATCH");
+  xhttp.setRequestHeader("Access-Control-Allow-Methods","*");
+  xhttp.setRequestHeader("Access-Control-Allow-Credentials","true");
+  xhttp.setRequestHeader("Access-Control-Expose-Headers-Value","*");
+  xhttp.setRequestHeader("Access-Control-Allow-Headers-Value","*");
+  xhttp.setRequestHeader("Access-Control-Allow-Headers","true");
+  xhttp.setRequestHeader("Access-Control-Overwrite-Origin","true");
+
+   xhttp.send(null);
+
+  //xhttp.open("GET", "https://www.dcnews.ro", true);
+  //xhttp.withCredentials = true;
+  
+  /*
+  GET / HTTP/1.1
+Host: www.frigomac.ro
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Accept: text\/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*\/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9,ro;q=0.8
+*/
+
+  //xhttp.setRequestHeader( 'Access-Control-Allow-Origin', '*');
+  //xhttp.setRequestHeader( 'User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36');
+   //xhttp.setRequestHeader('Access-Control-Allow-Methods','GET, POST, PATCH, PUT, DELETE, OPTIONS');
+   //xhttp.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
+  //xhttp.withCredentials = false;
+  //xhttp.send();
+  }catch(e){
+           document.getElementById("demo").innerHTML =
+             "error invalid url";
+
+  }
+}
+</script>
+
+</body>
+</html>
+

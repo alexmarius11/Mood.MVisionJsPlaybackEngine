@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TCCRON [
+  <!ELEMENT TCCRON (ACTIONS)>
+  <!ELEMENT ACTIONS (ACTION*)>
+  <!ELEMENT ACTION (PATH, ARGUMENTS, RUN_AS, DATES, TIMES)>
+  <!ELEMENT ARGUMENTS (ARGUMENT*)>
+  <!ELEMENT DATES (FROM, TO, DAYS)>
+  <!ELEMENT TIMES (FROM, TO, EVERY)>
+  <!ELEMENT PATH (#PCDATA)>
+  <!ELEMENT ARGUMENT (#PCDATA)>
+  <!ELEMENT RUN_AS (#PCDATA)>
+  <!ELEMENT FROM (#PCDATA)>
+  <!ELEMENT TO (#PCDATA)>
+  <!ELEMENT DAYS (#PCDATA)>
+  <!ELEMENT EVERY (#PCDATA)>
+]>
+<TCCRON>
+  <ACTIONS>
+	<ACTION> <!-- TURN THE SCREENS ON, SET VOLUME, LOCK EVERY 20 MINUTES -->
+			<PATH>D:\moodmedia\project\scripts\screen_control\McDScreenControl.exe</PATH>
+			<ARGUMENTS>
+			</ARGUMENTS>
+			<RUN_AS>root</RUN_AS>
+			<DATES>
+				<FROM>2015-07-13</FROM>
+				<TO>2025-01-01</TO>
+				<DAYS>1111111</DAYS>
+			</DATES>
+			<TIMES>
+				<FROM>00:00:30</FROM>
+				<TO>23:59:59</TO>
+				<EVERY>00:20:07</EVERY>
+			</TIMES>
+		</ACTION>
+		<ACTION> <!-- SEND STATISTICS (Except Today) between midnight and 5am -->
+			<PATH>D:\moodmedia\software_v5\bin\sendStatistics\send_statistics.exe</PATH>
+			<ARGUMENTS>
+				<ARGUMENT>-url http://mvision.moodmedia.com/v5/</ARGUMENT>
+			</ARGUMENTS>
+			<RUN_AS>root</RUN_AS>
+			<DATES>
+				<FROM>2010-01-01</FROM>
+				<TO>2025-01-01</TO>
+				<DAYS>1111111</DAYS>
+			</DATES>
+			<TIMES>
+				<FROM>00:05:00</FROM>
+				<TO>04:15:00</TO>
+				<EVERY>00:59:00</EVERY>
+			</TIMES>
+		</ACTION>		  
+		<ACTION> <!-- SEND MONITORING INFORMATION -->
+			<PATH>D:\moodmedia\project\sendMonitoring\send_monitoring.bat</PATH>
+			<ARGUMENTS />
+			<RUN_AS>root</RUN_AS>
+			<DATES>
+				<FROM>2012-01-01</FROM>
+				<TO>2025-01-01</TO>
+				<DAYS>1111111</DAYS>
+			</DATES>
+			<TIMES>
+				<FROM>00:00:00</FROM>
+				<TO>23:59:59</TO>
+				<EVERY>00:11:17</EVERY>
+			</TIMES>
+		</ACTION>
+		<ACTION> <!-- SRX2 UDP BROADCAST -->
+			<PATH>D:\moodmedia\project\scripts\srx_udp_listener.exe</PATH>
+			<ARGUMENTS><ARGUMENT>d:\moodmedia\feeds\srx_receive\</ARGUMENT></ARGUMENTS>
+			<RUN_AS>root</RUN_AS>
+			<DATES>
+				<FROM>2012-01-01</FROM>
+				<TO>2099-01-01</TO>
+				<DAYS>1111111</DAYS>
+			</DATES>
+			<TIMES>
+				<FROM>00:14:00</FROM>
+				<TO>23:59:59</TO>
+				<EVERY>00:47:29</EVERY>
+			</TIMES>
+		</ACTION>
+		<ACTION> <!-- UPDATE MEDIA FILES AND PLAYLIST -->
+			<PATH>D:\moodmedia\project\scripts\srx2_playlist_media_update.bat</PATH>
+			<ARGUMENTS />
+			<RUN_AS>root</RUN_AS>
+			<DATES>
+				<FROM>2012-01-01</FROM>
+				<TO>2025-01-01</TO>
+				<DAYS>1111111</DAYS>
+			</DATES>
+			<TIMES>
+				<FROM>00:02:55</FROM>
+				<TO>07:15:59</TO>
+				<EVERY>00:09:11</EVERY>
+			</TIMES>
+		</ACTION>
+		<ACTION> <!-- ALL DAY: UPDATE SETTINGS AND RUN LIVE COMMANDS -->
+			<PATH>D:\moodmedia\software_v5\player_files_updater.exe</PATH>
+			<ARGUMENTS />
+			<RUN_AS>root</RUN_AS>
+			<DATES>
+				<FROM>2012-01-01</FROM>
+				<TO>2025-01-01</TO>
+				<DAYS>1111111</DAYS>
+			</DATES>
+			<TIMES>
+				<FROM>00:09:00</FROM>
+				<TO>23:59:59</TO>
+				<EVERY>00:09:11</EVERY>
+			</TIMES>
+		</ACTION>
+		<ACTION> <!-- MIDNIGHT: PURGE LOG, MEDIAS, TMP ...  -->
+			<PATH>D:\moodmedia\software_v5\tc_purge.exe</PATH>
+			<ARGUMENTS />
+			<RUN_AS>root</RUN_AS>
+			<DATES>
+				<FROM>2010-01-01</FROM>
+				<TO>2025-01-01</TO>
+				<DAYS>1111111</DAYS>
+			</DATES>
+			<TIMES>
+				<FROM>00:02:00</FROM>
+				<TO>00:02:00</TO>
+				<EVERY>00:00:00</EVERY>
+			</TIMES>
+		</ACTION>
+		<ACTION> <!-- NIGHTLY REBOOT  -->
+			<PATH>C:\Windows\System32\shutdown.exe</PATH>
+			<ARGUMENTS><ARGUMENT>-f -r -t 0</ARGUMENT></ARGUMENTS>
+			<RUN_AS>root</RUN_AS>
+			<DATES>
+				<FROM>2012-01-01</FROM>
+				<TO>2025-01-01</TO>
+				<DAYS>1111111</DAYS>
+			</DATES>
+			<TIMES>
+				<FROM>04:25:00</FROM>
+				<TO>04:25:00</TO>
+				<EVERY>00:00:00</EVERY>
+			</TIMES>
+		</ACTION>
+	</ACTIONS>
+</TCCRON>

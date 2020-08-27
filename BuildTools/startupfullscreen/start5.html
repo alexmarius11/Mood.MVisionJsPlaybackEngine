@@ -1,0 +1,235 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Untitled Document</title>
+
+<style>
+    
+    #example1, #example2 {
+        height: 500px;
+        width: 400px;        
+    }  
+    
+    #example1 {
+      background: yellow;
+    }
+    
+    #example2 {
+      background: blue;
+    }
+    
+   *{
+      margin: 0px;
+      padding:0px;
+    }
+    #background_01 {
+        width:100%;
+        height:100%;
+        background: white;
+        //margin:0 auto;
+    }
+
+    #zone_01 {
+        left:0px;
+        top:0px;
+        width:1200px;
+        height:800px;
+        background:#3F9;
+        position:absolute;
+        opacity: 0.6;
+        z-index: 100;
+        //overflow:scroll;
+    }
+
+    #zone_02 {
+        left:800px;
+        top:400px;
+        width:1200px;
+        height:800px;
+        background:#F66;
+        position:absolute;
+
+        z-index: 99;
+        //overflow:scroll
+    }
+
+    #zone_03 {
+        left:1000px;
+        top:0px;
+        width:800px;
+        height:600px;
+        //background:#FF6;
+        position:absolute;
+        z-index: 101;
+    }
+
+    #zone_04 {
+        left:100px;
+        top:400px;
+        width:800px;
+        height:600px;
+        //background:#FF6;
+        position:absolute;
+        z-index: 102;
+    }
+
+body {
+    overflow: hidden;
+}
+</style>
+
+
+<script>
+var myVar1;
+
+function displayNextChild(nodeId) 
+{
+  
+  var node = document.getElementById(nodeId);
+  var children = node.getElementsByTagName("img"); //node.childNodes;
+  for (var i = 0; i < children.length; i++) 
+  {
+    
+    if (children[i].style.visibility == "visible")
+    {
+      //alert(children[i]);   
+      if (i == children.length - 1 )
+        children[0].style.visibility = "visible";
+      else
+        children[i+1].style.visibility = "visible";
+      children[i].style.visibility = "hidden";
+      break;
+    }
+  }
+}
+
+function displayNextVideoChild(nodeId) 
+{
+  
+  var node = document.getElementById(nodeId);
+  var children = node.getElementsByTagName("video"); //node.childNodes;
+  for (var i = 0; i < children.length; i++) 
+  {
+    
+    if (children[i].style.visibility == "visible")
+    {
+      //alert(children[i]);
+      if (i == children.length - 1 ){
+        children[i].pause();
+
+        children[0].play();
+        children[0].style.visibility = "visible";
+      }else{
+        children[i].pause();
+
+        children[i+1].play();
+        children[i+1].style.visibility = "visible";
+      }
+      children[i].style.visibility = "hidden";
+      break;
+    }
+  }
+}
+
+function start(nodeId, duration) 
+{
+  myVar1 = setInterval(displayNextChild, duration, nodeId);
+}
+
+       function myHandler_for_video_in_zone04(e) 
+       {
+        //if(!e) { e = window.event; }
+        //alert("Video Finished in zone 04");
+        displayNextVideoChild("zone_04"); 
+       }
+
+</script>
+
+
+</head>
+
+<body>
+
+ <div id="background_01"  >
+   
+    <div id="zone_01" >
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/greenpeople.jpg" alt="a person entering a building" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:visible" />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/entrance.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/bluepeople.jpg" alt="building entrance with neon backlit walls" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection3.jpg" alt="building lobby window reflections" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection2.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/manequine.jpg" alt="two manequines in window" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+   </div>
+
+   <div id="zone_02">     
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/greenpeople.jpg" alt="a person entering a building" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:visible" />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/entrance.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/bluepeople.jpg" alt="building entrance with neon backlit walls" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection3.jpg" alt="building lobby window reflections" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection2.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/manequine.jpg" alt="two manequines in window" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+   </div>
+
+
+   <div id="zone_03">     
+      <video id="video_03001" style="position: absolute; width: 800px; height: 600px; visibility:visible" playsinline  >
+	<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"/>
+	<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.ogg" type="video/ogg"/>
+      </video>
+  </div>
+
+   <div id="zone_04">     
+      <video id="video_04001" style="position: absolute; width: 800px; height: 600px; visibility:visible" playsinline >
+         <source src="http://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_1920_18MG.mp4" type="video/mp4"/>
+         <source src="http://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_1920_18MG.ogg" type="video/ogg"/>
+          Your browser does not support HTML5 video.
+     </video> 
+      <video id="video_04002" style="position: absolute; width: 800px; height: 600px; visibility:hidden" muted>
+         <source src="http://www.html5videoplayer.net/videos/toystory.mp4" type="video/mp4"/>
+         <source src="http://www.html5videoplayer.net/videos/toystory.ogg" type="video/ogg"/>
+          Your browser does not support HTML5 video.
+     </video> 
+
+      <video id="video_04003" style="position: absolute; width: 800px; height: 600px; visibility:hidden" muted>
+	<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"/>
+	<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.ogg" type="video/ogg"/>
+      </video>
+
+   </div>
+
+</div>
+
+ <script type="text/javascript">
+
+
+(function () {
+    //alert("I am here");
+    var video1 = document.getElementById('video_04001');
+    video1.play();
+    //video1.muted=false;
+
+    var video2 = document.getElementById('video_03001') ;
+    video2.play();
+    //video2.muted = false;
+
+    start('zone_01', 5000); 
+    start('zone_02', 8000);
+
+    setTimeout(function(){     var video1 = document.getElementById('video_03001');
+    video1.muted=false; }, 1000);
+
+    document.getElementById('video_04001').addEventListener('ended',myHandler_for_video_in_zone04,false);
+    document.getElementById('video_04002').addEventListener('ended',myHandler_for_video_in_zone04,false);
+    document.getElementById('video_04003').addEventListener('ended',myHandler_for_video_in_zone04,false);
+
+
+})();
+
+ </script>
+
+</body>
+
+</html>
+

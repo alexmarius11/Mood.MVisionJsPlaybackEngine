@@ -1,0 +1,175 @@
+{
+	"templates": [
+		{
+			"id": "backlight-scheduling",
+			"isDefault": true,
+			"description": "SCAP - Backlight Scheduling",
+			"type": "scap",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "app-update-without-restart",
+			"isDefault": false,
+			"description": "SCAP - App update without restart",
+			"type": "scap",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "download-progress",
+			"isDefault": false,
+			"description": "SCAP - Download progress",
+			"type": "scap",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "simple-network-failover",
+			"isDefault": false,
+			"description": "SCAP - Simple Network Failover",
+			"type": "scap",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "file-explorer",
+			"isDefault": false,
+			"description": "SCAP - File Explorer",
+			"type": "scap",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "local-content-scheduling",
+			"isDefault": false,
+			"description": "SCAP - Local Content Scheduling",
+			"type": "scap",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "timezone-setting",
+			"isDefault": false,
+			"description": "SCAP - Timezone Setting",
+			"type": "scap",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "fashion-multimedia-ad",
+			"isDefault": false,
+			"description": "Web - (Fashion/Jewelry) Fashion Multimedia",
+			"type": "webapp",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "information-kiosk",
+			"isDefault": false,
+			"description": "Web - (Fashion/Jewelry) Information Kiosk",
+			"type": "webapp",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "weather-dependent-ad",
+			"isDefault": false,
+			"description": "Web - (Fashion/Jewelry) Weather Dependent Adv.",
+			"type": "webapp",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "flight-schedule",
+			"isDefault": false,
+			"description": "Web - (Flight Info Display) Flight Schedule",
+			"type": "webapp",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "information-board",
+			"isDefault": false,
+			"description": "Web - (Public Place/Edu) Information Board",
+			"type": "webapp",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "multimedia-ad",
+			"isDefault": false,
+			"description": "Web - (Public Place/Edu) Multimedia Adv.",
+			"type": "webapp",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "wayfinder",
+			"isDefault": false,
+			"description": "Web - (Public Place/Edu) Wayfinder",
+			"type": "webapp",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "widget-overlay",
+			"isDefault": false,
+			"description": "Web - (Public Place/Edu) Widget Overlay",
+			"type": "webapp",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "mart",
+			"isDefault": false,
+			"description": "Web - (QSR/Retail) Mart",
+			"type": "webapp",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "price-board-for-QSR",
+			"isDefault": false,
+			"description": "Web - (QSR/Retail) Price Board for QSR",
+			"type": "webapp",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "special-menu-board",
+			"isDefault": false,
+			"description": "Web - (QSR/Retail) Special Menu Board",
+			"type": "webapp",
+			"profile": [
+				"signage"
+			]
+		},
+		{
+			"id": "hello-service",
+			"isDefault": false,
+			"description": "js service for webOS Signage",
+			"type": "jsservice",
+			"profile": [
+				"signage"
+			]
+		}
+	]
+}

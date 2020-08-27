@@ -1,0 +1,1137 @@
+<html>
+<head>
+
+</head>
+<style>
+
+  *{
+        margin: 0px;
+        padding: 0px;
+    }
+
+h1 {
+        margin-top: 0px;
+    }
+
+</style>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Untitled Document</title>
+  
+  <style>
+      
+      #example1, #example2 {
+          height: 500px;
+          width: 400px;        
+      }  
+      
+      #example1 {
+        background: yellow;
+      }
+      
+      #example2 {
+        background: blue;
+      }
+      
+     *{
+        margin: 0px;
+        padding:0px;
+      }
+      #background_01 {
+          width:100%;
+          height:100%;
+          background: white;
+          position:absolute;
+          display: none;
+      }
+  
+      #zone_01 {
+          left:0px;
+          top:0px;
+          width:1200px;
+          height:800px;
+          background:#3F9;
+          position:absolute;
+          opacity: 1.0;
+          z-index: 100;  
+      }
+  
+      #zone_02 {
+          left:800px;
+          top:400px;
+          width:1200px;
+          height:800px;
+          background:#F66;
+          position:absolute;
+          z-index: 99;
+          
+      }
+  
+      #zone_03 {
+          left:1150px;
+          top:0px;
+          width:800px;
+          height:600px;
+          position:absolute;
+          opacity: 1.0;
+          z-index: 101;
+      }
+  
+      #zone_04 {
+          left:0px;
+          top:500px;
+          width:800px;
+          height:600px;
+          
+          position:absolute;
+          opacity: 0.6;
+          z-index: 102;
+      }
+  
+  body {
+      
+      margin: 0px; 
+      padding: 0px;
+  }
+  </style>
+  
+  
+  <script>
+  var myVar1;
+  //background:#FF6;
+  //overflow:scroll
+  //margin:0 auto;
+  //overflow: hidden;
+
+  function displayNextChild(nodeId) 
+  {
+    
+    var node = document.getElementById(nodeId);
+    var children = node.getElementsByTagName("img"); //node.childNodes;
+    for (var i = 0; i < children.length; i++) 
+    {
+      
+      if (children[i].style.visibility == "visible")
+      {
+        //alert(children[i]);   
+        if (i == children.length - 1 )
+          children[0].style.visibility = "visible";
+        else
+          children[i+1].style.visibility = "visible";
+        children[i].style.visibility = "hidden";
+        break;
+      }
+    }
+  }
+  
+  function displayNextVideoChild(nodeId) 
+  {
+    
+    var node = document.getElementById(nodeId);
+    var children = node.getElementsByTagName("video"); //node.childNodes;
+    for (var i = 0; i < children.length; i++) 
+    {
+      
+      if (children[i].style.visibility == "visible")
+      {
+        //alert(children[i]);
+        if (i == children.length - 1 ){
+          children[i].pause();
+  
+          children[0].play();
+          children[0].style.visibility = "visible";
+        }else{
+          children[i].pause();
+  
+          children[i+1].play();
+          children[i+1].style.visibility = "visible";
+        }
+        children[i].style.visibility = "hidden";
+        break;
+      }
+    }
+  }
+  
+  var timers = [0,0,0,0];
+  
+  function start(idx, nodeId, duration) 
+  {
+    timers[idx] = setInterval(displayNextChild, duration, nodeId);
+  }
+  
+         function myHandler_for_video_in_zone04(e) 
+         {
+          //if(!e) { e = window.event; }
+          //alert("Video Finished in zone 04");
+          displayNextVideoChild("zone_04"); 
+         }
+  
+  function stopAll() 
+  {
+    for (var i = 0 ; i < timers.length ; i++)
+    {
+       if (timers[i] != 0)
+       {
+         clearInterval(timers[i]) ;
+         timers[i] = 0;
+       }
+  
+    }
+    document.getElementById('btnStop').innerHTML="Start Playback";
+    document.getElementById('background_01').style.display="none";
+    document.getElementById('bodyid').style.overflow="auto";
+    document.getElementById('divstopid').style.position="static";
+         
+  }
+  
+  function startAll() 
+  {
+    start(0, 'zone_01', 5000); 
+    start(1, 'zone_02', 7000);
+    start(2, 'zone_03', 12000);
+    start(3, 'zone_04', 17000);
+    document.getElementById('btnStop').innerHTML="Stop Playback";
+    document.getElementById('background_01').style.display="block";
+    document.getElementById('bodyid').style.overflow="hidden";
+    document.getElementById('divstopid').style.position="absolute";
+  }
+  
+  function restart() 
+  {
+    if (document.getElementById('btnStop').innerHTML == "Start Playback")  
+      startAll();
+    else
+      stopAll();
+  }
+
+
+  </script>
+  
+ 
+  <script>
+
+    function onChangeUsefullStorage()
+    {
+      var crtUsefullStorage = document.getElementById("idUrlStorage").value;
+      document.getElementById("renderers.file_urlstorage").value = crtUsefullStorage;
+    }
+    
+    function onChangeUsefullPath()
+    {
+      var crtUsefullPath = document.getElementById("idUrlPath").value;
+      document.getElementById("renderers.file_urlpath").value = crtUsefullPath;
+    }
+    
+    function onChangeUsefullFile()
+    {
+      var crtUsefullFile = document.getElementById("idUrlFile").value;
+      document.getElementById("renderers.file_urlname").value = crtUsefullFile;
+    }
+    
+    function onChangeUsefullPath()
+    {
+      var crtUsefullStorage = document.getElementById("idUrlPath").value;
+      document.getElementById("renderers.file_urlpath").value = crtUsefullStorage;
+    }
+    
+    function waitForImageToLoad(imageElement){
+      return new Promise(resolve=>{imageElement.onload = resolve})
+    }
+    
+    function waitForFrameToLoad(frameElement){
+      return new Promise(resolve=>{frameElement.onload = resolve})
+    }
+    
+    function waitForVideoToLoad(videoElement){
+      return new Promise(resolve=>{videoElement.oncanplay = resolve})
+    }
+    
+    var prevMediaType = 0;
+    var crtMediaType = 0;
+    
+    
+    function stopPrevMediaType()
+    {
+      //alert(prevMediaType);
+      if (prevMediaType == 0)
+        return; 
+      if (prevMediaType==1) //Image
+      {
+        //alert("stop image");
+        var myImage = document.getElementById("idImg");
+        myImage.src = "";
+        myImage.style.display = "none";
+      } 
+      if (prevMediaType==2) //Video
+      {
+        //alert("stop video");
+        var myVideo = document.getElementById("idVideo");
+        //myVideo.stop(); //dont do stop
+        myVideo.src="";
+        myVideo.style.display = "none";
+      } 
+      if (prevMediaType==3) //Html
+      {
+        //alert("stop html");
+        var myHtml = document.getElementById("idHtml");
+        //myHtml.src=""; //dont do src=""
+        myHtml.style.display = "none";
+      } 
+    }
+    
+    function stopCrtMediaType()
+    {
+      //alert(prevMediaType);
+      if (crtMediaType == 0)
+        return; 
+      if (crtMediaType==1) //Image
+      {
+        //alert("stop image");
+        var myImage = document.getElementById("idImg");
+        myImage.src = "";
+        myImage.style.display = "none";
+      } 
+      if (crtMediaType==2) //Video
+      {
+        //alert("stop video");
+        var myVideo = document.getElementById("idVideo");
+        //myVideo.stop(); //dont do stop
+        myVideo.src="";
+        myVideo.style.display = "none";
+      } 
+      if (crtMediaType==3) //Html
+      {
+        //alert("stop html");
+        var myHtml = document.getElementById("idHtml");
+        //myHtml.src=""; //dont do src=""
+        myHtml.style.display = "none";
+      } 
+      crtMediaType = 0;
+      prevMediaType = 0;
+    }
+
+    function loadMediaFile()
+    { 
+      //alert("loadMediaFile");
+      prevMediaType = crtMediaType;
+      stopPrevMediaType();
+    
+      crtMediaType = document.getElementById("idMediaType").value;
+      var mediaFileUrlStorage  = document.getElementById("renderers.file_urlstorage").value;
+       var mediaFileUrlPath     = document.getElementById("renderers.file_urlpath").value;
+       var mediaFileUrlName     = document.getElementById("renderers.file_urlname").value;
+       var mediaFileUrlFullName = mediaFileUrlStorage + mediaFileUrlPath + mediaFileUrlName;
+      //alert(mediaFileUrlFullName );
+    
+      if (crtMediaType==1)
+      {
+       var myImage = document.getElementById("idImg");
+       myImage.style.display = "block";
+       //var myImage = document.getElementById("z01img02");
+       //alert(mediaFileUrlFullName);
+       myImage.src = mediaFileUrlFullName;
+       waitForImageToLoad(myImage).then(()=>{
+         // Image have loaded.
+         onChangeDisplayType();
+         console.log('Loaded image')
+       });
+      }
+      if (crtMediaType==2)
+      {
+        var myVideo = document.getElementById("idVideo");
+        myVideo.style.display = "block";
+        myVideo.src = mediaFileUrlFullName;
+        waitForVideoToLoad(myVideo).then(()=>{
+         // Video have loaded.
+         //onChangeDisplayType();
+         myVideo.play();
+         console.log('Video can Play');
+         //alert("video can play");
+       });
+      }
+    
+      if (crtMediaType==3) //HTML
+      {
+        var myHtml = document.getElementById("idHtml");
+        myHtml.style.display = "block";
+        myHtml.src = mediaFileUrlFullName;
+        //waitForFrameToLoad(myHtml).then(()=>{
+         ////onChangeDisplayType();
+         //console.log('Html Loaded');
+         //alert("Html Loaded");
+       //});
+      }
+    
+    }
+    
+    
+    function onChangeImgCanvasSize() 
+    {
+        var imgDisplayType = document.getElementById("idImgDisplayType");
+        var imgCanvasX = document.getElementById("idImgCanvasX");
+        var imgCanvasY = document.getElementById("idImgCanvasY");
+        var imgDiv = document.getElementById("idImgDiv");
+        var img = document.getElementById("idImg");
+        //var imgDiv = document.getElementById("z01");
+        //var img = document.getElementById("z01img02");
+      
+        imgDiv.style.width = imgCanvasX.value;
+        imgDiv.style.height = imgCanvasY.value;
+      
+        onChangeDisplayType();
+      }
+      function onChangeDisplayType() 
+      {
+        //alert(1);
+        
+    
+        var imgDisplayType = document.getElementById("idImgDisplayType");
+        var imgDiv = document.getElementById("idImgDiv");
+        //var imgDiv = document.getElementById("z01");
+        
+        var img = document.getElementById("idImg");
+        //var img = document.getElementById("z01img02");
+        var imgRealWidth = img.naturalWidth;
+        var imgRealHeight = img.naturalHeight;
+      
+        var imgNewWidth = img.naturalWidth;
+        var imgNewHeight = img.naturalHeight;
+      
+        //var imgCanvasX = document.getElementById("idImgCanvasX");
+        //var imgCanvasY = document.getElementById("idImgCanvasY");
+      
+        var canvasWidth = imgDiv.offsetWidth;
+        var canvasHeight = imgDiv.offsetHeight;
+      
+        var ratioX = 1;
+        var ratioY = 1;
+        if(canvasWidth > 0)
+          ratioX = imgRealWidth/canvasWidth;
+        if(canvasHeight > 0)
+          ratioY = imgRealHeight/canvasHeight;
+      
+        if(imgDisplayType.value=="CENTER")
+        {
+          img.style.width=imgRealWidth+"px";
+          img.style.height=imgRealHeight+"px";
+          img.style.marginLeft=(canvasWidth-imgRealWidth)/2+"px";
+          img.style.marginRight=(canvasWidth-imgRealWidth)/2+"px";
+          img.style.marginTop=(canvasHeight-imgRealHeight)/2+"px";
+          img.style.marginBottom=(canvasHeight-imgRealHeight)/2+"px";
+        }
+        if(imgDisplayType.value=="FILL")
+        {
+          img.style.width="";
+          img.style.height="";
+          img.style.marginLeft=0;
+          img.style.marginRight=0;
+          img.style.marginTop=0;
+          img.style.marginBottom=0;
+      
+          if(ratioX < ratioY)
+          {
+            imgNewWidth = canvasWidth;
+            imgNewHeight = imgRealHeight * (imgNewWidth/imgRealWidth);
+      
+            img.style.width=imgNewWidth+"px";
+            img.style.marginTop=(canvasHeight-imgNewHeight)/2+"px";
+            img.style.marginBottom=(canvasHeight-imgNewHeight)/2+"px";
+          }
+          else
+          {
+            imgNewHeight = canvasHeight;
+            imgNewWidth = imgRealWidth * (imgNewHeight/imgRealHeight);
+      
+            img.style.height=imgNewHeight+"px";
+            img.style.marginLeft=(canvasWidth-imgNewWidth)/2+"px";
+            img.style.marginRight=(canvasWidth-imgNewWidth)/2+"px";
+          }
+        }
+        if(imgDisplayType.value=="FIT")
+        {
+          img.style.width="";
+          img.style.height="";
+          img.style.marginLeft=0;
+          img.style.marginRight=0;
+          img.style.marginTop=0;
+          img.style.marginBottom=0;
+          if(ratioX > ratioY)
+          {
+            imgNewWidth = canvasWidth;
+            imgNewHeight = imgRealHeight * (imgNewWidth/imgRealWidth);
+            img.style.width=imgNewWidth+"px";
+            img.style.marginTop=(canvasHeight-imgNewHeight)/2+"px";
+            img.style.marginBottom=(canvasHeight-imgNewHeight)/2+"px";
+          }
+          else
+          {
+            imgNewHeight = canvasHeight;
+            imgNewWidth = imgRealWidth * (imgNewHeight/imgRealHeight);
+            img.style.height=imgNewHeight+"px";
+            img.style.marginLeft=(canvasWidth-imgNewWidth)/2+"px";
+            img.style.marginRight=(canvasWidth-imgNewWidth)/2+"px";
+          }
+        }
+        if(imgDisplayType.value=="STRETCH")
+        {
+          img.style.width=canvasWidth+"px";
+          img.style.height=canvasHeight+"px";
+          img.style.marginLeft=0;
+          img.style.marginRight=0;
+          img.style.marginTop=0;
+          img.style.marginBottom=0;
+        }
+        if(imgDisplayType.value=="NORMAL")
+        {
+          img.style.width=imgRealWidth+"px";
+          img.style.height=imgRealHeight+"px";
+          img.style.marginLeft=0;
+          img.style.marginRight=0;
+          img.style.marginTop=0;
+          img.style.marginBottom=0;
+        }
+      }
+
+        //---------------------------------------------
+        function stopAllRenderers() 
+        {
+          stopCrtMediaType();
+          document.getElementById('btnRenderers').innerHTML="Show Renderers";
+          document.getElementById('renderers').style.display="none";
+          document.getElementById('bodyid').style.overflow="auto";
+          //document.getElementById('divstopid').style.position="static";         
+        }
+  
+        function startAllRenderers() 
+        {
+          document.getElementById('btnRenderers').innerHTML="Hide Renderers";
+          document.getElementById('renderers').style.display="block";
+          document.getElementById('bodyid').style.overflow="hidden";
+          //document.getElementById('divstopid').style.position="absolute";
+        }
+  
+        function restartRenderers() 
+        {
+          if (document.getElementById('btnRenderers').innerHTML == "Show Renderers")  
+            startAllRenderers();
+          else
+            stopAllRenderers();
+        }
+
+      </script>
+   
+
+</head>
+
+<body id="bodyid">
+
+  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+  <script src="https://unpkg.com/video.js/dist/video.js"></script>
+  <script src="https://unpkg.com/videojs-flash/dist/videojs-flash.js"></script>
+  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+
+  <div id="divstopid" style="z-index:910; position:static;" >
+    <button id="btnStop" onclick="restart()">Start Playback</button>
+  </div>
+  <div id="divrenderersid" style="z-index:911; position:static;" >
+    <button id="btnRenderers" onclick="restartRenderers()">Show Renderers</button>
+  </div>
+
+  <div id="renderers" style="z-index:800; position:static; display:none; ">
+    <div id="renderers.menu">
+      <hr>
+      <center>
+          <div>
+            <h3>Test Renderers</h3>
+          </div>
+          <div>
+          <h4>Media File: 
+            <input id="renderers.file_urlstorage" value="http://127.0.0.1:9080/c/"/> 
+            <input id="renderers.file_urlpath" value="media_files/"/>
+            <input id="renderers.file_urlname" value="fluture01.jpg"/> 
+          </h4>
+        
+          <P>
+            Usefull Url Storages: 
+              <select id="idUrlStorage" onchange="onChangeUsefullStorage()">
+    
+                <option value="http://127.0.0.1:9080/c/">WINDOWS - http://127.0.0.1:9080/c/</option>
+                <option value="file:///opt/storage/usb/sda1/">TIZEN - file:///opt/storage/usb/sda1/</option>
+                <option value="http://127.0.0.1:9080/external/usb/16/">WEBOS - http://127.0.0.1:9080/external/usb/16/</option>
+                <option value="http://127.0.0.1:9080/ux/">LINUX-UBUNTU - http://127.0.0.1:9080/ux/</option>
+                <option value="http://127.0.0.1:9080/ux/">ANDROID-TERMUX-UBUNTU - http://127.0.0.1:9080/ux/</option>
+                
+                <option value="http://">WEB - http://</option>
+                <option value="https://">WEB - https://</option>
+              </select>
+            Usefull Url Path: 
+              <select id="idUrlPath" onchange="onChangeUsefullPath()">
+                <option value="media_files/">LOCAL - media_files/</option>
+                <option value="www.wikipedia.org">WEB - www.wikipedia.org</option>
+                <option value="www.stiripesurse.ro">WEB - www.stiripesurse.ro</option>
+                <option value="www.dcnews.ro">WEB - www.dcnews.ro</option>
+              </select>
+              Usefull Url File: 
+              <select id="idUrlFile" onchange="onChangeUsefullFile()">
+                <option value="fluture01.jpg">LOCAL - fluture01.jpg</option>
+                <option value="flori01.jpg">LOCAL - flori01.jpg</option>
+                <option value="bunny.mp4">LOCAL - bunny.mp4</option>
+                <option value="music.mp4">LOCAL - music.mp4</option>
+                <option value="">WEB - empty</option>
+              </select>
+          </P>    
+            <P>
+              Media Type: 
+                <select id="idMediaType" onchange="onChangeDisplayType()">
+                  <option value="1">IMAGE</option>
+                  <option value="2">VIDEO</option>
+                  <option value="3">HTML</option>
+                </select>
+            </P>
+          
+            <h4>
+              <P>
+                Canvas X: <input id="idImgCanvasX" value="800px" onchange="onChangeImgCanvasSize()"/>
+              </P>
+              <P>
+                Canvas Y: <input id="idImgCanvasY" value="400px" onchange="onChangeImgCanvasSize()"/>
+              </P>
+              <P>
+                Display Type (only for images): 
+                  <select id="idImgDisplayType" onchange="onChangeDisplayType()">
+                    <option value="CENTER">CENTER</option>
+                    <option value="FILL">FILL</option>
+                    <option value="FIT">FIT</option>
+                    <option value="STRETCH">STRETCH</option>
+                    <option value="NORMAL">NORMAL</option>
+                  </select>
+              </P>
+            </h4>
+          </div>
+          <div>
+            <button type="button" onclick="stopAllRenderers()">Close</button>
+            <button type="button" onclick="loadMediaFile()">Load Media File</button>
+          </div>
+          <div id="background02" style="background-color:black; width:90%; height:600" >
+            <div id="idImgDiv"  style="background-color:lightblue; left:10px;  top:10px;  height:400px; width:800px; overflow: hidden; position: relative;"> 
+    
+              <video  id="idVideo" style="visibility:visible; object-fit:fill; display:none; width: 100%; height: 100%; border: 0;" preload controls playsinline><source src="" type="video/mp4"></video>
+              <img    id="idImg" style="visibility:visible; display:none; border:0;" src="" onload2="onChangeDisplayType()">
+              <iframe id="idHtml" style="visibility:visible; display:none; width: 100%; height: 100%; border: 0" src="" onload2="onChangeDisplayType()" scrolling="no"></iframe>
+            </div> 
+          </div>
+        </div>    
+      </center>
+      <hr>
+    </div> 
+    
+  
+   <div id="background_01"  >
+     
+      <div id="zone_01" >
+  
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/greenpeople.jpg" alt="a person entering a building" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:visible" />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/entrance.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/bluepeople.jpg" alt="building entrance with neon backlit walls" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection3.jpg" alt="building lobby window reflections" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection2.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/manequine.jpg" alt="two manequines in window" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+     </div>
+  
+     <div id="zone_02">     
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection3.jpg" alt="building lobby window reflections" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:visible"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection2.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/manequine.jpg" alt="two manequines in window" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/greenpeople.jpg" alt="a person entering a building" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden" />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/entrance.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/bluepeople.jpg" alt="building entrance with neon backlit walls" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+     </div>
+  
+  
+     <div id="zone_03">     
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection2.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:visible"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/manequine.jpg" alt="two manequines in window" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/greenpeople.jpg" alt="a person entering a building" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden" />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/entrance.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/bluepeople.jpg" alt="building entrance with neon backlit walls" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection3.jpg" alt="building lobby window reflections" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+  
+    </div>
+  
+     <div id="zone_04">     
+        <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:visible"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/entrance.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/bluepeople.jpg" alt="building entrance with neon backlit walls" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection3.jpg" alt="building lobby window reflections" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection2.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/greenpeople.jpg" alt="a person entering a building" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden" />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/manequine.jpg" alt="two manequines in window" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+        <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+     </div>
+
+  </div>
+  
+  <script type="text/javascript">
+      //startAll();
+      //start(0, 'zone_01', 5000); 
+      //start(1, 'zone_02', 7000);
+      //start(2, 'zone_03', 12000);
+      //start(3, 'zone_04', 17000);
+  
+  </script>
+  
+  
+  <script>
+
+    var global_SDKRenderer =
+    {
+      displayFolderFileList  : function(){},
+
+      displayFile            : function(){},
+      displayNewFile         : function(){},
+      eraseDisplayFile       : function(){},
+      saveFile               : function(){},
+      
+      displayDeleteFile      : function(){},
+      eraseDisplayDeleteFile : function(){},
+      deleteFile             : function(){},
+
+      displayCopyFile        : function(){},
+      eraseDisplayCopyFile   : function(){},
+      copyFile               : function(){},
+
+      displayMoveFile      : function(){},
+      eraseDisplayMoveFile : function(){},
+      moveFile             : function(){},
+
+      displayDownloadFile    : function(){},
+      eraseDisplayDownloadFile : function(){},
+      downloadFile             : function(){},
+
+      displayUploadFile        :  function(){},
+      eraseDisplayUploadFile   : function(){},
+      uploadFile               : function(){},
+
+      displayUnzipFile         : function(){},
+      eraseDisplayUnzipFile    : function(){},
+      unzipFile                : function(){},
+
+      displayZipFile           : function(){},
+      eraseDisplayZipFile      : function(){},
+      zipFile                  : function(){},
+
+
+      //--- folder functions
+      displayNewFolder      : function(){},
+      eraseDisplayNewFolder : function(){},
+      createFolder          : function(){},
+
+      displayDeleteFolder   : function(){},
+      eraseDisplayDeleteFolder : function(){},
+      deleteFolder          : function(){},
+
+      displayCopyFolder      : function(){},
+      eraseDisplayCopyFolder : function(){},
+      copyFolder             : function(){},
+
+      displayMoveFolder      : function(){},
+      eraseDisplayMoveFolder : function(){},
+      moveFolder             : function(){},
+
+      displayZipFolder         : function(){},
+      eraseDisplayZipFolder    : function(){},
+      zipFolder                : function(){},
+
+      //------------------
+      start_display_imageFile  : function(){},
+      erase_display_imageFile  : function(){},
+
+      start_display_videoFile  : function(){},
+      erase_display_videoFile  : function(){},
+
+      start_display_streamFile  : function(){},
+      erase_display_streamFile  : function(){},
+
+      start_display_flashFile  : function(){},
+      erase_display_flashFile  : function(){},
+
+      start_display_msdocFile  : function(){},
+      erase_display_msdocFile  : function(){},
+
+      start_display_msexcelFile  : function(){},
+      erase_display_msexcelFile  : function(){},
+
+      //-------------
+      displayComputeAndSaveShaFile      : function(){},
+      eraseDisplayComputeAndSaveShaFile : function(){},
+      computeAndSaveShaFile             : function(){},
+
+      //-------------
+      displayLogRenderer                : function(){},
+      hideLogRenderer                   : function(){},
+      eraseLogRenderer                  : function(){},
+      viewLogFile                       : function(){},
+      closeViewLogFile                  : function(){},
+
+      //---------------
+      displayHardwareSettings        : function(){},
+      closeHardwareSettings          : function(){},
+
+      //---------------
+      displayOpeningHours            : function(){},
+      closeOpeningHours              : function(){},
+
+    } ;
+  </script>
+  
+<div id="maindiv" style="background-color:yellow;color:blue"></div>
+
+<div id="testreadfile" style="background-color:yellow;color:blue"></div>
+
+<img id="testimg" style="background-color:yellow;color:blue"></img>
+
+
+<script src="socket.io.js"></script>
+<!-- <script src="/client/client.js"></script> -->
+<script src="require.js" data-main="client/client.js"></script>  
+
+<div id="log.renderer" style="background-color:lightblue; color:blue;"></div>  
+
+<div id="sdk.renderer">
+  <div id="sdk.message" style="background-color:lightblue;color:blue"></div>
+  <div id="sdk.error"  style="background-color:yellow;color:red"></div>  
+
+  <div id="sdk.filesystem-renderer" style="background-color:yellow;color:blue">
+    <div id="sdk.filesystem-renderer.display-unzipfile"   style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-zipfile"     style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-zipfolder"   style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-downloadfile"  style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-uploadfile"  style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-movefile"  style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-movefolder"  style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-copyfile"  style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-copyfolder"  style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-deletefile"  style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-deletefolder"  style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.displayfile"   style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-computefilesha" style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.displayimage"   style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.displayvideo"   style="background-color:yellow;color:blue"></div>  
+    <center>
+      <video id="sdk.filesystem-renderer.video" 
+             class="video-js  vjs-default-skin"  
+             style="object-fit:fill;width:960;height:540;display:none;" 
+             preload controls playsinline>
+        <source
+           src=""
+           type="application/x-mpegURL">
+      </video>
+    </center>
+    <center>
+      <video id="sdk.filesystem-renderer.video2" 
+             style="object-fit:fill;width:960;height:540;display:none;" 
+             preload controls playsinline>
+        <source
+           src=""
+           type="video/mp4">
+      </video>
+    </center>
+    <div id="sdk.filesystem-renderer.displaystream"   style="background-color:yellow;color:blue"> </div>
+    <div id="sdk.filesystem-renderer.displayfolder" style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-xmlhardwaresettings" style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.display-xmlopeninghours" style="background-color:yellow;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.mainmenu" style="background-color: lightgray;color:blue"></div>  
+    <div id="sdk.filesystem-renderer.filelist" style="background-color:yellow;color:blue"></div>
+  </div>
+
+</div>
+
+<!-- 
+<button onClick="getFileList()">getFileList</button>
+
+<button onClick="sendMessage()">getMessage</button>
+
+
+  <script src="socket.io.js"></script>
+<script>
+  const socket = io("http://localhost:3000");
+
+
+  function getFileList() 
+  {
+    var params = {
+      "pathFullName" : "C:\\W\\80\\Mood.MVisionJsPlaybackEngine\\deploy\\node.js\\10.15.3LTS\\public"
+    };
+    socket.emit('get-file-list', params);//"C:\\W\\80\\Mood.MVisionJsPlaybackEngine\\deploy\\node.js\\10.15.3LTS\\public");
+  };
+
+  socket.on('ret-get-message', function(msg) 
+  {
+    console.log("msg:", msg);
+    document.getElementById("filesystem").innerHTML += "<p>ret-get-message</p>" + msg;
+  });
+
+  socket.on('ret-get-file-list', function(ctx) 
+  {
+    console.log("id:", ctx);
+    strFileSystem = "";
+    //strFileSystem += "<p>ret-get-file-list</p><p>" + JSON.stringify(ctx) + "</p>";
+    //strFileSystem += "<h3> +
+    strFileSystem += "<table width='60%' >"+
+                                                         "<tr width='100%' >" +
+                                                           '<td width="10%"><b><input type="checkbox" value="" ng-model="FM.selectAll"></b></td>' +
+                                                           '<td width="10%"><b>Type</b></td>' +
+                                                           '<td width="40%"><b>Name</b></td>' +
+                                                           '<td width="20%"><b>Size</b></td>' +
+                                                           '<td width="20%"><b>Time</b></td>' +
+                                                          '</tr>' ;
+                                                          //"<tbody width='100%' >" ;
+
+    fList = ctx._arrayResult;
+      //var strFileTblLines = "";
+      //var strFileTblLine  = "";
+                for (var i =  0; i < fList.length; i++)  
+                {
+                  strFileSystem += '<tr width="100%" class="sortable" ng-repeat="file in FM.curFiles | orderBy:\'folder\'">' +
+                   '<td width="10%"><input type="checkbox" value="{{file.name}}" ng-model="file.selected"></td>'  +
+                   '<td width="10%">type</td>' +
+                   '<td width="40%"ng-click="FM.clickFile(file)">' + fList[i] + '</td> ' +
+                   '<td width="20%">size</td>' +
+                   '<td width="20%">time</td>' +
+                  '</tr>' ;
+                  //strFileTblLines += strFileTblLine;
+                }
+      strFileSystem += 
+                                    //"</tbody>" +
+                                  "</table>" ;
+    document.getElementById("filesystem").innerHTML = strFileSystem;
+
+  });
+
+
+  function sendMessage() {
+    socket.emit("message", "HELLO WORLD");
+  }
+
+</script>
+-->
+  
+
+<div id="background01"  >
+     
+  <div id="z01"                style="position: absolute; width: 600px; height: 400px; visibility:hidden">
+
+    <img    id="z01img01"  src="" style="width: 600px; height: 400px; visibility:hidden"></img>
+    <img    id="z01img02"  src="" style="width: 600px; height: 400px; visibility:hidden"></img>
+    <video  id="z01video01"       style="width:600;height:400; visibility:hidden; object-fit:fill;" preload controls playsinline><source src="" type="video/mp4"></video>
+    <video  id="z01video02"       style="width:600;height:400; visibility:hidden; object-fit:fill;" preload controls playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z01html01" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>
+    <iframe id="z01html02" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>
+    <div    id="z01rect01" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <div    id="z01rect02" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <video  id="z01stream01" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z01stream02" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+
+  </div>  
+
+
+  <div id="z02"                style="position: absolute; width: 600px; height: 400px; visibility:hidden">
+
+    <img    id="z02img01"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <img    id="z02img02"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <video  id="z02video01"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <video  id="z02video02"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z02html01" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>
+    <iframe id="z02html02" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>  
+    <div    id="z02rect01" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <div    id="z02rect02" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <video  id="z02stream01" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z02stream02" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z03"                style="position: absolute; width: 600px; height: 400px; visibility:hidden">
+
+    <img    id="z03img01"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <img    id="z03img02"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <video  id="z03video01"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <video  id="z03video02"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z03html01" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>
+    <iframe id="z03html02" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>  
+    <div    id="z03rect01" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <div    id="z03rect02" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <video  id="z03stream01" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z03stream02" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z04"                style="position: absolute; width: 600px; height: 400px; visibility:hidden">
+
+    <img    id="z04img01"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <img    id="z04img02"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <video  id="z04video01"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <video  id="z04video02"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z04html01" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>
+    <iframe id="z04html02" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>  
+    <div    id="z04rect01" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <div    id="z04rect02" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <video  id="z04stream01" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z04stream02" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z05"                style="position: absolute; width: 600px; height: 400px; visibility:hidden">
+
+    <img    id="z05img01"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <img    id="z05img02"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <video  id="z05video01"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <video  id="z05video02"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z05html01" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>
+    <iframe id="z05html02" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>  
+    <div    id="z05rect01" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <div    id="z05rect02" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <video  id="z05stream01" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z05stream02" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z06"                style="position: absolute; width: 600px; height: 400px; visibility:hidden">
+
+    <img    id="z06img01"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <img    id="z06img02"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <video  id="z06video01"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <video  id="z06video02"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z06html01" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>
+    <iframe id="z06html02" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>  
+    <div    id="z06rect01" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <div    id="z06rect02" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <video  id="z06stream01" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z06stream02" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z07"                style="position: absolute; width: 600px; height: 400px; visibility:hidden">
+
+    <img    id="z07img01"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <img    id="z07img02"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <video  id="z07video01"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <video  id="z07video02"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z07html01" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>
+    <iframe id="z07html02" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>  
+    <div    id="z07rect01" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <div    id="z07rect02" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <video  id="z07stream01" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z07stream02" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+
+  <div id="z08"                style="position: absolute; width: 600px; height: 400px; visibility:hidden">
+
+    <img    id="z08img01"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <img    id="z08img02"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <video  id="z08video01"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <video  id="z08video02"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z08html01" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>
+    <iframe id="z08html02" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>  
+    <div    id="z08rect01" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <div    id="z08rect02" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <video  id="z08stream01" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z08stream02" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z09"                style="position: absolute; width: 600px; height: 400px; visibility:hidden">
+
+    <img    id="z09img01"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <img    id="z09img02"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <video  id="z09video01"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <video  id="z09video02"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z09html01" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>
+    <iframe id="z09html02" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>  
+    <div    id="z09rect01" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <div    id="z09rect02" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <video  id="z09stream01" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z09stream02" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+  <div id="z10"                style="position: absolute; width: 600px; height: 400px; visibility:hidden">
+
+    <img    id="z10img01"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <img    id="z10img02"         src=""  style="position: absolute; width: 600px; height: 400px; visibility:hidden"></img>
+    <video  id="z10video01"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <video  id="z10video02"       style="width: 600px; height: 400px; visibility:hidden" preload controls playsinline><source src="" type="video/mp4"></video>
+    <iframe id="z10html01" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>
+    <iframe id="z10html02" src="" style="width: 600px; height: 400px; visibility:hidden"></iframe>  
+    <div    id="z10rect01" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <div    id="z10rect02" src="" style="width: 600px; height: 400px; visibility:hidden"></div>
+    <video  id="z10stream01" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+    <video  id="z10stream02" class="video-js  vjs-default-skin"  style="object-fit:fill;width:960;height:540;display:none;" preload controls playsinline><source src="" type="application/x-mpegURL"></video>
+  
+  </div>  
+
+</div>
+</div>
+
+
+</body>
+</html>

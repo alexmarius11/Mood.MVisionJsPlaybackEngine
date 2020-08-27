@@ -1,0 +1,49 @@
+<MonitoringSettings xmlns="http://schemas.datacontract.org/2004/07/send_monitoring" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+<full_desktop_screenshot>0</full_desktop_screenshot>
+<process_list>
+    <process>
+        <process_display_name>MVisionPlayer</process_display_name>
+        <process_name>MVisionPlayer</process_name>
+    </process>
+    <process>
+        <process_display_name>run_as server</process_display_name>
+        <process_name>run_as_server_proc</process_name>
+    </process>
+    <process>
+        <process_display_name>log engine</process_display_name>
+        <process_name>log_engine</process_name>
+    </process>
+    <process>
+        <process_display_name>FlashTrigger</process_display_name>
+        <process_name>FlashTrigger</process_name>
+    </process>    
+</process_list>
+<relative_upload_screenshot_url>UploadScreenshot.ashx</relative_upload_screenshot_url>
+<relative_webservice_url>Services/Monitoring/MonitoringService.svc</relative_webservice_url>
+<services_list>
+    <service>
+        <service_display_name>generic downloader</service_display_name>
+        <service_name>GDLSVC</service_name>
+    </service>
+    <service>
+        <service_display_name>cron</service_display_name>
+        <service_name>CRONSVC</service_name>
+    </service>
+	<service>
+        <service_display_name>quartz scheduler</service_display_name>
+        <service_name>SCHEDULER_SVC</service_name>
+    </service>
+    <service>
+        <service_display_name>pending command module</service_display_name>
+        <service_name>PCMSvc</service_name>
+    </service>
+    <service>
+        <service_display_name>World Wide Web Publishing Service (IIS)</service_display_name>
+        <service_name>W3SVC</service_name>
+    </service>
+    <service>
+        <service_display_name>MVB_WATCHDOG_SVC</service_display_name>
+        <service_name>MVB_WATCHDOG_SVC</service_name>
+    </service>
+</services_list>
+</MonitoringSettings>

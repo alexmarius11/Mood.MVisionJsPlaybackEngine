@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;SSSP4MVisionJsPlaybackEngine/SSSP4MVisionJsPlaybackEngine&apos;" deleteContents="false" description="Delete resource &apos;SSSP4MVisionJsPlaybackEngine/SSSP4MVisionJsPlaybackEngine&apos;" element1="/SSSP4MVisionJsPlaybackEngine/SSSP4MVisionJsPlaybackEngine" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1557323535233"/>
+</session>

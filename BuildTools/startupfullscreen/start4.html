@@ -1,0 +1,307 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+
+<style>
+    
+    #example1, #example2 {
+        height: 500px;
+        width: 400px;        
+    }  
+    
+    #example1 {
+      background: yellow;
+    }
+    
+    #example2 {
+      background: blue;
+    }
+    
+   *{
+      margin: 0px;
+      padding:0px;
+    }
+    #background_01 {
+        width:100%;
+        height:100%;
+        background: white;
+        //margin:0 auto;
+    }
+
+    #zone_01 {
+        left:0px;
+        top:0px;
+        width:1200px;
+        height:800px;
+        background:#3F9;
+        position:absolute;
+        opacity: 0.8;
+        z-index: 100;
+        //overflow:scroll;
+    }
+
+    #zone_02 {
+        left:800px;
+        top:400px;
+        width:1200px;
+        height:800px;
+        background:#F66;
+        position:absolute;
+        z-index: 99;
+        //overflow:scroll
+    }
+
+    #zone_03 {
+        left:1150px;
+        top:0px;
+        width:800px;
+        height:600px;
+        //background:#FF6;
+        position:absolute;
+        opacity: 0.8;
+        z-index: 101;
+    }
+
+    #zone_04 {
+        left:0px;
+        top:500px;
+        width:800px;
+        height:600px;
+        //background:#FF6;
+        position:absolute;
+        opacity: 0.8;
+        z-index: 102;
+    }
+
+body {
+    overflow: hidden;
+}
+</style>
+
+
+<script>
+var myVar1;
+
+function displayNextChild(nodeId) 
+{
+  
+  var node = document.getElementById(nodeId);
+  var children = node.getElementsByTagName("img"); //node.childNodes;
+  for (var i = 0; i < children.length; i++) 
+  {
+    
+    if (children[i].style.visibility == "visible")
+    {
+      //alert(children[i]);   
+      if (i == children.length - 1 )
+        children[0].style.visibility = "visible";
+      else
+        children[i+1].style.visibility = "visible";
+      children[i].style.visibility = "hidden";
+      break;
+    }
+  }
+}
+
+function displayNextVideoChild(nodeId) 
+{
+  
+  var node = document.getElementById(nodeId);
+  var children = node.getElementsByTagName("video"); //node.childNodes;
+  for (var i = 0; i < children.length; i++) 
+  {
+    
+    if (children[i].style.visibility == "visible")
+    {
+      //alert(children[i]);
+      if (i == children.length - 1 ){
+        children[i].pause();
+
+        children[0].play();
+        children[0].style.visibility = "visible";
+      }else{
+        children[i].pause();
+
+        children[i+1].play();
+        children[i+1].style.visibility = "visible";
+      }
+      children[i].style.visibility = "hidden";
+      break;
+    }
+  }
+}
+
+var timers = [0,0,0,0];
+
+function start(idx, nodeId, duration) 
+{
+  timers[idx] = setInterval(displayNextChild, duration, nodeId);
+}
+
+       function myHandler_for_video_in_zone04(e) 
+       {
+        //if(!e) { e = window.event; }
+        //alert("Video Finished in zone 04");
+        displayNextVideoChild("zone_04"); 
+       }
+
+function stopAll() 
+{
+  for (var i = 0 ; i < timers.length ; i++)
+  {
+     if (timers[i] != 0)
+     {
+       clearInterval(timers[i]) ;
+       timers[i] = 0;
+     }
+
+  }
+  document.getElementById('btnStop').innerHTML="Restart Playback";
+  //document.getElementById('background_01').style.display="none";
+       
+}
+
+function startAll() 
+{
+  start(0, 'zone_01', 5000); 
+  start(1, 'zone_02', 7000);
+  start(2, 'zone_03', 12000);
+  start(3, 'zone_04', 17000);
+  document.getElementById('btnStop').innerHTML="Stop Playback";
+  //document.getElementById('background_01').style.display="block";
+}
+
+function restart() 
+{
+  if (document.getElementById('btnStop').innerHTML == "Restart Playback")  
+    startAll();
+  else
+    stopAll();
+}
+
+</script>
+
+
+</head>
+
+<body >
+
+<div style="z-index:910; position:absolute;" >
+  <button id="btnStop" onclick="restart()">Stop Playback</button>
+</div>
+
+ <div id="background_01"  >
+   
+    <div id="zone_01" >
+
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/greenpeople.jpg" alt="a person entering a building" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:visible" />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/entrance.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/bluepeople.jpg" alt="building entrance with neon backlit walls" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection3.jpg" alt="building lobby window reflections" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection2.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/manequine.jpg" alt="two manequines in window" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+   </div>
+
+   <div id="zone_02">     
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection3.jpg" alt="building lobby window reflections" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:visible"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection2.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/manequine.jpg" alt="two manequines in window" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/greenpeople.jpg" alt="a person entering a building" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden" />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/entrance.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/bluepeople.jpg" alt="building entrance with neon backlit walls" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201508/new-butterflies-jammu-kashmir-police-and-headwoman--4_647_081715081726.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 1200px; height: 800px; visibility:hidden"  />
+   </div>
+
+
+   <div id="zone_03">     
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection2.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:visible"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/manequine.jpg" alt="two manequines in window" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/greenpeople.jpg" alt="a person entering a building" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden" />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/entrance.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/bluepeople.jpg" alt="building entrance with neon backlit walls" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection3.jpg" alt="building lobby window reflections" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+
+  </div>
+
+   <div id="zone_04">     
+      <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:visible"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/entrance.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/bluepeople.jpg" alt="building entrance with neon backlit walls" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection3.jpg" alt="building lobby window reflections" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/reflection2.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/greenpeople.jpg" alt="a person entering a building" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden" />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://blog.jorjette.ro/wp-content/uploads/2013/08/fluturele-monarh-460x300.jpg" alt="photo of building across from our office" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://raw.githubusercontent.com/mcnitt/jquery-infinite-rotator/master/images/manequine.jpg" alt="two manequines in window" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+      <img src="https://i.ytimg.com/vi/uvIjOu5n_kE/maxresdefault.jpg" alt="reflection on building windows" class="rotating-item" style="position: absolute; width: 800px; height: 600px; visibility:hidden"  />
+   </div>
+
+
+<script type="text/javascript">
+    startAll();
+    //start(0, 'zone_01', 5000); 
+    //start(1, 'zone_02', 7000);
+    //start(2, 'zone_03', 12000);
+    //start(3, 'zone_04', 17000);
+
+</script>
+
+</body>
+
+</html>
+

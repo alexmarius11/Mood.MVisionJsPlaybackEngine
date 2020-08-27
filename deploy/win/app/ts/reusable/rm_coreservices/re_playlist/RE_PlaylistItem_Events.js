@@ -1,0 +1,66 @@
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var rmCoreServicesPlaylistItemPriorityPlaylist = require("../../../../../app/ts/reusable/rm_coreservices/re_playlist/RE_PlaylistItem_PriorityPlaylist");
+var rm_coreservices;
+(function (rm_coreservices) {
+    var RE_PlaylistItem_Events = (function (_super) {
+        __extends(RE_PlaylistItem_Events, _super);
+        function RE_PlaylistItem_Events() {
+            var _this = _super.call(this) || this;
+            _this._playlistItemTypeName = "EVENTS";
+            _this._meta_ID = null;
+            _this._meta_Name = null;
+            _this._meta_CustomID = _this;
+            _this._meta_MediaType = _this;
+            _this._diff_duration = null;
+            _this._diff_startDate = null;
+            _this._diff_endDate = null;
+            _this._diff_startTime = null;
+            _this._diff_endTime = null;
+            _this._diff_weekdays = null;
+            return _this;
+        }
+        RE_PlaylistItem_Events.prototype.loadProperties = function (playlistType, jsonObject, aPlaylistFile, aParent, error, context, callback) {
+            if (playlistType == "mood_v5")
+                return this.loadProperties_MoodV5(playlistType, jsonObject, aPlaylistFile, aParent, error, context, callback);
+            if (playlistType == "custom_v1")
+                return this.loadProperties_CustomV1(playlistType, jsonObject, aPlaylistFile, aParent, error, context, callback);
+        };
+        RE_PlaylistItem_Events.prototype.loadProperties_MoodV5 = function (playlistType, jsonObject, aPlaylistFile, aParent, error, context, callback) {
+        };
+        RE_PlaylistItem_Events.prototype.loadProperties_CustomV1 = function (playlistType, jsonObject, aPlaylistFile, aParent, error, context, callback) {
+        };
+        RE_PlaylistItem_Events.prototype.toJSONString = function () {
+            var result = "";
+            result += "[";
+            var isFirstTime = true;
+            for (var iEventItem = 0; iEventItem < this._playlistItems.length; iEventItem++) {
+                if (isFirstTime == true) {
+                    result += this._playlistItems[iEventItem].toJSONString();
+                    isFirstTime = false;
+                    continue;
+                }
+                result += "," + this._playlistItems[iEventItem].toJSONString();
+            }
+            result += "]";
+            result += "";
+            return result;
+        };
+        return RE_PlaylistItem_Events;
+    }(rmCoreServicesPlaylistItemPriorityPlaylist.rm_coreservices.RE_PlaylistItem_PriorityPlaylist));
+    rm_coreservices.RE_PlaylistItem_Events = RE_PlaylistItem_Events;
+})(rm_coreservices = exports.rm_coreservices || (exports.rm_coreservices = {}));
+//# sourceMappingURL=RE_PlaylistItem_Events.js.map

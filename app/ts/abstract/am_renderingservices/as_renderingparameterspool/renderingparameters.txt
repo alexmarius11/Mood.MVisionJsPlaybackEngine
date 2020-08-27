@@ -1,0 +1,773 @@
+	//---------------------------------------------
+	[DataContract]
+	public ref class MediaItem_ItemPosSizeParameters
+	{
+	public:
+		//-------------- media/item own coordinates and dimensions; left/top usually are zero
+		[DataMember]
+		int _itemLeft;
+
+		[DataMember]
+		int _itemRight;
+
+		[DataMember]
+		int _itemTop;
+
+		[DataMember]
+		int _itemBottom;
+
+	public:
+		[DataMember]
+		int _itemClientZoneLeft;
+
+		[DataMember]
+		int _itemClientZoneRight;
+
+		[DataMember]
+		int _itemClientZoneTop;
+
+		[DataMember]
+		int _itemClientZoneBottom;
+
+	public:
+		int setAllPosAndSizes(int itemLeft, int itemTop, int itemRight, int itemBottom,
+			int itemClientZoneLeft, int itemClientZoneTop, int itemClientZoneRight, int itemClientZoneBottom)
+		{
+			_itemLeft = itemLeft;
+			_itemTop = itemTop;
+			_itemRight = itemRight;
+			_itemBottom = itemBottom;
+
+			_itemClientZoneLeft = itemClientZoneLeft;
+			_itemClientZoneTop = itemClientZoneTop;
+			_itemClientZoneRight = itemClientZoneRight;
+			_itemClientZoneBottom = itemClientZoneBottom;
+			return 0;
+		}
+
+		int copy(MediaItem_ItemPosSizeParameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+
+			_itemLeft = src->_itemLeft;
+			_itemTop = src->_itemTop;
+			_itemRight = src->_itemRight;
+			_itemBottom = src->_itemBottom;
+
+			_itemClientZoneLeft = src->_itemClientZoneLeft;
+			_itemClientZoneTop = src->_itemClientZoneTop;
+			_itemClientZoneRight = src->_itemClientZoneRight;
+			_itemClientZoneBottom = src->_itemClientZoneBottom;
+
+			return 0;
+		}
+
+
+	};
+
+	//---------------------------------------------
+	[DataContract]
+	public ref class MediaItem_ContainerPosSizeParameters
+	{
+
+	public:
+		//-------------- container(/window) external coordinates
+		[DataMember]
+		int _containerLeft;
+
+		[DataMember]
+		int _containerRight;
+
+		[DataMember]
+		int _containerTop;
+
+		[DataMember]
+		int _containerBottom;
+
+		//-------------- container internal client zone coordinates
+		[DataMember]
+		int _containerClientZoneLeft;
+
+		[DataMember]
+		int _containerClientZoneRight;
+
+		[DataMember]
+		int _containerClientZoneTop;
+
+		[DataMember]
+		int _containerClientZoneBottom;
+
+	public:
+		[DataMember]
+		IntPtr _hWnd;
+
+		[DataMember]
+		IntPtr _hWndInFront;
+
+		[DataMember]
+		IntPtr _hWndBehind;
+
+		[DataMember]
+		IntPtr _hWndParent;
+
+	public:
+		MediaItem_ContainerPosSizeParameters()
+		{
+			_containerLeft = 0;
+			_containerTop = 0;
+			_containerRight = 0;
+			_containerBottom = 0;
+
+			_containerClientZoneLeft = 0;
+			_containerClientZoneTop = 0;
+			_containerClientZoneRight = 0;
+			_containerClientZoneBottom = 0;
+
+			_hWnd = IntPtr::Zero;
+			_hWndInFront = IntPtr::Zero;
+			_hWndBehind = IntPtr::Zero;
+			_hWndParent = IntPtr::Zero;
+		}
+
+		int copy(MediaItem_ContainerPosSizeParameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+
+			_containerLeft = src->_containerLeft;
+			_containerTop = src->_containerTop;
+			_containerRight = src->_containerRight;
+			_containerBottom = src->_containerBottom;
+
+			_containerClientZoneLeft = src->_containerClientZoneLeft;
+			_containerClientZoneTop = src->_containerClientZoneTop;
+			_containerClientZoneRight = src->_containerClientZoneRight;
+			_containerClientZoneBottom = src->_containerClientZoneBottom;
+
+			_hWnd = src->_hWnd;
+			_hWndInFront = src->_hWndInFront;
+			_hWndBehind = src->_hWndBehind;
+			_hWndParent = src->_hWndParent;
+
+			return 0;
+		}
+
+		int setManagedHWnd(IntPtr  hWnd)
+		{
+			_hWnd = hWnd;
+			return 0;
+		}
+
+		// then make native HWND as : HWND nativeHWND = (HWND)hWnd.ToPointer();  or HWND nativeHWND = (HWND)getManagedHWnd().ToPointer();
+		IntPtr getManagedHWnd()
+		{
+			return _hWnd;
+		}
+
+		//call with: IntPtr managedHWND(hwnd); or directly with: IntPtr(hwnd)
+		int setManagedAllHWnd(IntPtr hWnd, IntPtr hWndInFront, IntPtr hWndBehind, IntPtr hWndParent)
+		{
+			_hWnd = hWnd;
+			_hWndInFront = hWndInFront;
+			_hWndBehind = hWndBehind;
+			_hWndParent = hWndParent;
+			return 0;
+		}
+
+		int setAllPosAndSizes(int containerLeft, int containerTop, int containerRight, int containerBottom,
+			int containerClientZoneLeft, int containerClientZoneTop, int containerClientZoneRight, int containerClientZoneBottom)
+		{
+			_containerLeft = containerLeft;
+			_containerTop = containerTop;
+			_containerRight = containerRight;
+			_containerBottom = containerBottom;
+
+			_containerClientZoneLeft = containerClientZoneLeft;
+			_containerClientZoneTop = containerClientZoneTop;
+			_containerClientZoneRight = containerClientZoneRight;
+			_containerClientZoneBottom = containerClientZoneBottom;
+			return 0;
+		};
+
+	};
+
+	//-----------------------------------------------
+	[DataContract]
+	public ref class MediaItem_IdentificationParameters
+	{
+	public:
+		[DataMember]
+		Guid    _guid;
+
+		[DataMember]
+		String^ _name;
+
+		[DataMember]
+		String^ _fullLocalFileName;
+
+	public:
+		int copy(MediaItem_IdentificationParameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			_guid = src->_guid;
+			_name = gcnew String(src->_name);
+			_fullLocalFileName = gcnew String(src->_fullLocalFileName);
+			return 0;
+		}
+
+	};
+
+	//-----------------------------------------------
+	[DataContract]
+	public ref class MediaItem_DurationParameters
+	{
+	public:
+		[DataMember]
+		long    _durationInMiliseconds;  //ms?
+
+	public:
+		int copy(MediaItem_DurationParameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			_durationInMiliseconds = src->_durationInMiliseconds;
+			return 0;
+		}
+	};
+
+	//---------------------------------------------
+	[DataContract]
+	public ref class MediaItem_BackgroundParameters
+	{
+	public:
+		[DataMember]
+		bool _isTransparent;
+
+		[DataMember]
+		int  _alpha;
+
+		[DataMember]
+		int  _R;
+
+		[DataMember]
+		int  _G;
+
+		[DataMember]
+		int  _B;
+
+	public:
+		MediaItem_BackgroundParameters()
+		{
+			_isTransparent = false;
+			_alpha = 180;
+			_R = 255;
+			_G = 255;
+			_B = 255;
+		}
+	public:
+		int copy(MediaItem_BackgroundParameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			_isTransparent = src->_isTransparent;
+			_alpha = src->_alpha;
+			_R = src->_R;
+			_G = src->_G;
+			_B = src->_B;
+			return 0;
+		}
+	};
+
+	//---------------------------------------------
+	[DataContract]
+	public ref class MediaItem_AudioParameters
+	{
+	public:
+		[DataMember]
+		bool _isEnable;
+
+		[DataMember]
+		int  _volume;    //percent
+
+	public:
+		int copy(MediaItem_AudioParameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			_isEnable = src->_isEnable;
+			_volume = src->_volume;
+			return 0;
+		}
+	};
+
+	//---------------------------------------------
+	[DataContract]
+	public ref class MediaItem_VideoParameters
+	{
+	public:
+		[DataMember]
+		bool  _isCentered;
+
+		[DataMember]
+		bool  _keepAspectRatio;
+
+		[DataMember]
+		long  _syncTimestampNanos;
+
+	public:
+		int copy(MediaItem_VideoParameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			_isCentered = src->_isCentered;
+			_keepAspectRatio = src->_keepAspectRatio;
+			_syncTimestampNanos = src->_syncTimestampNanos;
+			return 0;
+		}
+
+	};
+
+	//---------------------------------------------
+	[DataContract]
+	public ref class MediaItem_ImageParameters
+	{
+	public:
+		[DataMember]
+		bool  _isCentered;
+
+		[DataMember]
+		bool  _keepAspectRatio;
+
+	public:
+		int copy(MediaItem_ImageParameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			_isCentered = src->_isCentered;
+			_keepAspectRatio = src->_keepAspectRatio;
+			return 0;
+		}
+	};
+
+	//---------------------------------------------
+	[DataContract]
+	public ref class MediaItem_BrowserParameters
+	{
+	public:
+		[DataMember]
+		String^ _url;
+
+	public:
+		int copy(MediaItem_BrowserParameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			_url = gcnew String(src->_url);
+			return 0;
+		}
+	};
+
+	//---------------------------------------------
+	[DataContract]
+	public ref class MediaItem_Parameters
+	{
+	public:
+		static const int MediaType_None = 0;
+		static const int MediaType_FillColorRect = 1;
+		static const int MediaType_Image = 2;
+		static const int MediaType_Flash = 3;
+		static const int MediaType_Video = 4;
+		static const int MediaType_HtmlChromium = 5;
+
+	public:
+		[DataMember]
+		MediaItem_IdentificationParameters^   _paramIdentification;
+
+		[DataMember]
+		MediaItem_ItemPosSizeParameters^      _paramItemPosAndSize;
+
+		[DataMember]
+		MediaItem_ContainerPosSizeParameters^ _paramContainerPosAndSize;
+
+		[DataMember]
+		MediaItem_DurationParameters^         _paramDuration;
+
+		[DataMember]
+		MediaItem_BackgroundParameters^       _paramBackground;
+
+		[DataMember]
+		MediaItem_VideoParameters^            _paramVideo;
+
+		[DataMember]
+		MediaItem_AudioParameters^            _paramAudio;
+
+		[DataMember]
+		MediaItem_BrowserParameters^          _paramBrowser;
+
+		[DataMember]
+		MediaItem_ImageParameters^            _paramImage;
+
+	public:
+		MediaItem_Parameters()
+		{
+			_paramIdentification = gcnew MediaItem_IdentificationParameters();
+			_paramItemPosAndSize = gcnew MediaItem_ItemPosSizeParameters();
+			_paramContainerPosAndSize = gcnew MediaItem_ContainerPosSizeParameters();
+			_paramDuration = gcnew MediaItem_DurationParameters();
+			_paramBackground = gcnew MediaItem_BackgroundParameters();
+			_paramVideo = gcnew MediaItem_VideoParameters();
+			_paramAudio = gcnew MediaItem_AudioParameters();
+			_paramBrowser = gcnew MediaItem_BrowserParameters();
+			_paramImage = gcnew MediaItem_ImageParameters();
+		}
+
+	public:
+		int copy(MediaItem_Parameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			int errorNo = 0;
+			errorNo = _paramIdentification->copy(src->_paramIdentification);
+			if (errorNo != 0)
+				return errorNo;
+
+			_paramItemPosAndSize->copy(src->_paramItemPosAndSize);
+			if (errorNo != 0)
+				return errorNo;
+
+			_paramContainerPosAndSize->copy(src->_paramContainerPosAndSize);
+			if (errorNo != 0)
+				return errorNo;
+
+			_paramDuration->copy(src->_paramDuration);
+			if (errorNo != 0)
+				return errorNo;
+
+			_paramBackground->copy(src->_paramBackground);
+			if (errorNo != 0)
+				return errorNo;
+
+			_paramVideo->copy(src->_paramVideo);
+			if (errorNo != 0)
+				return errorNo;
+
+			_paramAudio->copy(src->_paramAudio);
+			if (errorNo != 0)
+				return errorNo;
+
+			_paramBrowser->copy(src->_paramBrowser);
+			if (errorNo != 0)
+				return errorNo;
+
+			_paramImage->copy(src->_paramImage);
+			if (errorNo != 0)
+				return errorNo;
+
+			return 0;
+		}
+	};
+
+#define NO_ERROR 0
+	//---------------------------------------------
+	[Serializable]
+	public ref class RenderingService_Error
+	{
+	public:
+		int      _errorNo;
+
+		String^  _errorMsg;
+
+	public:
+		//-------
+		RenderingService_Error()
+		{
+			_errorNo = 0; //0 = no error
+			_errorMsg = "";
+		}
+		//-------
+		int copy(RenderingService_Error^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			_errorNo = src->_errorNo;
+			_errorMsg = src->_errorMsg; //usually errorMsg is fixed so we can passed the pointer
+			return 0;
+		}
+	};
+
+
+	//---------------------------------------------
+	[Serializable]
+	public ref class RenderingService_Status
+	{
+	public:
+		int _status;
+
+		RenderingService_Error^ _error;
+
+	public:
+		RenderingService_Status()
+		{
+			_status = RENDERING_SERVICE_STATUS_NONE;
+			_error = gcnew RenderingService_Error();
+		}
+	public:
+		//-------
+		int copy(RenderingService_Status^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			_status = src->_status;
+
+			int errorNo = 0;
+			errorNo = _error->copy(src->_error);
+			if (errorNo != 0)
+				return errorNo;
+
+			return 0;
+		}
+	};
+
+
+	//---------------------------------------------
+	public ref class RenderingZone_Parameters
+	{
+	public:
+		[DataMember]
+		Guid _guid;
+
+		[DataMember]
+		int _iZOrder;
+
+		[DataMember]
+		MediaItem_ContainerPosSizeParameters^ _paramContainerPosAndSize;
+
+	public:
+		//------------------------
+		RenderingZone_Parameters()
+		{
+			//_guid    = gcnew Guid();
+			_iZOrder = -1;
+			_paramContainerPosAndSize = gcnew MediaItem_ContainerPosSizeParameters();
+		}
+
+		//------------------------
+		int copy(RenderingZone_Parameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			int errorNo = 0;
+
+			_guid = src->_guid;
+			_iZOrder = src->_iZOrder;
+
+			_paramContainerPosAndSize->copy(src->_paramContainerPosAndSize);
+			if (errorNo != 0)
+				return errorNo;
+
+			return 0;
+		}
+	public:
+		//--------------------------
+		static String^ jsonSerialize(RenderingZone_Parameters^ jsonRenderingZoneParameters)
+		{
+			try{
+				MemoryStream^ stream1 = gcnew MemoryStream();
+				//Serialize the Person object to a memory stream using DataContractJsonSerializer.
+				DataContractJsonSerializer^ ser = gcnew DataContractJsonSerializer(RenderingZone_Parameters::typeid);
+				ser->WriteObject(stream1, jsonRenderingZoneParameters);
+				stream1->Position = 0;
+
+				StreamReader^ sr = gcnew StreamReader(stream1);
+				String^ jsonString = sr->ReadToEnd();
+
+				//Console.Write("JSON form of object: ");
+				//Console.WriteLine(sr.ReadToEnd());
+				return gcnew String(jsonString);
+			}
+			catch (Exception^){
+				return nullptr;
+			}
+		}
+		//----------------------------------
+		static RenderingZone_Parameters^ jsonDeserialize(String^ jsonRenderingZoneParameters)
+		{
+			try{
+				MemoryStream^ stream1 = gcnew MemoryStream();
+
+				//Serialize the PersonRenderingService_PrepareParameters object to a memory stream using DataContractJsonSerializer.
+				DataContractJsonSerializer^ ser = gcnew DataContractJsonSerializer(RenderingZone_Parameters::typeid);
+
+				StreamWriter^ writer1 = gcnew StreamWriter(stream1);
+				writer1->Write(jsonRenderingZoneParameters);
+				writer1->Flush();
+
+				//Deserialize the JSON back into a new object.
+				stream1->Position = 0;
+				RenderingZone_Parameters^ newRenderingZoneParameters = (RenderingZone_Parameters^)ser->ReadObject(stream1);
+				return newRenderingZoneParameters;
+			}
+			catch (Exception^){
+				return nullptr;
+			}
+		}
+
+	};
+
+
+	//---------------------------------------------
+	[DataContract]
+	public ref class RenderingService_PrepareParameters
+	{
+	public:
+		[DataMember]
+		Remote_RenderingServerParameters^ _remoteRenderingController_ServerParameters;
+
+		[DataMember]
+		Remote_RenderingClientParameters^ _remoteRenderingController_ClientParameters;
+
+		[DataMember]
+		Remote_RenderingServerParameters^ _remoteRenderingService_ServerParameters;
+
+		[DataMember]
+		Remote_RenderingClientParameters^ _remoteRenderingService_ClientParameters;
+
+		[DataMember]
+		MediaItem_Parameters^ _mediaItemParameters;
+
+
+	public:
+		RenderingService_PrepareParameters()
+		{
+			_remoteRenderingController_ServerParameters = gcnew Remote_RenderingServerParameters();
+			_remoteRenderingController_ClientParameters = gcnew Remote_RenderingClientParameters();
+
+			_remoteRenderingService_ServerParameters = gcnew Remote_RenderingServerParameters();
+			_remoteRenderingService_ClientParameters = gcnew Remote_RenderingClientParameters();
+
+			_mediaItemParameters = gcnew MediaItem_Parameters();
+		}
+
+	public:
+		int copy(RenderingService_PrepareParameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			_remoteRenderingController_ServerParameters->copy(src->_remoteRenderingController_ServerParameters);
+			_remoteRenderingController_ClientParameters->copy(src->_remoteRenderingController_ClientParameters);
+
+			_remoteRenderingService_ServerParameters->copy(src->_remoteRenderingService_ServerParameters);
+			_remoteRenderingService_ClientParameters->copy(src->_remoteRenderingService_ClientParameters);
+
+			_mediaItemParameters->copy(src->_mediaItemParameters);
+			return 0;
+		}
+	public:
+		//--------------------------
+		static String^ jsonSerialize(RenderingService_PrepareParameters^ rsPrepareParameters)
+		{
+			try{
+				MemoryStream^ stream1 = gcnew MemoryStream();
+				//Serialize the Person object to a memory stream using DataContractJsonSerializer.
+				DataContractJsonSerializer^ ser = gcnew DataContractJsonSerializer(RenderingService_PrepareParameters::typeid);
+				ser->WriteObject(stream1, rsPrepareParameters);
+				stream1->Position = 0;
+
+				StreamReader^ sr = gcnew StreamReader(stream1);
+				String^ jsonString = sr->ReadToEnd();
+
+				//Console.Write("JSON form of Person object: ");
+				//Console.WriteLine(sr.ReadToEnd());
+				return gcnew String(jsonString);
+			}
+			catch (Exception^){
+				return nullptr;
+			}
+		}
+		//----------------------------------
+		static RenderingService_PrepareParameters^ jsonDeserialize(String^ jsonPrepareParameters)
+		{
+			try{
+				MemoryStream^ stream1 = gcnew MemoryStream();
+
+				//Serialize the PersonRenderingService_PrepareParameters object to a memory stream using DataContractJsonSerializer.
+				DataContractJsonSerializer^ ser = gcnew DataContractJsonSerializer(RenderingService_PrepareParameters::typeid);
+
+				StreamWriter^ writer1 = gcnew StreamWriter(stream1);
+				writer1->Write(jsonPrepareParameters);
+				writer1->Flush();
+
+				//Deserialize the JSON back into a new Person object.
+				stream1->Position = 0;
+				RenderingService_PrepareParameters^ newPreparedParameters = (RenderingService_PrepareParameters^)ser->ReadObject(stream1);
+				return newPreparedParameters;
+			}
+			catch (Exception^ e){
+				return nullptr;
+			}
+		}
+	};
+
+	//---------------------------------------------
+	[Serializable]
+	public ref class RenderingService_RunParameters
+	{
+	public:
+		int copy(RenderingService_RunParameters^ src)
+		{
+			if (src = nullptr)
+				return 1;
+			return 0;
+		}
+	};
+
+	//---------------------------------------------
+	[Serializable]
+	public ref class RenderingService_StopParameters
+	{
+	public:
+		int copy(RenderingService_StopParameters^ src)
+		{
+			if (src == nullptr)
+				return 1;
+			return 0;
+		}
+	};
+
+
+
+	//===================================================
+	//  Remote Rendering Service
+	//===================================================
+	public interface class IRemoteRenderingServiceInterface
+	{
+		int ping();
+
+		//int prepare(RenderingService_PrepareParameters^ prepareParameters); //done with prepareParameters during Process.startup 
+		int run(RenderingService_RunParameters^   runParameters);
+		int stop(RenderingService_StopParameters^ stopParameters);
+
+		int pause();
+		int resume();
+
+		int requestToExit();
+
+		int getStatus(RenderingService_Status^ renderingServiceStatus);
+	};
+
+	//===================================================
+	//  Remote Rendering Server
+	//===================================================
+	public interface class IRemoteRenderingServerInterface
+	{
+		int pingServer(Guid guidOfRenderingService);
+		String^ serverInfos();
+
+		int registerRenderingService(Guid guidOfRenderingService, IRemoteRenderingServiceInterface^ remoteRenderingServiceInterface, IntPtr renderingServiceMainHWnd);
+
+		int notifyError_OfRenderingService(Guid guidOfRenderingService, RenderingService_Status^ renderingServiceStatus);
+
+		int notifyExit_OfRenderingService(Guid guidOfRenderingService, RenderingService_Status^ renderingServiceStatus);
+	};

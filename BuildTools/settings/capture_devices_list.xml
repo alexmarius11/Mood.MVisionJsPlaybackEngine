@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Capture_Devices>
+  <Device ID="0">
+    <Name>Hercules Dualpix HD Webcam</Name>
+    <Path>@device:pnp:\\?\usb#vid_06f8&amp;pid_3003&amp;mi_00#6&amp;e38f8c2&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Path>
+  </Device>
+</Capture_Devices>
