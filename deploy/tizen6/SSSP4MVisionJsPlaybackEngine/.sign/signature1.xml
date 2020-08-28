@@ -5356,11 +5356,11 @@
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playliststatus%2FRE_PlaylistItem_Status.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>znSYQOHlwGEqfPZyCjjmDvq8sDf13e74L0kO1fqk6D0=</DigestValue>
+<DigestValue>DLT43BxkSJBQ4hLdPV2RRvmnOUBFBFg8EVEbMreiEEw=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playliststatus%2FRE_PlaylistItem_Status.js.map">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>JzPHraqvUVbQ5XmUdMJR/OLaYkEh5nhOVHXqhVLLn0Y=</DigestValue>
+<DigestValue>YeXvDhYvdhDUzc2RM4GqOOo/qmSgm109xTpTXf1mLxc=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playliststatus%2FRE_PlaylistItem_StatusDisable.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -9044,7 +9044,7 @@
 </Reference>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>ft4zOBPK4rD25h8Yuv57jZ8xEmV2NdMhVxKHxkwe1tk=</DigestValue>
+<DigestValue>0BaO8qVYzxhOjitIcgxJ1AxUDie+cjXQ8ygl7IGPOTc=</DigestValue>
 </Reference>
 <Reference URI="client%2Fclient.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -9295,9 +9295,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-AAXhh0/upsvmw/rNoALCpeo4Nqk7VJG2ZI7mlsusPDpMA+bNrCAIZm6GfpA3YZ+ZktcGl4j/GtAy
-xxbcqCjMBprqN9+PgN8eB4mSi9cPqU/ln/4cCJn0N0ggWfOou2N7U8BOvSTed/V6mgkyRvb+MWJF
-c5wy2HKj1X318x0NZow=
+okVjjyRqw2lwX+tAdYVPX23Q2E37bBCN/WsuQaNcbEX0bgGaiqTd8cl0rEaX2rbmw2byxKEupwO1
+S6AxP8v4zkQRDbpzuxm/FCozgRBaRG29jYg9sW2v86ORBL1ko8VVaR6C0Q8IJ1uQCE2PilRq7nhW
+BzrajpBITQj81RR2ZAA=
 </SignatureValue>
 <KeyInfo>
 <X509Data>
