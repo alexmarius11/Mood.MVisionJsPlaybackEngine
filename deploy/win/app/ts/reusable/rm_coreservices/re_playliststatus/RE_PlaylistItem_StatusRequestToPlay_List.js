@@ -172,6 +172,7 @@ var rm_coreservices;
                     this._transitionTo_StatusEnd.getStatus().passToMe(event, eventQueue, error, aPlaylistController, aRenderingController, context, callback);
                 }
                 this.postEvent(amPlaylistItemEventType.am_coreservices.AE_PlaylistItemEventType.EVT_RequestToPlay, this._lastStartedChild.getLogic(), null, this._lastStartedChild.getLogic().getOwnerIdxAsChild(), eventQueue, error, context, callback);
+                return;
             }
             this.requestNextChildToPlay(event, eventQueue, error, aPlaylistController, aRenderingController, context, callback);
             if (this._lastStartedChild == null) {

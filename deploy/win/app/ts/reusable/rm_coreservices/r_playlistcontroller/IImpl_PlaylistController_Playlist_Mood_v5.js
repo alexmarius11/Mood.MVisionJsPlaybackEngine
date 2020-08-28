@@ -1064,10 +1064,14 @@ var rm_coreservices;
             aParent.addPlaylistItem(crtPlaylistItemDesignZone);
             var isMainZone = jsonObject.IsMainZone;
             var crtPlaylistItemDesignZoneLogic = null;
-            if (isMainZone)
+            if (isMainZone) {
+                crtPlaylistItemDesignZone.setPlaylistItemType(amPlaylistItemType.am_coreservices.AE_PlaylistItemType.PlaylistItemType_DesignMainZone);
                 crtPlaylistItemDesignZoneLogic = this._owner._aServiceLocator._iEntityCreation.createDefaultPlaylistItem_DesignMainZoneLogic(error);
-            else
+            }
+            else {
+                crtPlaylistItemDesignZone.setPlaylistItemType(amPlaylistItemType.am_coreservices.AE_PlaylistItemType.PlaylistItemType_DesignZone);
                 crtPlaylistItemDesignZoneLogic = this._owner._aServiceLocator._iEntityCreation.createDefaultPlaylistItem_DesignZoneLogic(error);
+            }
             crtPlaylistItemDesignZoneLogic.injectDependencies(this._owner._aServiceContainer, this._owner._aServiceLocator, this._owner._aLogService, error);
             crtPlaylistItemDesignZone.setLogic(crtPlaylistItemDesignZoneLogic);
             crtPlaylistItemDesignZoneLogic.setOwnerIdxAsChild(iDesignZone);

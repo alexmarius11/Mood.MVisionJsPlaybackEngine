@@ -780,11 +780,11 @@
 </Reference>
 <Reference URI="app%2Fts%2Fabstract%2Fam_coreservices%2Fae_playlist%2FAE_PlaylistItemType.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>VblMAtCoiSMlnaqLDOXpfzaQUDMLAA4D19nLIvVsx0E=</DigestValue>
+<DigestValue>IS2+fv6N6YQeny2pqDp546X3eT1v7yKZV7xJsFO7eA8=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Fabstract%2Fam_coreservices%2Fae_playlist%2FAE_PlaylistItemType.js.map">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>rDmiWRiuvE7hh+sRb63PvQb8lAKhVpRGK0I4ko8dA9E=</DigestValue>
+<DigestValue>i0ubyC1MzZJqOLehqDpx1x5/FIeQ3AZbFyicrVI+/V0=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Fabstract%2Fam_coreservices%2Fae_playlist%2FAE_PlaylistItem_Container.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -4396,11 +4396,11 @@
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fr_playlistcontroller%2FIImpl_PlaylistController_Playlist_Mood_v5.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>vdntu4OxL+WTi9vtYK+KQXmpvzMn9qoI35AUDzBDkaw=</DigestValue>
+<DigestValue>74Ctn+V6V/HoPvR1sWq6nWrIQPxASGT6zmgZtlM9Jn4=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fr_playlistcontroller%2FIImpl_PlaylistController_Playlist_Mood_v5.js.map">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>gT6eS99Ou2E0cyHRgvc3fEmkg5sLsIV9BXzkVPHSJ00=</DigestValue>
+<DigestValue>FR5+Vq3BpXNnp2DN9j5n7tME+zcgNSr3z96UIF/hznM=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fr_playlistcontroller%2FIImpl_PlaylistController_R.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -4972,11 +4972,11 @@
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playlist%2FRE_PlaylistItem_ContainerLogic.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>L8UPYFjFbnq9qaz+ODRmtq2DWf6gwAUZ3CjQHOv8y9c=</DigestValue>
+<DigestValue>v1oeryRjFBSfYcT1S/V6URobS4sgukgMuu9gmW5xpdg=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playlist%2FRE_PlaylistItem_ContainerLogic.js.map">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>V3ki979BMrgTsHfJ8gtMtuO5DgwrbvuG00TciabrFJE=</DigestValue>
+<DigestValue>sfoec1q/LGfzckH80bRoNMgVG+84ojJS9mujyNxChZk=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playlist%2FRE_PlaylistItem_Design.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -4988,11 +4988,11 @@
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playlist%2FRE_PlaylistItem_DesignLogic.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>1nyM57+DRW0fYW9Z4lWFkkKSi92iFOoEqqarK8LmSRw=</DigestValue>
+<DigestValue>QVGGpE+qzUlCfsV6Ld/kDUIgpf+kL2BvcEv7S0WcjCI=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playlist%2FRE_PlaylistItem_DesignLogic.js.map">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>IGBV17UrKQ34nXNW64Ue3sJuYmjvdAx5CGNdzQ7LqE4=</DigestValue>
+<DigestValue>J8gP1+DYQFAqsAQH3/Ls1QitBNHylcCWmotzqLhUl5I=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playlist%2FRE_PlaylistItem_DesignMainZoneLogic.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -5012,11 +5012,11 @@
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playlist%2FRE_PlaylistItem_DesignZoneLogic.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>N5NNfF9ZI3arMZPAFX/NmNQw+j3raxIzYpXHvtTy1yM=</DigestValue>
+<DigestValue>TCIGBAD9Xc8qNKYpnhnS8qdZZZGiVBzTJOIty/aA1Ek=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playlist%2FRE_PlaylistItem_DesignZoneLogic.js.map">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>2r5MzzLY5Y6K+SXi4xpWNuUitwNLYeJgg01XmL8+rVc=</DigestValue>
+<DigestValue>br43kUvK+kqVDOqZB1PpzNV+750ioz07A8cVAZrNPFU=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playlist%2FRE_PlaylistItem_Event.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -5492,11 +5492,11 @@
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playliststatus%2FRE_PlaylistItem_StatusRequestToPlay_List.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>Ag1IpDzhby5cYKbyx+VaXzSTJ51pjubAviGeBXxi3PQ=</DigestValue>
+<DigestValue>VcyYI1CWeMPK9sPPhQ1lyVEroREHGZfcK3DdwDJ3fZ0=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playliststatus%2FRE_PlaylistItem_StatusRequestToPlay_List.js.map">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>76Ix7CVVi8x1dcOwihVl2T13BDdjLXq3miYUrjc9Yeg=</DigestValue>
+<DigestValue>ysO9rRlrQRUZi3KGcYTM25BRUSnZnUvoGLa2SsXJEOQ=</DigestValue>
 </Reference>
 <Reference URI="app%2Fts%2Freusable%2Frm_coreservices%2Fre_playliststatus%2FRE_PlaylistItem_StatusRequestToPlay_Media.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -9044,7 +9044,7 @@
 </Reference>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>/JUwHAsajI8zKMtVgIUATV4GR3F14CQKWEOHPRQi2W4=</DigestValue>
+<DigestValue>ft4zOBPK4rD25h8Yuv57jZ8xEmV2NdMhVxKHxkwe1tk=</DigestValue>
 </Reference>
 <Reference URI="client%2Fclient.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -9295,9 +9295,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-SZ5R8/Joo3WsJm7kA55wXUZPfLiVMcNc3dpeE7S7Adb9nwbKUjiYGbW1sV9UcRyV4ZhGk21FVdJC
-x4FmBz3vIEvDyRcEoH3Q1+qhAjMskS4j7sxrvfigpuEmzVSNCGcyVbxvJtUYuRDGNDrsCoFvoDmv
-NAz3AshyOZ8kJ9AcNos=
+AAXhh0/upsvmw/rNoALCpeo4Nqk7VJG2ZI7mlsusPDpMA+bNrCAIZm6GfpA3YZ+ZktcGl4j/GtAy
+xxbcqCjMBprqN9+PgN8eB4mSi9cPqU/ln/4cCJn0N0ggWfOou2N7U8BOvSTed/V6mgkyRvb+MWJF
+c5wy2HKj1X318x0NZow=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

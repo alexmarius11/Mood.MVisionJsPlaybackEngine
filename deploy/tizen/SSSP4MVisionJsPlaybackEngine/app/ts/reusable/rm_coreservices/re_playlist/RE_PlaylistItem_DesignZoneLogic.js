@@ -53,6 +53,30 @@ define(["require", "exports", "../../../../../app/ts/abstract/am_coreservices/ae
                 event.setEventRequest(amGeneralEventRequestType.am_general.AE_EventRequestType.EvtRequest_AbortParent);
                 */
             };
+            //====================== design secondary zone logic
+            RE_PlaylistItem_DesignZoneLogic.prototype.hasActiveRenderingDescendantsToPlayAndItself = function (refDate, event, eventQueue, error, aPlaylistController, aRenderingController, context, callback) {
+                if (this.isDisable(refDate, event, eventQueue, error, aPlaylistController, aRenderingController, context, callback))
+                    return false;
+                //if (this.hasAtLeastOneAncestorDisable(refDate, event, eventQueue, error, aPlaylistController, aRenderingController, context, callback))
+                //return false;
+                if (this._hasARenderingRepresentation)
+                    return true;
+                var childrenList = this.getChildrenList();
+                if (childrenList == null)
+                    return false;
+                var nbChildren = childrenList.length;
+                if (nbChildren == 0)
+                    return false;
+                var hasGraphicChildToPlay = false;
+                var crtChild = null;
+                for (var childIdx = 0; childIdx < nbChildren; childIdx++) {
+                    crtChild = childrenList[childIdx];
+                    hasGraphicChildToPlay = crtChild.getLogic().hasActiveRenderingDescendantsToPlayAndItself(refDate, event, eventQueue, error, aPlaylistController, aRenderingController, context, callback);
+                    if (hasGraphicChildToPlay)
+                        return true;
+                }
+                return false;
+            };
             return RE_PlaylistItem_DesignZoneLogic;
         }(rmPlaylistItemPriorityPlaylistLogic.rm_coreservices.RE_PlaylistItem_PriorityPlaylistLogic));
         rm_coreservices.RE_PlaylistItem_DesignZoneLogic = RE_PlaylistItem_DesignZoneLogic;

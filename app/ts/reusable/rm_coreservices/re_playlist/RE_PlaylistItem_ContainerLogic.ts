@@ -552,6 +552,12 @@ export module rm_coreservices
                                                                       aRenderingController : amCoreServicesRenderingController.am_coreservices.A_RenderingController,
                                                                       context: amGeneralContext.am_general.A_Context, callback) : amPlaylistItem.am_coreservices.AE_PlaylistItem
     {
+      var thisId = this.getOwner().getPlaylistItemId();
+      var a = 0;
+      if (thisId == 68587)
+      {
+        a =1;
+      }
       var childrenList : Array<amPlaylistItem.am_coreservices.AE_PlaylistItem> = this.getChildrenList();
       if (childrenList == null)
         return null;

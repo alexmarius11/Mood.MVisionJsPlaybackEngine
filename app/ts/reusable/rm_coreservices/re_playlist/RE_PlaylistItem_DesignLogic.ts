@@ -20,6 +20,7 @@ import amPlaylistContainerLogic  = require("../../../../../app/ts/abstract/am_co
 
 import amPlaylistItemPlaylist   = require("../../../../../app/ts/abstract/am_coreservices/ae_playlist/AE_PlaylistItem_Playlist");
 import amPlaylistItemPlaylistLogic  = require("../../../../../app/ts/abstract/am_coreservices/ae_playlist/AE_PlaylistItem_PlaylistLogic");
+import amPlaylistItemType    = require("../../../../../app/ts/abstract/am_coreservices/ae_playlist/AE_PlaylistItemType");
 
 export module rm_coreservices
 {
@@ -110,5 +111,41 @@ export module rm_coreservices
                      // amNextChildSelectionType.am_coreservices.AE_NextChildSelectionType.NextChildSelectionType_OneAfterTheOther_NoLoop);
         return true;
     }
+
+    //====================== design logic
+    public hasActiveRenderingDescendantsToPlayAndItself( 
+                        refDate: Date, event : amGeneralEvent.am_general.AE_Event, eventQueue: amGeneralQueue.am_general.AE_Queue, error: amGeneralError.am_general.A_Error, 
+                        aPlaylistController  : amCoreServicesPlaylistController.am_coreservices.A_PlaylistController,
+                        aRenderingController : amCoreServicesRenderingController.am_coreservices.A_RenderingController,
+                        context: amGeneralContext.am_general.A_Context, callback) 
+    {
+      if (this.isDisable(refDate, event, eventQueue, error, aPlaylistController, aRenderingController,context,callback))  
+        return false;
+      if (this.hasAtLeastOneAncestorDisable(refDate, event, eventQueue, error, aPlaylistController, aRenderingController, context, callback))
+        return false;
+      if (this._hasARenderingRepresentation)
+        return true;
+      var childrenList : Array<amPlaylistItem.am_coreservices.AE_PlaylistItem> = this.getChildrenList();
+      if (childrenList == null)
+        return false;
+
+      var nbChildren : number = childrenList.length;
+      if (nbChildren == 0)
+        return false;
+
+      var hasGraphicChildToPlay:boolean = false;
+      var crtChild:amPlaylistItem.am_coreservices.AE_PlaylistItem=null;
+      for (var childIdx = 0 ; childIdx < nbChildren; childIdx++)
+      {
+        crtChild = childrenList[childIdx];
+        if (crtChild.getPlaylistItemType() != amPlaylistItemType.am_coreservices.AE_PlaylistItemType.PlaylistItemType_DesignMainZone)
+          continue;
+        hasGraphicChildToPlay = crtChild.getLogic().hasActiveRenderingDescendantsToPlayAndItself(refDate, event, eventQueue, error, aPlaylistController, aRenderingController,context,callback);
+        if (hasGraphicChildToPlay)
+          return true;
+      }
+      return false;
+    }
+
   }
 } 

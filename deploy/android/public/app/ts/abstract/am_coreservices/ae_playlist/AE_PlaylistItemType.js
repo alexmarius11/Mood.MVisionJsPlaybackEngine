@@ -29,6 +29,7 @@ define(["require", "exports"], function (require, exports) {
             AE_PlaylistItemType[AE_PlaylistItemType["PlaylistItemType_Audio"] = 21] = "PlaylistItemType_Audio";
             AE_PlaylistItemType[AE_PlaylistItemType["PlaylistItemType_AudioStream"] = 22] = "PlaylistItemType_AudioStream";
             AE_PlaylistItemType[AE_PlaylistItemType["PlaylistItemType_PriorityPlaylist"] = 23] = "PlaylistItemType_PriorityPlaylist";
+            AE_PlaylistItemType[AE_PlaylistItemType["PlaylistItemType_DesignMainZone"] = 24] = "PlaylistItemType_DesignMainZone";
         })(AE_PlaylistItemType = am_coreservices.AE_PlaylistItemType || (am_coreservices.AE_PlaylistItemType = {}));
     })(am_coreservices = exports.am_coreservices || (exports.am_coreservices = {}));
 });

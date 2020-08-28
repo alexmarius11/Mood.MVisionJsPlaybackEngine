@@ -348,6 +348,9 @@ export module rm_coreservices
         //---- request to play the next child 
         this.postEvent( amPlaylistItemEventType.am_coreservices.AE_PlaylistItemEventType.EVT_RequestToPlay, 
                         this._lastStartedChild.getLogic(), null, this._lastStartedChild.getLogic().getOwnerIdxAsChild(), eventQueue, error, context, callback);
+        
+        //--- 
+        return;
       }     
       
       //----------------- multiplay : start all children (in scope) one after the other from the beginning

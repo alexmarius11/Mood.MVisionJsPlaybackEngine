@@ -24,7 +24,7 @@ define(["require", "exports", "../../../../../app/ts/reusable/rm_general/r_entit
                 _this._diagram = null;
                 _this._containerDiagram = null;
                 _this._statusName = "";
-                _this._debug = false;
+                _this._debug = true;
                 return _this;
             }
             //-----------------------

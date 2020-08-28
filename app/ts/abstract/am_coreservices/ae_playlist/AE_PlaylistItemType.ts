@@ -32,6 +32,7 @@ export module am_coreservices
     PlaylistItemType_AudioStream      = 22,
 
     PlaylistItemType_PriorityPlaylist = 23,
+    PlaylistItemType_DesignMainZone   = 24,
   }
 
 } 

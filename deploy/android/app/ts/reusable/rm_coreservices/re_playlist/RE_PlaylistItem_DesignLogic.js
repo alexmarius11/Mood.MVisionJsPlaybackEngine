@@ -15,6 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var amNextChildSelectionType = require("../../../../../app/ts/abstract/am_coreservices/ae_playlist/AE_NextChildSelectionType");
 var rmPlaylistItemPlaylistLogic = require("../../../../../app/ts/reusable/rm_coreservices/re_playlist/RE_PlaylistItem_PlaylistLogic");
+var amPlaylistItemType = require("../../../../../app/ts/abstract/am_coreservices/ae_playlist/AE_PlaylistItemType");
 var rm_coreservices;
 (function (rm_coreservices) {
     var RE_PlaylistItem_DesignLogic = (function (_super) {
@@ -64,6 +65,31 @@ var rm_coreservices;
                 return false;
             }
             return true;
+        };
+        RE_PlaylistItem_DesignLogic.prototype.hasActiveRenderingDescendantsToPlayAndItself = function (refDate, event, eventQueue, error, aPlaylistController, aRenderingController, context, callback) {
+            if (this.isDisable(refDate, event, eventQueue, error, aPlaylistController, aRenderingController, context, callback))
+                return false;
+            if (this.hasAtLeastOneAncestorDisable(refDate, event, eventQueue, error, aPlaylistController, aRenderingController, context, callback))
+                return false;
+            if (this._hasARenderingRepresentation)
+                return true;
+            var childrenList = this.getChildrenList();
+            if (childrenList == null)
+                return false;
+            var nbChildren = childrenList.length;
+            if (nbChildren == 0)
+                return false;
+            var hasGraphicChildToPlay = false;
+            var crtChild = null;
+            for (var childIdx = 0; childIdx < nbChildren; childIdx++) {
+                crtChild = childrenList[childIdx];
+                if (crtChild.getPlaylistItemType() != amPlaylistItemType.am_coreservices.AE_PlaylistItemType.PlaylistItemType_DesignMainZone)
+                    continue;
+                hasGraphicChildToPlay = crtChild.getLogic().hasActiveRenderingDescendantsToPlayAndItself(refDate, event, eventQueue, error, aPlaylistController, aRenderingController, context, callback);
+                if (hasGraphicChildToPlay)
+                    return true;
+            }
+            return false;
         };
         return RE_PlaylistItem_DesignLogic;
     }(rmPlaylistItemPlaylistLogic.rm_coreservices.RE_PlaylistItem_PlaylistLogic));

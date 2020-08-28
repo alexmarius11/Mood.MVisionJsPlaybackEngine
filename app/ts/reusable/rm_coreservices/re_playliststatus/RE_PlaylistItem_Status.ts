@@ -42,7 +42,7 @@ export module rm_coreservices
        this._diagram  = null;
        this._containerDiagram  = null;
        this._statusName = "";
-       this._debug = false;
+       this._debug = true;
      }
 
     //-----------------------

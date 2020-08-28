@@ -299,6 +299,11 @@ var rm_coreservices;
             return childrenList[crtChildIdx + 1];
         };
         RE_PlaylistItem_ContainerLogic.prototype.cmd_selectNextChild_OneAfterTheOther_NoLoop_WithDiffusion = function (crtChildIdx, event, eventQueue, error, aPlaylistController, aRenderingController, context, callback) {
+            var thisId = this.getOwner().getPlaylistItemId();
+            var a = 0;
+            if (thisId == 68587) {
+                a = 1;
+            }
             var childrenList = this.getChildrenList();
             if (childrenList == null)
                 return null;
